@@ -1,0 +1,7 @@
+[package]
+name = "notebookinator"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["BattleCh1cken"]
+license = "MIT"
+description = "Notebookin."
