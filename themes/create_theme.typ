@@ -1,15 +1,15 @@
-#import "./headings.typ": *
+#import "/globals.typ": *
 
-#import "../create_theme.typ": *
-
-#create_theme(
-  name: "53E",
+#let create_theme(
+  name: none,
   components: (
+    // Arbitrary set and show rules
     rules: none,
+
     // Misc
     cover: none,
     title: none,
-    heading: heading,
+    heading: none,
     toc: none,
     glossary: none,
 
@@ -32,4 +32,10 @@
     pie_chart: none,
     plot: none,
   )
-)
+) = {
+  themes.update(x => {
+    x.push(
+      name: components
+    )
+  })
+}

@@ -1,6 +1,6 @@
-#import "./appendix.typ": *
 #import "./entries.typ": *
-#import "./frontmatter.typ": *
+#import "./themes/themes.typ": *
+#import "./globals.typ": *
 
 
 /// The entry point for the notebook
@@ -10,6 +10,13 @@
   theme: "default",
   body
 ) = {
-  set text(fill: red)
+  [
+    #frontmatter_entries
+    #entries
+    #appendix_entries
+  ]
+
+  print_entries()
+
   body
 }
