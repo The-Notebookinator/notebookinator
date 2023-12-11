@@ -1,4 +1,4 @@
-#let rules(doc) =  {
+#let rules(doc) = {
   doc
 }
 
@@ -31,13 +31,5 @@
 }
 
 #let default_theme = (
-    rules: rules,
-    frontmatter_title: frontmatter_title,
-    frontmatter_footer: frontmatter_footer,
-
-    entry_title: entry_title,
-    entry_footer: entry_footer,
-
-    appendix_title: appendix_title,
-    appendix_footer: appendix_footer,
+  rules: rules, frontmatter_title: frontmatter_title, frontmatter_footer: frontmatter_footer, entry_title: entry_title, entry_footer: entry_footer, appendix_title: appendix_title, appendix_footer: appendix_footer,
 )

@@ -1,2 +1,2 @@
-#include "./default/theme.typ"
-#include "./53E/theme.typ"
+#import "./default/default.typ"
+#import "./radial/radial.typ"

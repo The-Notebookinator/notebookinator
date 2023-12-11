@@ -1,13 +1,9 @@
 #import "./entries.typ": *
 #import "./globals.typ": *
+#import "./themes/themes.typ"
 
 /// The entry point for the notebook
-#let notebook(
-  team_name: "",
-  season: "",
-  theme: (:),
-  body
-) = {
+#let notebook(team_name: "", season: "", theme: (:), body) = {
   let rules = theme.rules
   show: doc => rules(doc)
 
