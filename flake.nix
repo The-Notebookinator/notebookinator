@@ -28,7 +28,6 @@
           typst.packages.${system}.default
           pkgs.typst-lsp
           typstfmt.packages.${system}.default
-          #pkgs.nodePackages_latest.mermaid-cli
           pkgs.act
         ];
       };

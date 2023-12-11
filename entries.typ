@@ -54,21 +54,26 @@
 }
 
 /// This function returns the final rendered content of every single entry, front matter and appendix included, with the selected theme applied.
-#let print_entries() = {
+#let print_entries(theme: (:)) = {
+  let helper(section, state) = {
   locate(
-    loc => {
-      for entry in frontmatter_entries.final(loc) [
-        #entry
-      ] 
+  loc => {
+    for entry in state.final(loc) {
+        let title_func = theme.at(section + "_title")
+        let footer_func = theme.at(section + "_footer")
 
-      for entry in entries.final(loc) [
-        #entry
-      ] 
+        page(
+          header: title_func(entry.title),
+          footer: footer_func(entry.title),
+        )[
+          #entry.body
+        ]
+      } 
+    })
+  }
 
-      for entry in appendix_entries.final(loc) [
-        #entry
-      ] 
-    }
+  helper("frontmatter", frontmatter_entries)
+  helper("entry", entries)
+  helper("appendix", appendix_entries)
 
-  )
 }
