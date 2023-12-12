@@ -6,30 +6,38 @@
   outline()
 }
 
-#let frontmatter_title(ctx: (:), body) = {
-  heading(body)
-}
+#let frontmatter_entry(context: (:), body) = {
+  show: page.with(
+    header: [ = Frontmatter header],
+    footer: [Frontmatter footer],
+  )
 
-#let frontmatter_footer(ctx: (:), body) = {
   body
 }
 
-#let entry_title(ctx: (:), body) = {
-  heading(body)
-}
+#let body_entry(context: (:), body) = {
+  show: page.with(
+    header: [ = Body header],
+    footer: [Body footer],
+  )
 
-#let entry_footer(ctx: (:), body) = {
   body
 }
+#let appendix_entry(context: (:), body) = {
+  show: page.with(
+    header: [ = Appendix header],
+    footer: [Appendix footer],
+  )
 
-#let appendix_title(ctx: (:), body) = {
-  heading(body)
-}
-
-#let appendix_footer(ctx: (:), body) = {
   body
 }
 
 #let default_theme = (
-  rules: rules, frontmatter_title: frontmatter_title, frontmatter_footer: frontmatter_footer, entry_title: entry_title, entry_footer: entry_footer, appendix_title: appendix_title, appendix_footer: appendix_footer,
+  // Global show rules
+  rules: rules,
+  
+  // Entry pages
+  frontmatter_entry: frontmatter_entry,
+  body_entry: body_entry,
+  appendix_entry: appendix_entry,
 )

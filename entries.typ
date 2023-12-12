@@ -34,19 +34,16 @@
   let print_helper(section, state) = {
     locate(
       loc => {
-        for entry in state.final(loc) {
-          let title_func = fallback_default(section + "_title", theme)
-          let footer_func = fallback_default(section + "_footer", theme)
-
-          page(header: title_func(entry.title), footer: footer_func(entry.title))[
-            #entry.body
-          ]
-        }
+        for entry in state.final(loc) [
+          #let entry_func = fallback_default(section + "_entry", theme)
+          #entry_func(entry.body)
+          #label("nb_" + section)
+        ]
       },
     )
   }
 
   print_helper("frontmatter", frontmatter_entries)
-  print_helper("entry", entries)
+  print_helper("body", entries)
   print_helper("appendix", appendix_entries)
 }
