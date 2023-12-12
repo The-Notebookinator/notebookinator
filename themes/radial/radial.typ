@@ -1,3 +1,13 @@
+#import "/utils.typ": print_toc
+
+#let toc() = {
+  let callback() = {
+
+  }
+  //outline()
+  print_toc()
+}
+
 #let rules(doc) = {
   doc
 }
