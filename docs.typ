@@ -43,5 +43,10 @@ While it was designed with VRC in mind, it could just as easily be used for othe
 #let utils-module = tidy.parse-module(read("utils.typ"), name: "Utils")
 #tidy.show-module(utils-module)
 
+= Developer Documentation
 
-= Implementing Your Own Theme
+== Project Architecture
+
+== Implementing Your Own Theme
+
+
