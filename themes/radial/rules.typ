@@ -1,0 +1,3 @@
+#let rules(doc) = {
+  doc
+}
