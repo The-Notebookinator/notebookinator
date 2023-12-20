@@ -1,6 +1,7 @@
 #import "/utils.typ": print_toc
 #import "./rules.typ": rules
 #import "./entries.typ": frontmatter_entry, body_entry, appendix_entry
+#import "./components/components.typ"
 
 #let toc() = {
   let callback() = {

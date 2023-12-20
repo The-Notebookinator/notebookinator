@@ -1,5 +1,7 @@
 #import "../colors.typ": *
 #import "../icons/icons.typ"
+#import "/utils.typ"
+#import "@preview/showybox:2.0.1": showybox
 
 #let admonition_type_metadata = (
   "note": (icon: icons.pencil, color: green, title: "Note"),
@@ -19,9 +21,21 @@
   ),
 )
 
-#let admonition(type: "", body) = {
+/// A message in a colored box meant to draw the reader's attention.
+///
+/// - type (string): The type of admonition.
+///   Available types include:
+///   - "note"
+///   - "example"
+///   - "quote"
+///   - "equation"
+///   - "decision"
+///   - "build"
+/// - body (content): The content of the admonition
+/// -> content
+#let admonition(type: none, body) = {
   let info = admonition_type_metadata.at(type)
-  let colored_icon = nb_change_icon_color(raw_icon: info.icon, fill: info.color)
+  let colored_icon = utils.change_icon_color(raw_icon: info.icon, fill: info.color)
 
   showybox(
     frame: (
