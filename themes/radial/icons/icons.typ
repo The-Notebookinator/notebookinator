@@ -1,3 +1,5 @@
+// Contains the raw text data of each icon. The icons are not stored as content so their colors can be changed later.
+
 #let question_mark = read("./question-mark.svg")
 #let light_bulb = read("./light-bulb.svg")
 #let target = read("./light-bulb.svg")

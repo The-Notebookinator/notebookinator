@@ -8,7 +8,13 @@
     x => {
       x.push(
         (
-          title: title, type: type, start_date: start_date, end_date: end_date, body: body,
+          context: (
+            title: title,
+            type: type,
+            start_date: start_date,
+            end_date: end_date,
+          ),
+          body: body,
         ),
       )
       x
@@ -36,7 +42,7 @@
       loc => {
         for entry in state.final(loc) [
           #let entry_func = fallback_default(section + "_entry", theme)
-          #entry_func(entry.body)
+          #entry_func(entry.body, context: entry.context)
           #label("nb_" + section)
         ]
       },
