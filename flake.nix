@@ -24,7 +24,6 @@
     {
       devShell = pkgs.mkShell {
         packages = [
-          #pkgs.typst
           typst.packages.${system}.default
           pkgs.typst-lsp
           typstfmt.packages.${system}.default
