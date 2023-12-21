@@ -1,6 +1,6 @@
 #import "./entries.typ": *
 #import "./globals.typ": *
-#import "./utils.typ": *
+#import "./utils.typ"
 #import "./themes/themes.typ"
 
 /// The entry point for the notebook

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #import "/globals.typ"
 /// Utility function to help themes implement a table of contents
 ///
@@ -29,7 +30,43 @@
   )
 }
 
-#let calc_decision_matrix() = {}
+#let print_toc() = {
+  locate(loc => {
+    let frontmatter_headings = query(selector(<nb_frontmatter>), loc)
+    let body_headings = query(selector(<nb_body>), loc)
+    let appendix_headings = query(selector(<nb_appendix>), loc)
+    [
+      #frontmatter_headings
+      #body_headings
+      #appendix_headings
+    ]
+  })
+}
+
+#let calc_decision_matrix(properties: (), ..choices) = {
+  for choice in choices.pos() {
+    assert(choice.len() - 1 == properties.len())
+  }
+
+  let result = ();
+  let highest = (index: 0, value: 0)
+
+  for (index, choice) in choices.pos().enumerate() {
+    let name = choice.at(0)
+    let values = choice.slice(1)
+    let total = values.sum()
+
+    if total > highest.value {
+      highest.index = index
+      highest.value = total
+    }
+    let entry = (name: name, values: values, total: total, highest: false)
+    result.push(entry)
+  }
+  result.at(highest.index).highest = true;
+
+  return result
+}
 
 /// Returns the raw image data, not image content
 /// You'll still need to run image.decode on the result

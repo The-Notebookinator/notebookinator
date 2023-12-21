@@ -4,4 +4,5 @@
 
 #import "./admonitions.typ": *
 #import "./pro-con.typ": *
+#import "./decision-matrix.typ": *
 #import "./tournament.typ": *
