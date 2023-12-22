@@ -4,6 +4,11 @@
   doc
 }
 
+#let cover(context: (:)) = [
+  #set align(center)
+  *Default Cover*
+]
+
 #let toc() = {
   heading(level: 2)[Frontmatter]
 
@@ -44,6 +49,7 @@
 #let default_theme = (
   // Global show rules
   rules: rules,
+  cover: cover,
   // Entry pages
   frontmatter_entry: frontmatter_entry, body_entry: body_entry, appendix_entry: appendix_entry,
 )

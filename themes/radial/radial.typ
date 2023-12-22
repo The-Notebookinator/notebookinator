@@ -3,20 +3,21 @@
 #import "./entries.typ": frontmatter_entry, body_entry, appendix_entry
 #import "./components/components.typ"
 
+// TODO: move to a component
 #let toc() = {
-  let callback() = {
-
-  }
+  let callback() = {}
   //outline()
   print_toc()
 }
 
+#let cover(context: (:)) = [
+  #set align(center)
+  *Radial Cover*
+]
+
 #let radial_theme = (
-  rules: rules,
-
+  // Global show and set rules
+  rules: rules, cover: cover,
   // Entry pages
-  frontmatter_entry: frontmatter_entry,
-  body_entry: body_entry,
-  appendix_entry: appendix_entry,
-
+  frontmatter_entry: frontmatter_entry, body_entry: body_entry, appendix_entry: appendix_entry,
 )
