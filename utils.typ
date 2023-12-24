@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #import "/globals.typ"
 /// Utility function to help themes implement a table of contents
 ///
