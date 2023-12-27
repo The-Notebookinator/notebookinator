@@ -1,19 +1,14 @@
-#import "/utils.typ": print_toc
+#import "./rules.typ": rules
+#import "./entries.typ": cover, frontmatter_entry, body_entry, appendix_entry
+#import "./components/components.typ"
 
-#let toc() = {
-  let callback() = {
+#let radial_theme = (
+  // Global show and set rules
+  rules: rules,
+  cover: cover,
 
-  }
-  //outline()
-  print_toc()
-}
-
-#let rules(doc) = {
-  doc
-}
-
-#let frontmatter_title(ctx: (:), body) = {
-  heading(body)
-}
-
-#let radial_theme = (rules: rules, frontmatter_title: frontmatter_title)
+  // Entry pages
+  frontmatter_entry: frontmatter_entry,
+  body_entry: body_entry,
+  appendix_entry: appendix_entry
+)
