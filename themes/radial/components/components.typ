@@ -3,6 +3,7 @@
 #import "./title.typ": *
 
 #import "./toc.typ": *
+#import "./glossary.typ": *
 
 #import "./admonitions.typ": *
 #import "./pro-con.typ": *

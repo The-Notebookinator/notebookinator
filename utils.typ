@@ -32,6 +32,18 @@
   )
 }
 
+/// A utility function meant to help themes implement a glossary
+/// - callback (function): A function returning the content of a single glossary entry
+/// -> content
+#let print_glossary(callback) = locate(
+  loc => {
+    let sorted_glossary = globals.glossary_entries.final(loc).sorted(key: ((word, _)) => word)
+    for entry in sorted_glossary {
+      box(callback(entry))
+    }
+  },
+)
+
 #let calc_decision_matrix(properties: (), ..choices) = {
   for choice in choices.pos() {
     assert(choice.len() - 1 == properties.len())

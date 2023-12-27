@@ -2,6 +2,7 @@
 #import "./globals.typ": *
 #import "./utils.typ"
 #import "./themes/themes.typ"
+#import "./glossary.typ"
 
 /// The entry point for the notebook
 /// - team_name (string): The name of your team.
