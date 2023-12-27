@@ -2,6 +2,11 @@
 #import "./utils.typ"
 #import "./themes/themes.typ"
 
+/// Generic entry creation function
+///
+/// - entry_type (string): The type of entry. Takes either "frontmatter", "body", or "appendix"
+/// - title (string): The title of the entry
+/// - type (string): The type of entry. The possible values for this are decided by the theme.
 #let push_entry(
   entry_type: none, title: "", type: none, start_date: none, end_date: none, body,
 ) = {
@@ -21,7 +26,7 @@
 
   state.update(
     entries => {
-      // Inject the proper labels and settings changes into the user's entry body.
+      // Inject the proper labels and settings changes into the user's entry body
       let final_body = if entries.len() == 0 {
         [#counter(page).update(1)] // Correctly set the page number for each section
       } + [ #metadata(none) #entry_label ] + body // Place a label on blank content to the table of contents can find each entry
@@ -36,10 +41,6 @@
   )
 }
 
-#let create_frontmatter_entry = push_entry.with(entry_type: "frontmatter")
-#let create_entry = push_entry.with(entry_type: "body")
-#let create_appendix_entry = push_entry.with(entry_type: "appendix")
-
 #let fallback_to_default(key, theme) = {
   let component = theme.at(key, default: none)
   if component == none {
@@ -49,12 +50,24 @@
   }
 }
 
+#let create_frontmatter_entry = push_entry.with(entry_type: "frontmatter")
+#let create_entry = push_entry.with(entry_type: "body")
+#let create_appendix_entry = push_entry.with(entry_type: "appendix")
+
+/// Internal function used by the template to print out the cover
+///
+/// - theme (dictionary):
+/// - context (dictionary):
+/// -> content
 #let print_cover(theme: (:), context: (:)) = {
   let cover_func = fallback_to_default("cover", theme)
   cover_func(context: context)
 }
 
-/// This function returns the final rendered content of every single entry, front matter and appendix included, with the selected theme applied.
+/// Internal function used by the template to print out all of the entries
+///
+/// - theme (dictionary):
+/// -> content
 #let print_entries(theme: (:)) = {
   let print_helper(section, state) = {
     locate(loc => {

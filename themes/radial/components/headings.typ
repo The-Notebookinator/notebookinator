@@ -5,7 +5,6 @@
 // My proposed solution is to have the heading actually return a heading, but that creates issues when used as a show rule.
 
 #let heading(it) = {
-  // TODO: move highlight to a single spot, rn I have like 5 of them
   let highlight(color: none, body, width: auto) = {
     box(
       fill: color,

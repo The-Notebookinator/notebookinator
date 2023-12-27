@@ -1,6 +1,8 @@
 #import "./icons/icons.typ"
 #import "./colors.typ": *
 
+// These should really be with their respective files, but that causes a cyclic import error, so I put them here.
+
 #let entry_type_metadata = (
   "identify": (icon: icons.question_mark, color: yellow),
   "brainstorm": (icon: icons.light_bulb, color: orange),
@@ -18,14 +20,6 @@
   "example": (icon: icons.web, color: purple, title: "Example"),
   "quote": (icon: icons.quotes, color: gray, title: "Quote"),
   "equation": (icon: icons.function, color: orange, title: "Equation"),
-  "decision": (
-    icon: icons.target,
-    color: blue,
-    title: "Final Decision",
-  ),
-  "build": (
-    icon: icons.hammer,
-    color: red,
-    title: "Build Complete",
-  ),
+  "decision": (icon: icons.target, color: blue, title: "Final Decision"),
+  "build": (icon: icons.hammer, color: red, title: "Build Complete"),
 )

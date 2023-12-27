@@ -1,9 +1,12 @@
 #import "/globals.typ"
 
+// TODO: document what context provides to the callback
+
 /// Utility function to help themes implement a table of contents
 ///
 /// - type (string): Takes either "frontmatter", "body", or "appendix"
 /// - callback (function): A function which takes the context of the entry as input, and returns the content for a single row
+/// -> content
 #let print_toc(type: "body", callback) = {
   locate(
     loc => {
@@ -32,6 +35,8 @@
   )
 }
 
+// TODO: document what data the callback has access to
+
 /// A utility function meant to help themes implement a glossary
 /// - callback (function): A function returning the content of a single glossary entry
 /// -> content
@@ -44,6 +49,34 @@
   },
 )
 
+/// A utility function that does the calculation for decision matrices for you
+///
+/// *Example Usage*
+///
+/// ```typ
+/// calc_decision_matrix(
+///   properties: ("Versatility", "Flavor", "Chrunchiness"),
+///   ("Sweet potato", 2, 5, 1),
+///   ("Red potato", 2, 1, 3),
+///   ("Yellow potato", 2, 2, 3),
+/// )
+/// ```
+///
+/// The function returns an array of dictionaries, one for each choice. Each dictionary contains the name of the choice,
+/// the values for each property, the total, and whether the choice has the highest score or not. Here's an example of what one of these dictionaries might look like:
+///
+/// ```typ
+///   (
+///     name: "Sweet potato",
+///     values: (2, 5, 1),
+///     total: 8,
+///     highest: true,
+///   )
+/// ```
+///
+/// - properties (array string): A list of the properties that each choice will be rated by
+/// - ..choices (array): All of the choices that are being rated. The first element of the array should be the name of the
+/// -> array
 #let calc_decision_matrix(properties: (), ..choices) = {
   for choice in choices.pos() {
     assert(choice.len() - 1 == properties.len())
@@ -83,9 +116,12 @@
 ///
 /// - path (string): The path to the icon. Must point to a svg.
 /// - fill (color): The new icon color.
-/// -> function
-#let colored_icon(path, fill: red) = {
+/// - width (ratio length): Width of the image
+/// - height (ratio length): height of the image
+/// - fit (string): How the image should adjust itself to a given area. Takes either "cover", "contain", or "stretch"
+/// -> content
+#let colored_icon(path, fill: red, width: 100%, height: 100%, fit: "contain") = {
   let raw_icon = read(path)
-  let raw_colored_icon = change_icon_color(raw_icon)
-  return image.decode.with(raw_colored_icon)
+  let raw_colored_icon = raw_icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
+  return image.decode(raw_colored_icon, width: width, height: height, fit: fit)
 }
