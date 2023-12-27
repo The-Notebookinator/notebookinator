@@ -1,4 +1,5 @@
 #import "/globals.typ"
+
 /// Utility function to help themes implement a table of contents
 ///
 /// - type (string): Takes either "frontmatter", "body", or "appendix"
@@ -7,19 +8,21 @@
   locate(
     loc => {
       // Each of the types of entries have their own state variable and label, so we need to decide which ones to use
-      let (state, headings) = if type == "frontmatter" {
-        (globals.frontmatter_entries, query(selector(<nb_frontmatter>), loc))
+      let (state, markers) = if type == "frontmatter" {
+        (
+          globals.frontmatter_entries, query(selector(<notebook_frontmatter>), loc),
+        )
       } else if type == "body" {
-        (globals.entries, query(selector(<nb_body>), loc))
+        (globals.entries, query(selector(<notebook_body>), loc))
       } else if type == "appendix" {
-        (globals.appendix_entries, query(selector(<nb_appendix>), loc))
+        (globals.appendix_entries, query(selector(<notebook_appendix>), loc))
       } else {
         panic("No valid entry type selected.")
       }
 
       for (index, entry) in state.final(loc).enumerate() {
-        let page_number = counter(page).at(headings.at(index).location()).at(0)
-        let context = entry
+        let page_number = counter(page).at(markers.at(index).location()).at(0)
+        let context = entry.context
         context.page_number = page_number
         [
           #callback(context) \

@@ -10,22 +10,16 @@
 ]
 
 #let toc() = {
-  heading(level: 2)[Frontmatter]
-
-  utils.print_toc(type: "frontmatter", context => [
-    #context.title -- #context.page_number
-  ])
-
-  heading(level: 2)[Entries]
-
   utils.print_toc(context => [
-    #context.title -- #context.page_number
+    #context.title
+    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+    #context.page_number
   ])
-
-  heading(level: 2)[Appendix]
 
   utils.print_toc(type: "appendix", context => [
-    #context.title -- #context.page_number
+    #context.title
+    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+    #context.page_number
   ])
 }
 
@@ -48,8 +42,7 @@
 
 #let default_theme = (
   // Global show rules
-  rules: rules,
-  cover: cover,
+  rules: rules, cover: cover,
   // Entry pages
   frontmatter_entry: frontmatter_entry, body_entry: body_entry, appendix_entry: appendix_entry,
 )

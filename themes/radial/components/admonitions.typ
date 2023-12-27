@@ -1,25 +1,8 @@
 #import "../colors.typ": *
 #import "../icons/icons.typ"
 #import "/utils.typ"
+#import "../metadata.typ": *
 #import "@preview/showybox:2.0.1": showybox
-
-#let admonition_type_metadata = (
-  "note": (icon: icons.pencil, color: green, title: "Note"),
-  "warning": (icon: icons.warning, color: red, title: "Warning"),
-  "example": (icon: icons.web, color: purple, title: "Example"),
-  "quote": (icon: icons.quotes, color: gray, title: "Quote"),
-  "equation": (icon: icons.function, color: orange, title: "Equation"),
-  "decision": (
-    icon: icons.target,
-    color: blue,
-    title: "Final Decision",
-  ),
-  "build": (
-    icon: icons.hammer,
-    color: red,
-    title: "Build Complete",
-  ),
-)
 
 /// A message in a colored box meant to draw the reader's attention.
 ///
@@ -39,16 +22,10 @@
 
   showybox(
     frame: (
-      border-color: info.color,
-      body-color: info.color.lighten(80%),
-      thickness: (left: 4pt),
-      radius: 1.5pt,
-    ),
-    [
+      border-color: info.color, body-color: info.color.lighten(80%), thickness: (left: 4pt), radius: 1.5pt,
+    ), [
       #text(
-        size: 15pt,
-        fill: info.color,
-        [
+        size: 15pt, fill: info.color, [
           #box(baseline: 30%, image.decode(colored_icon, width: 1.5em)) *#info.title*
         ],
       )

@@ -3,13 +3,6 @@
 #import "./entries.typ": frontmatter_entry, body_entry, appendix_entry
 #import "./components/components.typ"
 
-// TODO: move to a component
-#let toc() = {
-  let callback() = {}
-  //outline()
-  print_toc()
-}
-
 #let cover(context: (:)) = [
   #set align(center)
   *Radial Cover*
