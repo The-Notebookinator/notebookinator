@@ -14,23 +14,18 @@
     ]
   ]
 
-  // Make links blue
   show link: it => [
     #text(fill: blue, [ _ #it _ ])
   ]
-
 
   show figure: it => align(center)[
     #it.body
     _ #it.caption.body _
   ]
 
-
-  // Code blocks
   show raw.where(block: false): components.raw_not_block
   show raw.where(block: true): it => components.raw_block(it)
 
-  // Headings
   show heading: components.heading
 
   // Display the whole document
