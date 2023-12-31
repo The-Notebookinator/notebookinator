@@ -2,12 +2,12 @@
 #import "./utils.typ"
 #import "./themes/themes.typ"
 
-/// Generic entry creation function
+/// Generic entry creation function.
 ///
 /// - entry_type (string): The type of entry. Takes either "frontmatter", "body", or "appendix"
 /// - title (string): The title of the entry
 /// - type (string): The type of entry. The possible values for this are decided by the theme.
-#let push_entry(
+#let create_entry(
   entry_type: none, title: "", type: none, start_date: none, end_date: none, body,
 ) = {
   let (state, entry_label) = if entry_type == "frontmatter" {
@@ -41,45 +41,11 @@
   )
 }
 
-#let fallback_to_default(key, theme) = {
-  let component = theme.at(key, default: none)
-  if component == none {
-    return themes.default.default_theme.at(key)
-  } else {
-    return component
-  }
-}
+/// Variant of the `#create_entry()` function that creates a frontmatter entry.
+#let create_frontmatter_entry = create_entry.with(entry_type: "frontmatter")
 
-#let create_frontmatter_entry = push_entry.with(entry_type: "frontmatter")
-#let create_entry = push_entry.with(entry_type: "body")
-#let create_appendix_entry = push_entry.with(entry_type: "appendix")
+/// Variant of the `#create_entry()` function that creates a body entry.
+#let create_body_entry = create_entry.with(entry_type: "body")
 
-/// Internal function used by the template to print out the cover
-///
-/// - theme (dictionary):
-/// - context (dictionary):
-/// -> content
-#let print_cover(theme: (:), context: (:)) = {
-  let cover_func = fallback_to_default("cover", theme)
-  cover_func(context: context)
-}
-
-/// Internal function used by the template to print out all of the entries
-///
-/// - theme (dictionary):
-/// -> content
-#let print_entries(theme: (:)) = {
-  let print_helper(section, state) = {
-    locate(loc => {
-      for entry in state.final(loc) [
-        #let entry_func = fallback_to_default(section + "_entry", theme)
-        #let body = [] + entry.body
-        #entry_func(body, context: entry.context)
-      ]
-    })
-  }
-
-  print_helper("frontmatter", globals.frontmatter_entries)
-  print_helper("body", globals.entries)
-  print_helper("appendix", globals.appendix_entries)
-}
+/// Variant of the `#create_entry()` function that creates an appendix entry.
+#let create_appendix_entry = create_entry.with(entry_type: "appendix")

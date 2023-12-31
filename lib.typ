@@ -1,3 +1,4 @@
+#import "./internals.typ": *
 #import "./entries.typ": *
 #import "./globals.typ": *
 #import "./utils.typ"
@@ -5,12 +6,12 @@
 #import "./glossary.typ"
 
 /// The base notebook template. This function is meant to be applied to your entire document as a show rule.
-/// 
+///
 /// *Example Usage:*
 ///
 /// ```typ
 /// #import themes.default: default_theme, toc
-/// 
+///
 /// #show: notebook.with(
 ///   theme: default_theme
 /// )
