@@ -2,6 +2,7 @@
 #import "../metadata.typ": *
 
 /// Print out the table of contents
+///
 /// -> content
 #let toc() = {
   let label(label: "", size: 0.7em) = {

@@ -4,9 +4,12 @@
 
 /// Generic entry creation function.
 ///
-/// - entry_type (string): The type of entry. Takes either "frontmatter", "body", or "appendix"
-/// - title (string): The title of the entry
+/// - entry_type (string): The type of entry. Takes either "frontmatter", "body", or "appendix".
+/// - title (string): The title of the entry.
 /// - type (string): The type of entry. The possible values for this are decided by the theme.
+/// - start_date (datetime): The date that the entry started at.
+/// - end_date (datetime): The date that the entry ended at. If not specified, it will fall back on the `start_date`.
+/// - body (content): The content of the entry.
 #let create_entry(
   entry_type: none, title: "", type: none, start_date: none, end_date: none, body,
 ) = {

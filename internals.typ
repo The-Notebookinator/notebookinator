@@ -1,3 +1,4 @@
+#import "./globals.typ"
 #let fallback_to_default(key, theme) = {
   let component = theme.at(key, default: none)
   if component == none {

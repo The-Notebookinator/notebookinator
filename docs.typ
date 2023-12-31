@@ -1,13 +1,23 @@
+#import "./docs-template.typ": *
+
 #import "@preview/tidy:0.1.0"
 
-#let show-module = tidy.show-module.with(show-outline: false, sort-functions: none)
+#let version = toml("/typst.toml").package.version
+#let import-statement = "#import \"@preview/tidy:" + version + "\""
 
-#let show-module-fn(module, fn, ..args) = {
-  module.functions = module.functions.filter(f => f.name == fn)
-  tidy.show-module(
-    module, ..args.pos(), ..args.named(), show-module-name: false, show-outline: false,
-  )
-}
+#show: docs-template.with(
+  title: "The Notebookinator", subtitle: "Easy formatting for robotics notebooks.", abstract: [
+    Welcome to the Notebookinator, a Typst package meant to simply the notebooking
+    process for the Vex Robotics Competition. Its theming capabilities handle all of
+    the styling for you, letting you jump right into writing documentation.
+
+    While it was designed with VRC in mind, it could just as easily be used for
+    other competitor systems such as the First Robotics Competition and the First
+    Tech Challenge.
+  ], version: version, url: "https://github.com/BattleCh1cken/notebookinator",
+)
+
+#let show-module = tidy.show-module.with(show-outline: false, sort-functions: none, first-heading-level: 2)
 
 #set heading(numbering: "1.")
 #set terms(indent: 1em)
@@ -22,16 +32,6 @@
 #outline(indent: true, depth: 3)
 #pagebreak(weak: true)
 
-= Introduction
-
-Welcome to the Notebookinator, a Typst package meant to simply the notebooking
-process for the Vex Robotics Competition. Its theming capabilities handle all of
-the styling for you, letting you jump right into writing documentation.
-
-While it was designed with VRC in mind, it could just as easily be used for
-other competitor systems such as the First Robotics Competition and the First
-Tech Challenge.
-
 = Installation
 
 The best way to install the Notebookinator is as a local package. Make sure you
@@ -44,20 +44,24 @@ have the following software installed on your computer:
 Once you have those, find the matching command for you operating system, and
 then run it:
 
-// TODO: find correct link
-```sh
-# Linux
-git glone https://github.com/BattleCh1cken/notebookinator ~/.local/share/typst/packages/local/
-
-# MacOS
-git glone https://github.com/BattleCh1cken/notebookinator ~/Library/Application Support/typst/packages/local/
-
+*Linux:*
+```bash
+git glone https://github.com/BattleCh1cken/notebookinator \
+~/.local/share/typst/packages/local/
 ```
 
-```ps
-# Windows
+*MacOS:*
+```zsh
+git glone https://github.com/BattleCh1cken/notebookinator \
+~/Library/Application Support/typst/packages/local/
+```
+
+*Windows:*
+// FIXME: find the correct syntax highlighting for powershell
+```pwsh
 git glone https://github.com/BattleCh1cken/notebookinator %APPDATA%\typst\packages\local\
 ```
+
 = Basic Usage
 
 Once the template is installed, you can import it into your project like this:
@@ -67,9 +71,9 @@ Once the template is installed, you can import it into your project like this:
 ```
 Once you've done that you can begin to write your notebook:
 ```typ
-#import themes.radial: radial_theme, components
+#import themes.default: default_theme, components
 
-#show: notebook.with(theme: radial_theme)
+#show: notebook.with(theme: default_theme)
 
 #create_frontmatter_entry(title: "Table of Contents")[
   #components.toc()
@@ -77,19 +81,48 @@ Once you've done that you can begin to write your notebook:
 ```
 = API Reference
 
-#let template_module = tidy.parse-module(read("lib.typ"), name: "Template")
+== Template
+
+#let template_module = tidy.parse-module(read("lib.typ"))
 #show-module(template_module)
 
-#let entries_module = tidy.parse-module(read("entries.typ"), name: "Entries")
+== Entries
+
+#let entries_module = tidy.parse-module(read("entries.typ"))
 #show-module(entries_module)
 
-#let glossary_module = tidy.parse-module(read("glossary.typ"), name: "Glossary")
+== Glossary
+
+#let glossary_module = tidy.parse-module(read("glossary.typ"))
 #show-module(glossary_module)
+
+== Additional Datatypes
+
+=== Themes
+
+=== Entries
 
 == Radial Theme
 
-#let radial-module = tidy.parse-module(read("./themes/radial/radial.typ"), name: "Template")
-#show-module(radial-module)
+The Radial theme is a minimal theme focusing on nice, rounded corners.
+
+#let radial_toc_module = tidy.parse-module(read("./themes/radial/components/toc.typ"))
+#show-module(radial_toc_module)
+
+#let radial_glossary_module = tidy.parse-module(read("./themes/radial/components/glossary.typ"))
+#show-module(radial_glossary_module)
+
+#let radial_admonitions_module = tidy.parse-module(read("./themes/radial/components/admonitions.typ"))
+#show-module(radial_admonitions_module)
+
+#let radial_pro_con_module = tidy.parse-module(read("./themes/radial/components/pro-con.typ"))
+#show-module(radial_pro_con_module)
+
+#let radial_decision_matrix_module = tidy.parse-module(read("./themes/radial/components/decision-matrix.typ"))
+#show-module(radial_decision_matrix_module)
+
+#let radial_tournament_module = tidy.parse-module(read("./themes/radial/components/tournament.typ"))
+#show-module(radial_tournament_module)
 
 = Developer Documentation
 
@@ -109,6 +142,8 @@ decision matrices.
 == File Structure
 
 - `lib.typ`: The entrypoint for the whole template.
+- `internals.typ`: All of the internal function calls that should not be used by
+  theme authors or users.
 - `entries.typ`: Contains the user facing API for entries, as well as the internal
   template functions for printing out the entries and cover.
 - `glossary.typ`: Contains the user facing API for the glossary.
@@ -260,5 +295,7 @@ tables, Gantt charts, or anything else your heart desires.
 
 // TODO: define a standard set of components that themes should implement.
 
-#let utils-module = tidy.parse-module(read("utils.typ"), name: "Utility Functions")
-#tidy.show-module(utils-module, show-outline: false)
+== Utility Functions
+
+#let utils_module = tidy.parse-module(read("utils.typ"))
+#show-module(utils_module)
