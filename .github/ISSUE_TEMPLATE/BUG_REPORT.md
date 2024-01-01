@@ -2,7 +2,7 @@
 name: Bug Report
 about: Report a bug in the project
 title: "[BUG]"
-labels: "needs confirmation"
+labels: "needs reproduction"
 assignees: ""
 ---
 
