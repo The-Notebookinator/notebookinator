@@ -4,16 +4,16 @@
 /// - ..matches (dictionary): A list of all of the matches at the tournament.
 /// Each dictionary must contain the following fields:
 /// - match (string) The name of the match
-/// - red_alliance (dictionary) The red alliance
-///   - teams (array)
-///   - score (integer)
-/// - blue_alliance (dictionary) The blue alliance
-///   - teams (array)
-///   - score (integer)
-/// - won (boolean) Whether you won the match
-/// - auton (boolean) Whether you got the autonomous bonus
-/// - awp (boolean) Whether you scored the autonomous win point
-/// - notes (content) Any additional notes you have about the match
+/// - red_alliance `<dictionary>` The red alliance
+///   - teams `<array>`
+///   - score `<integer>`
+/// - blue_alliance `<dictionary>` The blue alliance
+///   - teams `<array>`
+///   - score `<integer>`
+/// - won `<boolean>` Whether you won the match
+/// - auton `<boolean>` Whether you got the autonomous bonus
+/// - awp `<boolean>` Whether you scored the autonomous win point
+/// - notes `<content>` Any additional notes you have about the match
 /// -> content
 #let tournament(..matches) = {
   for match in matches.pos() {

@@ -17,18 +17,6 @@
   ], version: version, url: "https://github.com/BattleCh1cken/notebookinator",
 )
 
-#let show-module = tidy.show-module.with(show-outline: false, sort-functions: none, first-heading-level: 2)
-
-#set heading(numbering: "1.")
-#set terms(indent: 1em)
-#show link: set text(blue)
-
-#set page(numbering: "1/1", header: align(right)[The Notebookinator])
-
-#align(center, text(16pt)[*The Notebookinator*])
-
-#set par(justify: true)
-
 #outline(indent: true, depth: 3)
 #pagebreak(weak: true)
 
@@ -46,20 +34,20 @@ then run it:
 
 *Linux:*
 ```bash
-git glone https://github.com/BattleCh1cken/notebookinator \
+git clone https://github.com/BattleCh1cken/notebookinator \
 ~/.local/share/typst/packages/local/
 ```
 
 *MacOS:*
 ```zsh
-git glone https://github.com/BattleCh1cken/notebookinator \
+git clone https://github.com/BattleCh1cken/notebookinator \
 ~/Library/Application Support/typst/packages/local/
 ```
 
 *Windows:*
 // FIXME: find the correct syntax highlighting for powershell
 ```pwsh
-git glone https://github.com/BattleCh1cken/notebookinator %APPDATA%\typst\packages\local\
+git clone https://github.com/BattleCh1cken/notebookinator %APPDATA%\typst\packages\local\
 ```
 
 = Basic Usage
@@ -75,10 +63,16 @@ Once you've done that you can begin to write your notebook:
 
 #show: notebook.with(theme: default_theme)
 
-#create_frontmatter_entry(title: "Table of Contents")[
-  #components.toc()
+#create_body_entry(title: "My Entry")[
+  #lorem(200)
 ]
 ```
+
+You can then compile your notebook with the Typst CLI:
+```bash
+typst compile your_notebook_file.typ
+```
+
 = API Reference
 
 == Template
@@ -98,13 +92,105 @@ Once you've done that you can begin to write your notebook:
 
 == Additional Datatypes
 
-=== Themes
+=== Theme <theme>
 
-=== Entries
+Themes are stored as dictionaries with a set number of fields.
+
+#def-arg(
+  "rules", [`<function>`], default: none, [ The show and set rules that will be applied to the document ],
+)
+#def-arg(
+  "cover", [`<function>`], default: none, [ A function that returns the cover of the notebook. Must take context as input. ],
+)
+#def-arg(
+  "frontmatter_entry", [`<function>`], default: none, [ A function that returns a frontmatter entry. Must take context and body as
+    input. ],
+)
+#def-arg(
+  "body_entry", [`<function>`], default: none, [ A function that returns a body entry. Must take context and body as input. ],
+)
+#def-arg(
+  "appendix_entry", [`<function>`], default: none, [ A function that returns a appendix entry. Must take context and body as input. ],
+)
+
+=== Context <context>
+
+Provides information to a callback about how it's being called.
+
+Context is stored as a dictionary with the following fields:
+
+#def-arg("title", [`<string>`], default: none, [The title of the entry])
+#def-arg(
+  "type", [`<string>` or `<none>`], default: none, [The type of the entry. This value is used differently by different templates.
+    Refer to the template level documentation to see what this means for your theme.],
+)
+#def-arg(
+  "start_date", [`<datetime>`], default: none, [The date at which the entry started.],
+)
+#def-arg(
+  "end_date", [`<datetime>`], default: none, [The date at which the entry ended.],
+)
+#def-arg(
+  "page_number", [`<integer>` or `<none>`], default: none, [The page number of the first page of the entry. Only available while using the `print_toc()` utility
+  function. ],
+)
 
 == Radial Theme
 
 The Radial theme is a minimal theme focusing on nice, rounded corners.
+
+You can change the look of body entries by changing their type. The following
+types are available:
+
+- `"identify"`: For entries about the identify stage of the engineering design
+  process.
+- `"brainstorm"`: For entries about the brainstorm stage of the engineering design
+  process.
+- `"decide"`: For entries about the decide stage of the engineering design
+  process.
+- `"build"`: For entries about the build stage of the engineering design process.
+- `"program"`: For entries about the programming stage of the engineering design
+  process.
+- `"test"`: For entries about the testing stage of the engineering design process.
+- `"management"`: For entries about team management
+- `"notebook"`: For entries about the notebook itself
+
+Minimal starting point:
+```typ
+#create_frontmatter_entry(title: "Table of Contents")[
+  #components.toc()
+]
+
+#create_body_entry(
+  title: "Sample Entry", type: "identify", start_date: datetime(year: 1984, month: 1, day: 1),
+)[
+
+= Top Level heading
+
+#lorem(20)
+
+#components.admonition(type: "note")[
+  #lorem(20)
+]
+
+#components.pro_con(pros: [
+  #lorem(50)
+], cons: [
+  #lorem(20)
+])
+
+#components.decision_matrix(
+  properties: ("Flavor", "Versatility", "Crunchiness"), ("Sweet Potato", 5, 3, 1), ("White Potato", 1, 2, 3), ("Purple Potato", 2, 2, 2),
+)
+]
+
+#create_appendix_entry(title: "Glossary")[
+  #components.glossary()
+]
+
+```
+
+=== Components
 
 #let radial_toc_module = tidy.parse-module(read("./themes/radial/components/toc.typ"))
 #show-module(radial_toc_module)
@@ -264,7 +350,6 @@ Here's an example cover:
 === Defining the Theme
 
 // TODO: create a theme type documentation thingy
-
 Once you define all of your functions you'll have to actually define your theme.
 The theme is just a dictionary which stores all of the functions that you just
 defined.
@@ -287,6 +372,7 @@ Here's what the theme would look like in this scenario:
   appendix_entry: appendix_entry
 )
 ```
+
 === Creating Components
 
 With your base theme done, you may want to create some additional components for

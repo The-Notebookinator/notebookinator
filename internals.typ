@@ -1,4 +1,6 @@
 #import "./globals.typ"
+#import "./themes/themes.typ": *
+
 #let fallback_to_default(key, theme) = {
   let component = theme.at(key, default: none)
   if component == none {
@@ -10,7 +12,7 @@
 
 /// Internal function used by the template to print out the cover
 ///
-/// - theme (dictionary):
+/// - theme (theme):
 /// - context (dictionary):
 /// -> content
 #let print_cover(theme: (:), context: (:)) = {
@@ -20,7 +22,7 @@
 
 /// Internal function used by the template to print out all of the entries
 ///
-/// - theme (dictionary):
+/// - theme (theme):
 /// -> content
 #let print_entries(theme: (:)) = {
   let print_helper(section, state) = {
