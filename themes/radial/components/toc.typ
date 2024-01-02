@@ -2,7 +2,14 @@
 #import "../metadata.typ": *
 
 /// Print out the table of contents
-/// -> content
+///
+/// Example Usage:
+///
+/// ```typ
+/// #create_frontmatter_entry(title: "Table of Contents")[
+///   #components.toc()
+/// ]
+/// ```
 #let toc() = {
   let label(label: "", size: 0.7em) = {
     let data = entry_type_metadata.at(label)
