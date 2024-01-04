@@ -1,6 +1,6 @@
 <div align="center">
 
-# Notebookinator
+# The Notebookinator
 
 </div>
 
