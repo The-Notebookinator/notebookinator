@@ -1,6 +1,5 @@
 #import "./internals.typ": *
 #import "./entries.typ": *
-#import "./globals.typ": *
 #import "./utils.typ"
 #import "./themes/themes.typ"
 #import "./glossary.typ"
