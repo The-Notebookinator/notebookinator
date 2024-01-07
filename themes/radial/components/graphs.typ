@@ -13,7 +13,12 @@
 /// )
 /// ```
 ///
-/// - ..data (array): The first field is the value, the second the color, and the third is the name of the data.
+/// - ..data (array): Each array must contain 3 fields.
+///   + `<integer>` The value of the section
+///   + `<color>` The value of the section
+///   + `<string>` The name of the section
+///   Here's an example of one of these arrays:
+///   `(2, blue, "bicycles")`
 /// -> content
 #let pie_chart(..data) = {
   let total;
