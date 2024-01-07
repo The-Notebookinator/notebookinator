@@ -36,7 +36,7 @@
     let bool_icon(input) = {
       cell[
         #set align(horizon + center)
-        #if input { image("/template/icons/check.svg", width: 1.5em) } else { image("/template/icons/x.svg", width: 1.5em) }
+        #if input { image("../icons/check.svg", width: 1.5em) } else { image("../icons/x.svg", width: 1.5em) }
       ]
     }
 
