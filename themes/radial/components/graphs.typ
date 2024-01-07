@@ -2,6 +2,19 @@
 
 #import "@preview/cetz:0.1.2"
 
+/// Creates a labeled pie chart.
+///
+/// Example Usage:
+///
+/// ```typ
+/// #pie_chart(
+///   (8, green, "wins"),
+///   (2, red, "losses")
+/// )
+/// ```
+///
+/// - ..data (array): The first field is the value, the second the color, and the third is the name of the data.
+/// -> content
 #let pie_chart(..data) = {
   let total;
   let percentages = ();
