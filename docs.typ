@@ -205,6 +205,9 @@ Minimal starting point:
 #let radial_tournament_module = tidy.parse-module(read("./themes/radial/components/tournament.typ"))
 #show-module(radial_tournament_module)
 
+#let radial_graph_module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
+#show-module(radial_graph_module)
+
 = Developer Documentation
 
 == Project Architecture
