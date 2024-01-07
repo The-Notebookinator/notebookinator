@@ -1,7 +1,3 @@
-#import "./headings.typ": *
-#import "./code-blocks.typ": *
-#import "./title.typ": *
-
 #import "./toc.typ": *
 #import "./glossary.typ": *
 
