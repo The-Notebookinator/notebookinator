@@ -1,0 +1,22 @@
+name: Tests
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Install just from crates.io
+        uses: baptiste0928/cargo-install@v2
+        with:
+          crate: just
+      - name: "Install Typst"
+        uses: yusancky/setup-typst@v3
+        id: setup-typst
+      - name: "Run checks"
+        run: |
+          just install
+          just docs
+          # TODO: run unit tests here
