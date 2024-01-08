@@ -8,19 +8,15 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Install typos-cli from crates.io
-        uses: baptiste0928/cargo-install@v2
-        with:
-          crate: typos-cli
       - name: Install just from crates.io
         uses: baptiste0928/cargo-install@v2
         with:
           crate: just
-      - uses: yusancky/setup-typst@v3
+      - name: "Install Typst"
+        uses: yusancky/setup-typst@v3
         id: setup-typst
-        with:
-          version: "v0.10.0"
-      - run: |
+      - name: "Run checks"
+        run: |
           just install
           just docs
           # TODO: run unit tests here
