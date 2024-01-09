@@ -1,4 +1,6 @@
-#import "./components/components.typ"
+#import "./components/headings.typ" as components_heading
+#import "./components/code-blocks.typ" as components_code
+
 
 #let rules(doc) = {
   set text(font: "Calibri", size: 11pt)
@@ -23,10 +25,10 @@
     _ #it.caption.body _
   ]
 
-  show raw.where(block: false): components.raw_not_block
-  show raw.where(block: true): it => components.raw_block(it)
+  show raw.where(block: false): components_code.raw_not_block
+  show raw.where(block: true): it => components_code.raw_block(it)
 
-  show heading: components.heading
+  show heading: components_heading.heading
 
   // Display the whole document
   doc

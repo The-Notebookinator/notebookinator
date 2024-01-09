@@ -2,10 +2,18 @@
 
 // TODO: document what context provides to the callback
 
-/// Utility function to help themes implement a table of contents
+/// Utility function to help themes implement a table of contents.
 ///
+/// Example Usage:
+/// ```typ
+/// utils.print_toc(context => [
+///   #context.title
+///   #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+///   #context.page_number
+/// ])
+/// ```
 /// - type (string): Takes either "frontmatter", "body", or "appendix"
-/// - callback (function): A function which takes the context of the entry as input, and returns the content for a single row
+/// - callback (function): A function which takes the #link(<context>)[context] of the entry as input, and returns the content for a single row
 /// -> content
 #let print_toc(type: "body", callback) = {
   locate(
@@ -51,10 +59,10 @@
 
 /// A utility function that does the calculation for decision matrices for you
 ///
-/// *Example Usage*
+/// Example Usage:
 ///
 /// ```typ
-/// calc_decision_matrix(
+/// #calc_decision_matrix(
 ///   properties: ("Versatility", "Flavor", "Chrunchiness"),
 ///   ("Sweet potato", 2, 5, 1),
 ///   ("Red potato", 2, 1, 3),
@@ -66,7 +74,7 @@
 /// the values for each property, the total, and whether the choice has the highest score or not. Here's an example of what one of these dictionaries might look like:
 ///
 /// ```typ
-///   (
+///   #(
 ///     name: "Sweet potato",
 ///     values: (2, 5, 1),
 ///     total: 8,

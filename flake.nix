@@ -28,6 +28,8 @@
           pkgs.typst-lsp
           typstfmt.packages.${system}.default
           pkgs.act
+          pkgs.nodePackages_latest.prettier
+          pkgs.just
         ];
       };
 
