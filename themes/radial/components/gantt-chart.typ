@@ -2,6 +2,71 @@
 #import "../icons/icons.typ": *
 #import "@preview/timeliney:0.0.1"
 
+/// Creates a gantt chart for task management.
+///
+/// Example Usage:
+///
+/// ```typ
+/// #gantt_chart(
+///   months: (
+///     (month: [January], length: 4),
+///     (month: [February], length: 4),
+///   ),
+///   dates: (
+///     (date : [Week 1], length: 1),
+///     (date : [Week 2], length: 1),
+///     (date : [Week 3], length: 1),
+///     (date : [Week 4], length: 1),
+///     (date : [Week 1], length: 1),
+///     (date : [Week 2], length: 1),
+///     (date : [Week 3], length: 1),
+///     (date : [Week 4], length: 1),
+///   ),
+///   tasks: (
+///     (
+///       task: [Build Robot],
+///       time: (0,3),
+///       color: blue
+///     ),
+///     (
+///       task: [Drive Robot],
+///       time: (3,7),
+///       color: green
+///     ),
+///     (
+///       task: [Code Robot],
+///       time: (2,6),
+///       color: yellow
+///     ),
+///     (
+///       task: [Destroy Robot],
+///       time: (7,8),
+///       color: red
+///     ),
+///   ),
+///   goals: (
+///     (
+///       goal: [*Tournament*],
+///       position: 7
+///     ),
+///   )
+/// )
+/// ```
+/// - months (dictionary): This is an optional parameter, but can be used in conjunction with dates for two header lines
+/// - month: `<content>`
+/// - length: `<integer>` 
+/// - dates (dictionary): Creates a headerline under the months headerline, and is used to put the days for the chart.
+/// - date: `<content>`
+/// - length: `<integer>` 
+/// - tasks (dictionary): Creates the actual lines on the chart.
+/// - task: `<content>`
+/// - length: `<array>`
+///   - (`<float>` or `<integer>`, `<float>` or `<integer>`) 
+/// - color: `<color>`
+/// - goals (dictionary): Used to create milestones along the timeline
+/// - goal: `<content>`
+/// - position: `<float>` or `<integer>`
+/// -> content
 #let gantt_chart(
   months: ((
     month: [],
@@ -68,49 +133,3 @@
     }
   )
 }
-
-// Example
-#gantt_chart(
-  months: (
-    (month: [January], length: 4),
-    (month: [February], length: 4),
-  ),
-  dates: (
-    (date : [Week 1], length: 1),
-    (date : [Week 2], length: 1),
-    (date : [Week 3], length: 1),
-    (date : [Week 4], length: 1),
-    (date : [Week 1], length: 1),
-    (date : [Week 2], length: 1),
-    (date : [Week 3], length: 1),
-    (date : [Week 4], length: 1),
-  ),
-  tasks: (
-    (
-      task: [Build Robot],
-      time: (0,3),
-      color: blue
-    ),
-    (
-      task: [Drive Robot],
-      time: (3,7),
-      color: green
-    ),
-    (
-      task: [Code Robot],
-      time: (2,6),
-      color: yellow
-    ),
-    (
-      task: [Destroy Robot],
-      time: (7,8),
-      color: red
-    ),
-  ),
-  goals: (
-    (
-      goal: [*Tournament*],
-      position: 7
-    ),
-  )
-)
