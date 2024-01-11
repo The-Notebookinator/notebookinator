@@ -25,34 +25,29 @@
 The best way to install the Notebookinator is as a local package. Make sure you
 have the following software installed on your computer:
 
-- Typst
-- Git
-- VSCode
+- #link("https://github.com/casey/just#installation")[Typst]
+- #link("https://github.com/casey/just#installation")[Git]
+- #link("https://code.visualstudio.com/")[VSCode]
+- #link("https://github.com/casey/just#installation")[just]
 
-Once you have those, find the matching command for you operating system, and
-then run it:
+Once you've installed everything, simply run the following commands:
 
-*Linux:*
 ```bash
-git clone https://github.com/BattleCh1cken/notebookinator \
-~/.local/share/typst/packages/local/
-```
-
-*MacOS:*
-```zsh
-git clone https://github.com/BattleCh1cken/notebookinator \
-~/Library/Application Support/typst/packages/local/
-```
-
-*Windows:*
-// FIXME: find the correct syntax highlighting for powershell
-```pwsh
-git clone https://github.com/BattleCh1cken/notebookinator %APPDATA%\typst\packages\local\
+git clone https://github.com/BattleCh1cken/notebookinator
+cd notebookinator
+just install
 ```
 
 = Basic Usage
 
 Once the template is installed, you can import it into your project like this:
+
+#raw(
+  block: true,
+  lang: "typ",
+  "#import \"@local/notebookinator:"+ version + "\": *"
+)
+
 
 ```typ
 #import "@local/notebookinator": *
@@ -209,6 +204,9 @@ Minimal starting point:
 
 #let radial_tournament_module = tidy.parse-module(read("./themes/radial/components/tournament.typ"))
 #show-module(radial_tournament_module)
+
+#let radial_graph_module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
+#show-module(radial_graph_module)
 
 = Developer Documentation
 

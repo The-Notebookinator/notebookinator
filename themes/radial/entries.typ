@@ -1,6 +1,6 @@
 #import "./colors.typ": *
 #import "./icons/icons.typ"
-#import "./components/components.typ"
+#import "./components/title.typ" as components
 #import "/utils.typ"
 #import "./metadata.typ": entry_type_metadata
 
@@ -23,11 +23,8 @@
     header: components.title(
       beginning: image.decode(
         utils.change_icon_color(raw_icon: metadata.icon, fill: white), height: 1em,
-      ),
-
-      end: context.start_date.display(), color: metadata.color, context.title,
-    ),
-    footer: [
+      ), end: context.start_date.display("[year]/[month]/[day]"), color: metadata.color, context.title,
+    ), footer: [
       #line(length: 100%)
       #align(left, [
         *Designed by:* \
