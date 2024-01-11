@@ -98,53 +98,38 @@
   )
 }
 
-
 #let parse_timestamp(timestamp) = {
   let data = timestamp.matches(regex("(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})"))
   let captures = data.at(0).captures
 
   datetime(
-    year: int(captures.at(0)),
-    month: int(captures.at(1)),
-    day: int(captures.at(2)),
-    hour: int(captures.at(3)),
-    minute: int(captures.at(4)),
-    second: int(captures.at(5)),
+    year: int(captures.at(0)), month: int(captures.at(1)), day: int(captures.at(2)), hour: int(captures.at(3)), minute: int(captures.at(4)), second: int(captures.at(5)),
   )
 }
 
-#let plot(file_path) = {
-  //let timestamp = "2023-12-13 20:16:40"
-  //let thingy = parse_timestamp(timestamp)
-
-  let file = csv(file_path)
-  let data1 = ();
-  let data2 = ();
-  let data3 = ();
-  for (index, row) in file.enumerate() {
-    if index == 0 {continue}
-    data1.push((index, float(row.at(1))))
-    data2.push((index, float(row.at(2))))
-    data3.push((index, float(row.at(3))))
-  }
-
-  //let results = csv("/Flywheel PID-data-2023-12-13 20 18 27.csv")
-  //[#results]
-
+///
+/// Example Usage:
+///
+/// #plot(
+///   (name: "thingy", color: red, data: ((1,2), (2,5), (3,5))),
+///   (name: "stuff", color: green, data: ((1,1), (2,7), (3,6))),
+///   (name: "potato", color: blue, data: ((1,1), (2,3), (3,8))),
+/// )
+///
+/// - ..data (dictionary):
+/// -> content
+#let plot(..data) = {
   set align(center)
-  cetz.canvas(length: 1cm, {
-    import cetz.draw: *
-    import cetz.plot
-    plot.plot(
-      size: (10, 6),
-      axis-style: "left",
-      x-grid: "both",
-      y-grid: "both",
-      {
-      plot.add(data1)
-      plot.add(data2)
-      plot.add(data3)
-    })
-    //plot.plot(size: (10, 6), x-tick-step: 1, grid: "major", {})
-  })
+  cetz.canvas(
+    length: 1cm, {
+      import cetz.draw: *
+      import cetz.plot
+      plot.plot(
+        size: (10, 6), axis-style: "left", x-grid: "both", y-grid: "both", {
+        for row in data.pos() {
+          plot.add(row.data)
+        }
+      })
+    },
+  )
 }
