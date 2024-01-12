@@ -118,18 +118,31 @@
 ///
 /// - ..data (dictionary):
 /// -> content
-#let plot(..data) = {
+#let plot(
+  title: "",
+  x_label: "",
+  y_label: "",
+  ..data
+  ) = {
   set align(center)
   cetz.canvas(
-    length: 1cm, {
+    length: 8.5%, {
       import cetz.draw: *
       import cetz.plot
+      import cetz.palette
+
       plot.plot(
-        size: (10, 6), axis-style: "left", x-grid: "both", y-grid: "both", {
+        name: "plot",
+        style: palette.tango,
+        size: (9, 6), axis-style: "left", x-grid: "both", y-grid: "both", {
         for row in data.pos() {
-          plot.add(row.data)
+          plot.add(row.data, fill: true)
         }
       })
+
+      content("plot.top", [*#title*])
+      content((to: "plot.bottom", rel: (0,-0.5)), [#x_label])
+      content((to: "plot.left", rel: (-0.5, 0)), [#y_label], angle: 270deg)
     },
   )
 }
