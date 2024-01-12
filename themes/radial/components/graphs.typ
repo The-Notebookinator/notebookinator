@@ -111,32 +111,54 @@
 /// Example Usage:
 ///
 /// #plot(
-///   (name: "thingy", color: red, data: ((1,2), (2,5), (3,5))),
-///   (name: "stuff", color: green, data: ((1,1), (2,7), (3,6))),
-///   (name: "potato", color: blue, data: ((1,1), (2,3), (3,8))),
+///   (name: "thingy", data: ((1,2), (2,5), (3,5))),
+///   (name: "stuff", data: ((1,1), (2,7), (3,6))),
+///   (name: "potato", data: ((1,1), (2,3), (3,8))),
 /// )
 ///
+/// - title (string): The title of the graph
+/// - x_label (string): The label on the x axis
+/// - y_label (string): The label on the y axis
 /// - ..data (dictionary):
 /// -> content
 #let plot(
   title: "",
   x_label: "",
   y_label: "",
+  length: auto,
   ..data
   ) = {
+  // The length of the whole plot is 8.5 units.
+  let length = if length == auto { 8.5% } else { length / 8.5 }
+
+  // Will be populated by the names of the rows of data, and their corresponding colors
+  let legend = ()
+
   set align(center)
   cetz.canvas(
-    length: 8.5%, {
+    length: length, {
       import cetz.draw: *
       import cetz.plot
       import cetz.palette
+      
+
+      let plot-colors = (blue, red, green, yellow, pink, orange)
+      let plot-style(i) = {
+        let color = plot-colors.at(calc.rem(i, plot-colors.len()))
+        return (stroke: color,
+                fill: color.lighten(75%))
+      }
+
 
       plot.plot(
         name: "plot",
-        style: palette.tango,
-        size: (9, 6), axis-style: "left", x-grid: "both", y-grid: "both", {
-        for row in data.pos() {
-          plot.add(row.data, fill: true)
+        plot-style: plot-style,
+        size: (9, 5), axis-style: "left", x-grid: "both", y-grid: "both", {
+        for (index, row) in data.pos().enumerate() {
+          plot.add(row.data)
+          legend.push(
+            (color: plot-colors.at(index), name: row.name)
+          )
         }
       })
 
@@ -145,4 +167,10 @@
       content((to: "plot.left", rel: (-0.5, 0)), [#y_label], angle: 270deg)
     },
   )
+  // legend time
+  for label in legend [
+    #box(rect(fill: label.color, radius: 1.5pt), width: 0.7em, height: 0.7em)
+    #label.name
+    #h(10pt)
+  ]
 }
