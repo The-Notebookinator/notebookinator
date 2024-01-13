@@ -128,18 +128,3 @@
     }
   )
 }
-
- #gantt_chart(
-   date-interval: 1,
-   start: datetime(year: 2024, month: 1, day: 27),
-   end: datetime(year: 2024, month: 2, day: 3),
-   tasks: (
-     ("Build Robot", (0,4)),
-     ("Code Robot", (3,6)),
-     ("Drive Robot", (5,7)),
-     ("Destroy Robot", (7,8)),
-   ),
-   goals: (
-     ("Tournament", 4),
-   )
- )
