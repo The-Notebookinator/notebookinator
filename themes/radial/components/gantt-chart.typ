@@ -115,7 +115,7 @@
         for item in tasks {
           pos = (item.at(1).at(0)+size*0.007, item.at(1).at(1)-size*0.007)
           if item.len() == 2 {
-            if index > colors.len() {
+            if index == colors.len()-1 {
               index = 0
             }
             task(item.at(0), pos, style: (stroke: (paint: colors.at(index), thickness: 5pt, cap: "round")))
