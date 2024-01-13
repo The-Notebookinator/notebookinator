@@ -2,139 +2,126 @@
 #import "../icons/icons.typ": *
 #import "@preview/timeliney:0.0.1"
 
-/// Creates a gantt chart for task management.
+/// A gantt chart for task management
 ///
 /// Example Usage:
 ///
 /// ```typ
 /// #gantt_chart(
-///   months: (
-///     (month: [January], length: 4),
-///     (month: [February], length: 4),
-///   ),
-///   dates: (
-///     (date : [Week 1], length: 1),
-///     (date : [Week 2], length: 1),
-///     (date : [Week 3], length: 1),
-///     (date : [Week 4], length: 1),
-///     (date : [Week 1], length: 1),
-///     (date : [Week 2], length: 1),
-///     (date : [Week 3], length: 1),
-///     (date : [Week 4], length: 1),
-///   ),
+///   start: datetime(year: 2024, month: 1, day: 27),
+///   end: datetime(year: 2024, month: 2, day: 3),
 ///   tasks: (
-///     (
-///       task: [Build Robot],
-///       time: (0,3),
-///       color: blue
-///     ),
-///     (
-///       task: [Drive Robot],
-///       time: (3,7),
-///       color: green
-///     ),
-///     (
-///       task: [Code Robot],
-///       time: (2,6),
-///       color: yellow
-///     ),
-///     (
-///       task: [Destroy Robot],
-///       time: (7,8),
-///       color: red
-///     ),
+///     ("Build Robot", (0,4)),
+///     ("Code Robot", (3,6)),
+///     ("Drive Robot", (5,7)),
+///     ("Destroy Robot", (7,8)),
 ///   ),
 ///   goals: (
-///     (
-///       goal: [*Tournament*],
-///       position: 7
-///     ),
+///     ("Tournament", 4),
 ///   )
 /// )
 /// ```
-/// - months (dictionary): This is an optional parameter, but can be used in conjunction with dates for two header lines
-/// - month: `<content>`
-/// - length: `<integer>` 
-/// - dates (dictionary): Creates a headerline under the months headerline, and is used to put the days for the chart.
-/// - date: `<content>`
-/// - length: `<integer>` 
-/// - tasks (dictionary): Creates the actual lines on the chart.
-/// - task: `<content>`
-/// - length: `<array>`
-///   - (`<float>` or `<integer>`, `<float>` or `<integer>`) 
-/// - color: `<color>`
-/// - goals (dictionary): Used to create milestones along the timeline
-/// - goal: `<content>`
-/// - position: `<float>` or `<integer>`
+/// - start (datetime): Start date using datetime object
+///   - year: `<integer>` 
+///   - month: `<integer>` 
+///   - day: `<integer>`
+/// Example usage: ```typ datetime(year: 2024, month: 7, day: 16)```
+/// - end (datetime): End date using datetime object
+///   - year: `<integer>` 
+///   - month: `<integer>` 
+///   - day: `<integer>`
+/// Example usage: ```typ datetime(year: 2024, month: 5, day: 2)```
+/// - date-interval (integer): The interval between dates, seven would make it weekly
+/// - date-format (string): The way the date is formated using the `<datetime.display()>` method 
+/// - tasks (array): Specify tasks using an array of arrays that have three fields each
+///   + `<string>` or `<content>` The name of the task
+///   + `<array>`(`<integer>` or `<float>`, `<integer>` or `<float>`) The start and end point of the task
+///   + `<color>` The color of the task line (optional)
+/// Example sub-array: ```typ ("Build Catapult", (1,5), red)```
+/// - goals (array): Add goal markers using an array of arrays that have three fields each
+///   + `<string>` or `<content>` The name of the goal
+///   + `<integer>` or `<float>` The position of the goal
+///   + `<color>` The color of the goal box (optional)
+///       - Default is grey, but put none for no box
+/// Example sub-array: ```typ ("Worlds", 6, red)```
 /// -> content
 #let gantt_chart(
   start: datetime,
   end: datetime,
-  date-intervals: [],
-  date-format: [],
-  tasks: (([], (0,0)),),
-  goals: (([], 0)),
+  date-interval: 1,
+  date-format: "[month]/[day]",
+  tasks: (),
+  goals: none,
 ) = {
   timeliney.timeline(
     spacing: 5pt,
     
     show-grid: true,
-    grid-style: (stroke: (dash: "dashed", thickness: .5pt, paint: gray)),
+    grid-style: (stroke: (dash: none, thickness: .2pt, paint: black)),
 
     tasks-vline: true,
     line-style: (stroke: 0pt),
 
-    milestone-overhang: 1pt,
+    milestone-overhang: 3pt,
     milestone-layout: "in-place",
     box-milestones: true,
-    milestone-line-style: (stroke: (dash: "dashed", thickness: 1pt, paint: black)),
+    milestone-line-style: (stroke: (dash: none, thickness: 1pt, paint: black)),
     {
       import timeliney: *
 
-      let difference = end - start
-
-      if ((start.month() != end.month()) or (start.year() != end.year()))  {
-        let months = ()
-        let next
-        let total
-
-        if start.month() == 12 {
-          total = end.month()
-          next = datetime(year: start.year() + 1, month: 1, day: 1) - start
-        } else {
-          total = calc.abs(start.month() - end.month())
-          next = datetime(year: start.year(), month: start.month() + 1, day: 1) - start
-        }
-        months.push(group(((start.display("[month repr:long]")),int(next.days()))))
-        for value in range(total) {
-          // WIP
-        }
-        headerline(..months)
-      } else {
-        headerline(group(((start.display("[month repr:long]")),int(difference.days()+1))))
-      }
-
+      let difference = end - start      
       let dates_array = ()
+      let months_array = ()
+      let month_len = 0
+      let last_month = start.month()
+      let next
 
-      for value in range(int(difference.days()) + 1) {
-        dates_array.push(group(((start + duration(days: value)).display(),1)))
+      for value in range(int((difference.days())/date-interval)+1) {
+        next = start + duration(days: (value*date-interval))
+        dates_array.push(group(((next).display(date-format),1)))
+        if next.month() == last_month {
+          month_len += 1
+          last_month = next.month() 
+        } else {
+          months_array.push(group(((datetime(year: next.year(), month: last_month, day: 1)).display("[month repr:long]"),month_len)))
+          month_len = 1
+          last_month = next.month() 
+        }
       }
+      months_array.push(group(((datetime(year: next.year(), month: last_month, day: 1)).display("[month repr:long]"),month_len)))
+
+      headerline(..months_array)
       headerline(..dates_array)
+
+      let goal_color
+
+      if goals != none {
+        for goal in goals {
+          if goal.len() == 2 {
+            goal_color = surface_2
+          } else {
+            goal_color = goal.at(2)
+          }
+          milestone([#box(fill: goal_color, outset: 3pt, radius: 1.5pt)[#goal.at(0)]], at: goal.at(1))
+        }
+      }
 
       let colors = (red, orange, yellow, green, blue, violet)
       let index = 0
+      let size = difference.days()/date-interval
+      let pos = ()
       
       taskgroup({
         for item in tasks {
-
+          pos = (item.at(1).at(0)+size*0.007, item.at(1).at(1)-size*0.007)
           if item.len() == 2 {
             if index > colors.len() {
               index = 0
             }
-            task(item.at(0), item.at(1), style: (stroke: (paint: colors.at(index), thickness: 5pt, cap: "butt")))
+            task(item.at(0), pos, style: (stroke: (paint: colors.at(index), thickness: 5pt, cap: "round")))
             index += 1
           } else {
-            task(item.at(0), item.at(1), style: (stroke: (paint: item.at(2), thickness: 5pt, cap: "butt")))
+            task(item.at(0), pos, style: (stroke: (paint: item.at(2), thickness: 5pt, cap: "round")))
           }
         }
       })
@@ -142,145 +129,17 @@
   )
 }
 
-#gantt_chart(
-  start: datetime(
-    year: 2024,
-    month: 11,
-    day: 30,
-  ),
-  end: datetime(
-    year: 2024,
-    month: 12,
-    day: 4,
-  ),
-  tasks: (
-    ("Balls", (0,1)),
-    ("Tall", (0,1)),
-  )
-)
-
-#let gantt_chart(
-  months: ((
-    month: [],
-    length: 1
-    ),
-  ),
-  dates: ((
-    date: [],
-    length: 1
-    ),
-  ),
-  tasks: ((
-    task: [],
-    time: (0,1),
-    color: none
-    ),
-  ),
-  goals: ((
-    goal: [],
-    position: 0
-  ))
-) = {
-  timeliney.timeline(
-    spacing: 5pt,
-    
-    show-grid: true,
-    grid-style: (stroke: (dash: "dashed", thickness: .5pt, paint: gray)),
-
-    tasks-vline: true,
-    line-style: (stroke: 0pt),
-
-    milestone-overhang: 1pt,
-    milestone-layout: "in-place",
-    box-milestones: true,
-    milestone-line-style: (stroke: (dash: "dashed", thickness: 1pt, paint: black)),
-    {
-      import timeliney: *
-
-      if months.at(0).month != "" {
-        let months_array = ()
-        for month in months{
-          months_array.push(group((month.month, month.length)))
-        }
-        headerline(..months_array)
-      }
-
-      let dates_array = ()
-      for date in dates{
-        dates_array.push(group((date.date, date.length)))
-      }
-      headerline(..dates_array)
-
-      if goals.at(0).position != [] {
-        for goal in goals {
-          milestone(goal.goal, at: goal.position)
-        }
-      }
-
-      let colors = (red, orange, yellow, green, blue, violet)
-      let index = 0
-      let pos = ()
-
-      taskgroup({
-        for item in tasks {
-          pos = (item.time.at(0)+0.06, item.time.at(1)-0.06)
-          if item.color != none {
-            task(item.task, pos, style: (stroke: (paint: item.color, thickness: 5pt, cap: "round")))
-          } else {
-            task(item.task, pos, style: (stroke: (paint: colors.at(index), thickness: 5pt, cap: "round")))
-            index += 1
-            if index > colors.len() {
-              index = 0
-            }
-          }
-        }
-      })
-    }
-  )
-}
-
-   #gantt_chart(
-   months: (
-     (month: [January], length: 4),
-     (month: [February], length: 4),
-   ),
-   dates: (
-     (date : [Week 1], length: 1),
-     (date : [Week 2], length: 1),
-     (date : [Week 3], length: 1),
-     (date : [Week 4], length: 1),
-     (date : [Week 1], length: 1),
-     (date : [Week 2], length: 1),
-     (date : [Week 3], length: 1),
-     (date : [Week 4], length: 1),
-   ),
+ #gantt_chart(
+   date-interval: 1,
+   start: datetime(year: 2024, month: 1, day: 27),
+   end: datetime(year: 2024, month: 2, day: 3),
    tasks: (
-     (
-       task: [Build Robot],
-       time: (0,3),
-       color: none
-     ),
-     (
-       task: [Drive Robot],
-       time: (3,7),
-       color: none
-     ),
-     (
-       task: [Code Robot],
-       time: (2,6),
-       color: none
-     ),
-     (
-       task: [Destroy Robot],
-       time: (7,8),
-       color: none
-     ),
+     ("Build Robot", (0,4)),
+     ("Code Robot", (3,6)),
+     ("Drive Robot", (5,7)),
+     ("Destroy Robot", (7,8)),
    ),
    goals: (
-     (
-       goal: [*Tournament*],
-       position: 7
-     ),
+     ("Tournament", 4),
    )
  )
- 
