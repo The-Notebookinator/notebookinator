@@ -11,15 +11,15 @@
 
 #let border(x, y) = {
   set line(stroke: 1.5pt)
-  let borderTL = 0% + 30%
-  let borderTR = 100% - 30%
+  let borderTL = 0% + 15%
+  let borderTR = 100% - 15%
   place(
     // Left border line
-    line(start: (0% + x, 5%), end: (0% + x, 90%))
+    line(start: (0% + x, 5%), end: (0% + x, 100% - y))
   )
   place(
     // Right border line
-    line(start: (100% - x, 5%), end: (100% - x, 90%))
+    line(start: (100% - x, 5%), end: (100% - x, 100% - y))
   )
   place(
     // Bottom border line
@@ -70,7 +70,7 @@
       = Frontmatter header 
       ],
     footer: [ Frontmatter footer ],
-    background: border(5%, 10%)
+    background: border(8%, 8%)
     )
   body
 }
@@ -82,7 +82,7 @@
       = Body header 
       ], 
     footer: [ Body footer ],
-    background: border(5%, 10%) 
+    background: border(8%, 8%) 
     )
   body
 }
@@ -92,7 +92,7 @@
     = Appendix header 
     ], 
     footer: [ Appendix footer ],
-    background: border(5%, 10%)
+    background: border(8%, 8%)
     )
   body
 }
