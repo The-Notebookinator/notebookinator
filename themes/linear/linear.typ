@@ -6,6 +6,7 @@
 
 #let cover(context: (:)) = [
   #set align(center)
+  #set text(size: 40pt)
   *Linear Cover*
 ]
 
@@ -67,9 +68,9 @@
   show: page.with(
     header: [ 
       #set align(center)
-      = Frontmatter header 
+      #set text(size: 20pt)
+      = #context.title 
       ],
-    footer: [ Frontmatter footer ],
     background: border(8%, 8%)
     )
   body
@@ -78,20 +79,27 @@
 #let body_entry(context: (:), body) = {
   show: page.with(
     header: [ 
-      #set align(center) 
-      = Body header 
+      #set align(center)
+      #set text(size: 20pt) 
+      = #context.title 
       ], 
-    footer: [ Body footer ],
+    footer: [
+      #set align(left)
+      Written by:
+      #h(30%)
+      Witnessed by:
+    ],
     background: border(8%, 8%) 
     )
   body
 }
 #let appendix_entry(context: (:), body) = {
-  show: page.with(header: [
-    #set align(center)
-    = Appendix header 
-    ], 
-    footer: [ Appendix footer ],
+  show: page.with(
+    header: [
+      #set align(center)
+      #set text(size: 20pt)
+      = #context.title 
+      ], 
     background: border(8%, 8%)
     )
   body
