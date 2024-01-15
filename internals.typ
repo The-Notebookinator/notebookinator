@@ -1,10 +1,10 @@
 #import "./globals.typ"
 #import "./themes/themes.typ": *
 
-#let fallback_to_default(key, theme) = {
+#let fallback-to-default(key, theme) = {
   let component = theme.at(key, default: none)
   if component == none {
-    return themes.default.default_theme.at(key)
+    return themes.default.default-theme.at(key)
   } else {
     return component
   }
@@ -15,27 +15,27 @@
 /// - theme (theme):
 /// - context (dictionary):
 /// -> content
-#let print_cover(theme: (:), context: (:)) = {
-  let cover_func = fallback_to_default("cover", theme)
-  cover_func(context: context)
+#let print-cover(theme: (:), context: (:)) = {
+  let cover-func = fallback-to-default("cover", theme)
+  cover-func(context: context)
 }
 
 /// Internal function used by the template to print out all of the entries
 ///
 /// - theme (theme):
 /// -> content
-#let print_entries(theme: (:)) = {
-  let print_helper(section, state) = {
+#let print-entries(theme: (:)) = {
+  let print-helper(section, state) = {
     locate(loc => {
       for entry in state.final(loc) [
-        #let entry_func = fallback_to_default(section + "_entry", theme)
+        #let entry-func = fallback-to-default(section + "-entry", theme)
         #let body = [] + entry.body
-        #entry_func(body, context: entry.context)
+        #entry-func(body, context: entry.context)
       ]
     })
   }
 
-  print_helper("frontmatter", globals.frontmatter_entries)
-  print_helper("body", globals.entries)
-  print_helper("appendix", globals.appendix_entries)
+  print-helper("frontmatter", globals.frontmatter-entries)
+  print-helper("body", globals.entries)
+  print-helper("appendix", globals.appendix-entries)
 }

@@ -9,15 +9,15 @@
 /// - ..choices (array): An array containing the name of the choices as its first member,
 /// and values for each of the properties at its following indices
 /// -> content
-#let decision_matrix(properties: none, ..choices) = {
-  let data = utils.calc_decision_matrix(properties: properties, ..choices)
+#let decision-matrix(properties: none, ..choices) = {
+  let data = utils.calc-decision_matrix(properties: properties, ..choices)
 
   set align(center)
 
   tablex(
     auto-lines: false, columns: properties.len() + 2, fill: (_, row) => {
-      if calc.odd(row) { surface_3 }
-      if calc.even(row) { surface_1 }
+      if calc.odd(row) { surface-3 }
+      if calc.even(row) { surface-1 }
     },
     // Top line
     hlinex(stroke: (cap: "round", thickness: 2pt)),

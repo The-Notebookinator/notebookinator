@@ -1,5 +1,5 @@
-#import "./components/headings.typ" as components_heading
-#import "./components/code-blocks.typ" as components_code
+#import "./components/headings.typ" as components-heading
+#import "./components/code-blocks.typ" as components-code
 
 
 #let rules(doc) = {
@@ -25,10 +25,10 @@
     _ #it.caption.body _
   ]
 
-  show raw.where(block: false): components_code.raw_not_block
-  show raw.where(block: true): it => components_code.raw_block(it)
+  show raw.where(block: false): components-code.raw-not-block
+  show raw.where(block: true): it => components-code.raw-block(it)
 
-  show heading: components_heading.heading
+  show heading: components-heading.heading
 
   // Display the whole document
   doc
