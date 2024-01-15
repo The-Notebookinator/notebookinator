@@ -107,14 +107,15 @@
   )
 }
 
-///
 /// Example Usage:
-///
+/// ```typ
 /// #plot(
+///   title: "My Epic Graph",
 ///   (name: "thingy", data: ((1,2), (2,5), (3,5))),
 ///   (name: "stuff", data: ((1,1), (2,7), (3,6))),
 ///   (name: "potato", data: ((1,1), (2,3), (3,8))),
 /// )
+/// ```
 ///
 /// - title (string): The title of the graph
 /// - x_label (string): The label on the x axis
