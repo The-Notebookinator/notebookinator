@@ -10,7 +10,7 @@
 /// and values for each of the properties at its following indices
 /// -> content
 #let decision-matrix(properties: none, ..choices) = {
-  let data = utils.calc-decision_matrix(properties: properties, ..choices)
+  let data = utils.calc-decision-matrix(properties: properties, ..choices)
 
   set align(center)
 

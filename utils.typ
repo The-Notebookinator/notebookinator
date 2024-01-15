@@ -130,6 +130,6 @@
 /// -> content
 #let colored-icon(path, fill: red, width: 100%, height: 100%, fit: "contain") = {
   let raw-icon = read(path)
-  let raw-colored_icon = raw_icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
+  let raw-colored_icon = raw-icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
   return image.decode(raw-colored_icon, width: width, height: height, fit: fit)
 }
