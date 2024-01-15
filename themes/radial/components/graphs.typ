@@ -111,8 +111,8 @@
 /// ```
 ///
 /// - title (string): The title of the graph
-/// - x_label (string): The label on the x axis
-/// - y_label (string): The label on the y axis
+/// - x-label (string): The label on the x axis
+/// - y-label (string): The label on the y axis
 /// - ..data (dictionary):
 /// -> content
 #let plot(
