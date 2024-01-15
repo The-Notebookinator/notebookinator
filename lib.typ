@@ -15,7 +15,7 @@
 ///   theme: default_theme
 /// )
 /// ```
-/// - team_name (string): The name of your team.
+/// - team-name (string): The name of your team.
 /// - season (string): The name of the current season
 /// - year (string): The years in which the notebook is being written
 /// - theme (theme): The theme that will be applied to all of the entries. If no theme is specified it will fall back on the default theme.
