@@ -1,5 +1,3 @@
-#import "../colors.typ": *
-#import "../icons/icons.typ": *
 #import "@preview/timeliney:0.0.1"
 
 /// A gantt chart for task management
@@ -7,7 +5,7 @@
 /// Example Usage:
 ///
 /// ```typ
-/// #gantt_chart(
+/// #gantt-chart(
 ///   start: datetime(year: 2024, month: 1, day: 27),
 ///   end: datetime(year: 2024, month: 2, day: 3),
 ///   tasks: (
@@ -45,7 +43,7 @@
 ///       - Default is grey, but put none for no box
 /// Example sub-array: ```typ ("Worlds", 6, red)```
 /// -> content
-#let gantt_chart(
+#let gantt-chart(
   start: datetime,
   end: datetime,
   date-interval: 1,
@@ -70,39 +68,39 @@
       import timeliney: *
 
       let difference = end - start      
-      let dates_array = ()
-      let months_array = ()
-      let month_len = 0
-      let last_month = start.month()
+      let dates-array = ()
+      let months-array = ()
+      let month-len = 0
+      let last-month = start.month()
       let next
 
       for value in range(int((difference.days())/date-interval)+1) {
         next = start + duration(days: (value*date-interval))
-        dates_array.push(group(((next).display(date-format),1)))
-        if next.month() == last_month {
-          month_len += 1
-          last_month = next.month() 
+        dates-array.push(group(((next).display(date-format),1)))
+        if next.month() == last-month {
+          month-len += 1
+          last-month = next.month() 
         } else {
-          months_array.push(group(((datetime(year: next.year(), month: last_month, day: 1)).display("[month repr:long]"),month_len)))
-          month_len = 1
-          last_month = next.month() 
+          months-array.push(group(((datetime(year: next.year(), month: last-month, day: 1)).display("[month repr:long]"),month-len)))
+          month-len = 1
+          last-month = next.month() 
         }
       }
-      months_array.push(group(((datetime(year: next.year(), month: last_month, day: 1)).display("[month repr:long]"),month_len)))
+      months-array.push(group(((datetime(year: next.year(), month: last-month, day: 1)).display("[month repr:long]"),month-len)))
 
-      headerline(..months_array)
-      headerline(..dates_array)
+      headerline(..months-array)
+      headerline(..dates-array)
 
-      let goal_color
+      let goal-color
 
       if goals != none {
         for goal in goals {
           if goal.len() == 2 {
-            goal_color = surface_2
+            goal-color = surface-2
           } else {
-            goal_color = goal.at(2)
+            goal-color = goal.at(2)
           }
-          milestone([#box(fill: goal_color, outset: 3pt, radius: 1.5pt)[#goal.at(0)]], at: goal.at(1))
+          milestone([#box(fill: goal-color, outset: 3pt, radius: 1.5pt)[#goal.at(0)]], at: goal.at(1))
         }
       }
 
