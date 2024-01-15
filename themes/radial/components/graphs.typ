@@ -7,20 +7,18 @@
 /// Example Usage:
 ///
 /// ```typ
-/// #pie_chart(
-///   (8, green, "wins"),
-///   (2, red, "losses")
+/// #pie-chart(
+///   (value: 8, color: green, name: "wins"),
+///   (value: 2, color:  red, name: "losses")
 /// )
 /// ```
 ///
-/// - ..data (array): Each array must contain 3 fields.
-///   + `<integer>` The value of the section
-///   + `<color>` The value of the section
-///   + `<string>` The name of the section
-///   Here's an example of one of these arrays:
-///   `(2, blue, "bicycles")`
+/// - ..data (dictionary): Each dictionary must contain 3 fields.
+///   - value: `<integer>` The value of the section
+///   - color: `<color>` The value of the section
+///   - name: `<string>` The name of the section
 /// -> content
-#let pie_chart(..data) = {
+#let pie-chart(..data) = {
   let total;
   let percentages = ();
 
@@ -38,7 +36,7 @@
 
       let chart(..values, name: none) = {
         let values = values.pos()
-        let anchor_angles = ()
+        let anchor-angles = ()
 
         let offset = 0
         let total = values.fold(0, (s, v) => s + v.at(0))
@@ -64,7 +62,7 @@
             // Place an anchor for each segment
             let angle = offset * 360deg + value * 180deg
             anchor(v.at(2), (angle, 1.75))
-            anchor_angles.push(angle)
+            anchor-angles.push(angle)
 
             offset += value
           }
