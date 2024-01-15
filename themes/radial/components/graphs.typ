@@ -98,14 +98,7 @@
   )
 }
 
-#let parse_timestamp(timestamp) = {
-  let data = timestamp.matches(regex("(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})"))
-  let captures = data.at(0).captures
 
-  datetime(
-    year: int(captures.at(0)), month: int(captures.at(1)), day: int(captures.at(2)), hour: int(captures.at(3)), minute: int(captures.at(4)), second: int(captures.at(5)),
-  )
-}
 
 /// Example Usage:
 /// ```typ
@@ -124,8 +117,8 @@
 /// -> content
 #let plot(
   title: "",
-  x_label: "",
-  y_label: "",
+  x-label: "",
+  y-label: "",
   length: auto,
   ..data
   ) = {
