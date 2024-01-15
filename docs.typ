@@ -54,36 +54,36 @@ Once the template is installed, you can import it into your project like this:
 ```
 Once you've done that you can begin to write your notebook:
 ```typ
-#import themes.default: default_theme, components
+#import themes.default: default-theme, components
 
-#show: notebook.with(theme: default_theme)
+#show: notebook.with(theme: default-theme)
 
-#create_body_entry(title: "My Entry")[
+#create-body-entry(title: "My Entry")[
   #lorem(200)
 ]
 ```
 
 You can then compile your notebook with the Typst CLI:
 ```bash
-typst compile your_notebook_file.typ
+typst compile your-notebook-file.typ
 ```
 
 = API Reference
 
 == Template
 
-#let template_module = tidy.parse-module(read("lib.typ"))
-#show-module(template_module)
+#let template-module = tidy.parse-module(read("lib.typ"))
+#show-module(template-module)
 
 == Entries
 
-#let entries_module = tidy.parse-module(read("entries.typ"))
-#show-module(entries_module)
+#let entries-module = tidy.parse-module(read("entries.typ"))
+#show-module(entries-module)
 
 == Glossary
 
-#let glossary_module = tidy.parse-module(read("glossary.typ"))
-#show-module(glossary_module)
+#let glossary-module = tidy.parse-module(read("glossary.typ"))
+#show-module(glossary-module)
 
 == Additional Datatypes
 
@@ -98,14 +98,14 @@ Themes are stored as dictionaries with a set number of fields.
   "cover", [`<function>`], default: none, [ A function that returns the cover of the notebook. Must take context as input. ],
 )
 #def-arg(
-  "frontmatter_entry", [`<function>`], default: none, [ A function that returns a frontmatter entry. Must take context and body as
+  "frontmatter-entry", [`<function>`], default: none, [ A function that returns a frontmatter entry. Must take context and body as
     input. ],
 )
 #def-arg(
-  "body_entry", [`<function>`], default: none, [ A function that returns a body entry. Must take context and body as input. ],
+  "body-entry", [`<function>`], default: none, [ A function that returns a body entry. Must take context and body as input. ],
 )
 #def-arg(
-  "appendix_entry", [`<function>`], default: none, [ A function that returns a appendix entry. Must take context and body as input. ],
+  "appendix-entry", [`<function>`], default: none, [ A function that returns a appendix entry. Must take context and body as input. ],
 )
 
 === Context <context>
@@ -120,13 +120,13 @@ Context is stored as a dictionary with the following fields:
     Refer to the template level documentation to see what this means for your theme.],
 )
 #def-arg(
-  "start_date", [`<datetime>`], default: none, [The date at which the entry started.],
+  "start-date", [`<datetime>`], default: none, [The date at which the entry started.],
 )
 #def-arg(
-  "end_date", [`<datetime>`], default: none, [The date at which the entry ended.],
+  "end-date", [`<datetime>`], default: none, [The date at which the entry ended.],
 )
 #def-arg(
-  "page_number", [`<integer>` or `<none>`], default: none, [The page number of the first page of the entry. Only available while using the `print_toc()` utility
+  "page-number", [`<integer>` or `<none>`], default: none, [The page number of the first page of the entry. Only available while using the `print-toc()` utility
   function. ],
 )
 
@@ -151,13 +151,14 @@ types are available:
 - `"notebook"`: For entries about the notebook itself
 
 Minimal starting point:
+
 ```typ
-#create_frontmatter_entry(title: "Table of Contents")[
+#create-frontmatter-entry(title: "Table of Contents")[
   #components.toc()
 ]
 
-#create_body_entry(
-  title: "Sample Entry", type: "identify", start_date: datetime(year: 1984, month: 1, day: 1),
+#create-body-entry(
+  title: "Sample Entry", type: "identify", start-date: datetime(year: 1984, month: 1, day: 1),
 )[
 
 = Top Level heading
@@ -168,18 +169,18 @@ Minimal starting point:
   #lorem(20)
 ]
 
-#components.pro_con(pros: [
+#components.pro-con(pros: [
   #lorem(50)
 ], cons: [
   #lorem(20)
 ])
 
-#components.decision_matrix(
+#components.decision-matrix(
   properties: ("Flavor", "Versatility", "Crunchiness"), ("Sweet Potato", 5, 3, 1), ("White Potato", 1, 2, 3), ("Purple Potato", 2, 2, 2),
 )
 ]
 
-#create_appendix_entry(title: "Glossary")[
+#create-appendix-entry(title: "Glossary")[
   #components.glossary()
 ]
 
@@ -187,26 +188,26 @@ Minimal starting point:
 
 === Components
 
-#let radial_toc_module = tidy.parse-module(read("./themes/radial/components/toc.typ"))
-#show-module(radial_toc_module)
+#let radial-toc-module = tidy.parse-module(read("./themes/radial/components/toc.typ"))
+#show-module(radial-toc-module)
 
-#let radial_glossary_module = tidy.parse-module(read("./themes/radial/components/glossary.typ"))
-#show-module(radial_glossary_module)
+#let radial-glossary-module = tidy.parse-module(read("./themes/radial/components/glossary.typ"))
+#show-module(radial-glossary-module)
 
-#let radial_admonitions_module = tidy.parse-module(read("./themes/radial/components/admonitions.typ"))
-#show-module(radial_admonitions_module)
+#let radial-admonitions-module = tidy.parse-module(read("./themes/radial/components/admonitions.typ"))
+#show-module(radial-admonitions-module)
 
-#let radial_pro_con_module = tidy.parse-module(read("./themes/radial/components/pro-con.typ"))
-#show-module(radial_pro_con_module)
+#let radial-pro-con-module = tidy.parse-module(read("./themes/radial/components/pro-con.typ"))
+#show-module(radial-pro-con-module)
 
-#let radial_decision_matrix_module = tidy.parse-module(read("./themes/radial/components/decision-matrix.typ"))
-#show-module(radial_decision_matrix_module)
+#let radial-decision-matrix-module = tidy.parse-module(read("./themes/radial/components/decision-matrix.typ"))
+#show-module(radial-decision-matrix-module)
 
-#let radial_tournament_module = tidy.parse-module(read("./themes/radial/components/tournament.typ"))
-#show-module(radial_tournament_module)
+#let radial-tournament-module = tidy.parse-module(read("./themes/radial/components/tournament.typ"))
+#show-module(radial-tournament-module)
 
-#let radial_graph_module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
-#show-module(radial_graph_module)
+#let radial-graph-module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
+#show-module(radial-graph-module)
 
 = Developer Documentation
 
@@ -286,7 +287,7 @@ content.
 Here's a minimal example of what these functions might look like:
 
 ```typ
-#let frontmatter_entry(context: (:), body) = {
+#let frontmatter-entry(context: (:), body) = {
   show: page.with(
     header: [ = Frontmatter header ],
     footer: counter(page).display("i")
@@ -297,7 +298,7 @@ Here's a minimal example of what these functions might look like:
 ```
 
 ```typ
-#let body_entry(context: (:), body) = {
+#let body-entry(context: (:), body) = {
   show: page.with(
     header: [ = Body header ],
     footer: counter(page).display("1")
@@ -308,7 +309,7 @@ Here's a minimal example of what these functions might look like:
 ```
 
 ```typ
-#let appendix_entry(context: (:), body) = {
+#let appendix-entry(context: (:), body) = {
   show: page.with(
     header: [ = Appendix header ],
     footer: counter(page).display("i")
@@ -358,16 +359,16 @@ this example).
 Here's what the theme would look like in this scenario:
 
 ```typ
-#let foo_theme = (
+#let foo-theme = (
   // Global show and set rules
   rules: rules,
 
   cover: cover,
 
   // Entry pages
-  frontmatter_entry: frontmatter_entry,
-  body_entry: body_entry,
-  appendix_entry: appendix_entry
+  frontmatter-entry: frontmatter-entry,
+  body-entry: body-entry,
+  appendix-entry: appendix-entry
 )
 ```
 
@@ -381,5 +382,5 @@ tables, Gantt charts, or anything else your heart desires.
 
 == Utility Functions
 
-#let utils_module = tidy.parse-module(read("utils.typ"))
-#show-module(utils_module)
+#let utils-module = tidy.parse-module(read("utils.typ"))
+#show-module(utils-module)

@@ -6,35 +6,35 @@
 ///
 /// Example Usage:
 /// ```typ
-/// utils.print_toc(context => [
+/// utils.print-toc(context => [
 ///   #context.title
 ///   #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-///   #context.page_number
+///   #context.page-number
 /// ])
 /// ```
 /// - type (string): Takes either "frontmatter", "body", or "appendix"
 /// - callback (function): A function which takes the #link(<context>)[context] of the entry as input, and returns the content for a single row
 /// -> content
-#let print_toc(type: "body", callback) = {
+#let print-toc(type: "body", callback) = {
   locate(
     loc => {
       // Each of the types of entries have their own state variable and label, so we need to decide which ones to use
       let (state, markers) = if type == "frontmatter" {
         (
-          globals.frontmatter_entries, query(selector(<notebook_frontmatter>), loc),
+          globals.frontmatter-entries, query(selector(<notebook-frontmatter>), loc),
         )
       } else if type == "body" {
-        (globals.entries, query(selector(<notebook_body>), loc))
+        (globals.entries, query(selector(<notebook-body>), loc))
       } else if type == "appendix" {
-        (globals.appendix_entries, query(selector(<notebook_appendix>), loc))
+        (globals.appendix-entries, query(selector(<notebook_appendix>), loc))
       } else {
         panic("No valid entry type selected.")
       }
 
       for (index, entry) in state.final(loc).enumerate() {
-        let page_number = counter(page).at(markers.at(index).location()).at(0)
+        let page-number = counter(page).at(markers.at(index).location()).at(0)
         let context = entry.context
-        context.page_number = page_number
+        context.page-number = page_number
         [
           #callback(context) \
         ]
@@ -48,10 +48,10 @@
 /// A utility function meant to help themes implement a glossary
 /// - callback (function): A function returning the content of a single glossary entry
 /// -> content
-#let print_glossary(callback) = locate(
+#let print-glossary(callback) = locate(
   loc => {
-    let sorted_glossary = globals.glossary_entries.final(loc).sorted(key: ((word, _)) => word)
-    for entry in sorted_glossary {
+    let sorted-glossary = globals.glossary_entries.final(loc).sorted(key: ((word, _)) => word)
+    for entry in sorted-glossary {
       box(callback(entry))
     }
   },
@@ -62,7 +62,7 @@
 /// Example Usage:
 ///
 /// ```typ
-/// #calc_decision_matrix(
+/// #calc-decision_matrix(
 ///   properties: ("Versatility", "Flavor", "Chrunchiness"),
 ///   ("Sweet potato", 2, 5, 1),
 ///   ("Red potato", 2, 1, 3),
@@ -85,7 +85,7 @@
 /// - properties (array string): A list of the properties that each choice will be rated by
 /// - ..choices (array): All of the choices that are being rated. The first element of the array should be the name of the
 /// -> array
-#let calc_decision_matrix(properties: (), ..choices) = {
+#let calc-decision_matrix(properties: (), ..choices) = {
   for choice in choices.pos() {
     assert(choice.len() - 1 == properties.len())
   }
@@ -113,11 +113,11 @@
 /// Returns the raw image data, not image content
 /// You'll still need to run image.decode on the result
 ///
-/// - raw_icon (string): The raw data for the image. Must be svg data.
+/// - raw-icon (string): The raw data for the image. Must be svg data.
 /// - fill (color): The new icon color
 /// -> string
-#let change_icon_color(raw_icon: "", fill: red) = {
-  return raw_icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
+#let change-icon-color(raw-icon: "", fill: red) = {
+  return raw-icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
 }
 
 /// Takes the path to an icon as input, recolors that icon, and then returns the decoded image as output.
@@ -128,8 +128,8 @@
 /// - height (ratio length): height of the image
 /// - fit (string): How the image should adjust itself to a given area. Takes either "cover", "contain", or "stretch"
 /// -> content
-#let colored_icon(path, fill: red, width: 100%, height: 100%, fit: "contain") = {
-  let raw_icon = read(path)
-  let raw_colored_icon = raw_icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
-  return image.decode(raw_colored_icon, width: width, height: height, fit: fit)
+#let colored-icon(path, fill: red, width: 100%, height: 100%, fit: "contain") = {
+  let raw-icon = read(path)
+  let raw-colored_icon = raw_icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
+  return image.decode(raw-colored_icon, width: width, height: height, fit: fit)
 }

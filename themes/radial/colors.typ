@@ -14,8 +14,8 @@
 #let white = rgb("#ffffff")
 #let black = rgb("#000000")
 
-#let surface_0 = rgb("#f1f3f5")
-#let surface_1 = rgb("#e9ecef")
-#let surface_2 = rgb("#dee2e6")
-#let surface_3 = rgb("#ced4da")
-#let surface_4 = rgb("#adb5bd")
+#let surface-0 = rgb("#f1f3f5")
+#let surface-1 = rgb("#e9ecef")
+#let surface-2 = rgb("#dee2e6")
+#let surface-3 = rgb("#ced4da")
+#let surface-4 = rgb("#adb5bd")

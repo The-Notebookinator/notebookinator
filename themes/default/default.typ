@@ -10,39 +10,39 @@
 ]
 
 #let toc() = {
-  utils.print_toc(context => [
+  utils.print-toc(context => [
     #context.title
     #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #context.page_number
+    #context.page-number
   ])
 
-  utils.print_toc(type: "appendix", context => [
+  utils.print-toc(type: "appendix", context => [
     #context.title
     #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #context.page_number
+    #context.page-number
   ])
 }
 
-#let frontmatter_entry(context: (:), body) = {
+#let frontmatter-entry(context: (:), body) = {
   show: page.with(header: [ = Frontmatter header ], footer: [Frontmatter footer])
 
   body
 }
 
-#let body_entry(context: (:), body) = {
+#let body-entry(context: (:), body) = {
   show: page.with(header: [ = Body header ], footer: [Body footer])
 
   body
 }
-#let appendix_entry(context: (:), body) = {
+#let appendix-entry(context: (:), body) = {
   show: page.with(header: [ = Appendix header ], footer: [Appendix footer])
 
   body
 }
 
-#let default_theme = (
+#let default-theme = (
   // Global show rules
   rules: rules, cover: cover,
   // Entry pages
-  frontmatter_entry: frontmatter_entry, body_entry: body_entry, appendix_entry: appendix_entry,
+  frontmatter-entry: frontmatter-entry, body-entry: body-entry, appendix-entry: appendix-entry,
 )
