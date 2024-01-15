@@ -9,10 +9,10 @@
 /// *Example Usage:*
 ///
 /// ```typ
-/// #import themes.default: default_theme
+/// #import themes.default: default-theme
 ///
 /// #show: notebook.with(
-///   theme: default_theme
+///   theme: default-theme
 /// )
 /// ```
 /// - team-name (string): The name of your team.
