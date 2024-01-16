@@ -1,6 +1,6 @@
 #import "rules.typ": rules
 #import "entries.typ": cover, frontmatter_entry, body_entry, appendix_entry
-#import "format.typ": set-margins, create-heading
+#import "format.typ": set-margins, set-heading
 
 #let linear_theme = (
   // Global show rules

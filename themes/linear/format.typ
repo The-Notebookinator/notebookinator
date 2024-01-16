@@ -34,20 +34,30 @@
   )
 }
 
-#let create-heading(context: (:), color: gray, level: 1) = {
-  if level == 1 {
-    box(inset: 0.5em, fill: color)[= #context]
-    h(5pt)
-    box(baseline: -10pt, width: 1fr, line(length: 100%))
+#let set-heading(it, type) = {
+  let color = if type == "define" {
+    red
+  } else if type == "brainstorm" {
+    orange
+  } else if type == "select" {
+    green
+  } else if type == "build" {
+    blue
+  } else if type == "test" {
+    purple
+  } else if type == "reflect" {
+    pink
   }
-  if level == 2 {
-    box(inset: 0.5em, fill: color)[== #context]
-    h(5pt)
-    box(baseline: -10pt, width: 1fr, line(length: 100%))
+  if it.level == 1 {
+    set text(18pt)
   }
-  if level == 3 {
-    box(inset: 0.5em, fill: color)[=== #context]
-    h(5pt)
-    box(baseline: -10pt, width: 1fr, line(length: 100%))
+  if it.level == 2 {
+    set text(15pt)
   }
+  if it.level == 3 {
+    set text(13pt)
+  }
+  box(inset: 0.5em, fill: color)[#it]
+  h(5pt)
+  box(baseline: -10pt, width: 1fr, line(length: 100%))
 }

@@ -1,4 +1,4 @@
-#import "format.typ": set-margins
+#import "format.typ": *
 
 #let cover(context: (:)) = [
   #set align(center)
@@ -33,6 +33,9 @@
     ],
     background: set-margins(8%, 8%) 
     )
+  show heading: it => {
+    set-heading(it, context.type)
+  }
   body
 }
 
