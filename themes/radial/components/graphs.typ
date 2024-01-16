@@ -81,16 +81,16 @@
         let anchor = "chart." + value.name
         let angle = angles.at(index)
 
-        let (line_end, anchor_direction) = if angle > 90deg and angle < 275deg {
+        let (line-end, anchor-direction) = if angle > 90deg and angle < 275deg {
           ((-0.5, 0), "right")
         } else {
           ((0.5, 0), "left")
         }
 
-        line(anchor, (to: anchor, rel: (angle, 0.5)), (rel: line_end))
+        line(anchor, (to: anchor, rel: (angle, 0.5)), (rel: line-end))
 
-        content((), [#value.name], anchor: "bottom-" + anchor_direction)
-        content((), [ #percentages.at(index)% ], anchor: "top-" + anchor_direction)
+        content((), [#value.name], anchor: "bottom-" + anchor-direction)
+        content((), [ #percentages.at(index)% ], anchor: "top-" + anchor-direction)
       }
     },
   )

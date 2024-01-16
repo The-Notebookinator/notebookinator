@@ -26,7 +26,7 @@
       } else if type == "body" {
         (globals.entries, query(selector(<notebook-body>), loc))
       } else if type == "appendix" {
-        (globals.appendix-entries, query(selector(<notebook_appendix>), loc))
+        (globals.appendix-entries, query(selector(<notebook-appendix>), loc))
       } else {
         panic("No valid entry type selected.")
       }
@@ -34,7 +34,7 @@
       for (index, entry) in state.final(loc).enumerate() {
         let page-number = counter(page).at(markers.at(index).location()).at(0)
         let context = entry.context
-        context.page-number = page_number
+        context.page-number = page-number
         [
           #callback(context) \
         ]
@@ -50,7 +50,7 @@
 /// -> content
 #let print-glossary(callback) = locate(
   loc => {
-    let sorted-glossary = globals.glossary_entries.final(loc).sorted(key: ((word, _)) => word)
+    let sorted-glossary = globals.glossary-entries.final(loc).sorted(key: ((word, _)) => word)
     for entry in sorted-glossary {
       box(callback(entry))
     }
@@ -62,7 +62,7 @@
 /// Example Usage:
 ///
 /// ```typ
-/// #calc-decision_matrix(
+/// #calc-decision-matrix(
 ///   properties: ("Versatility", "Flavor", "Chrunchiness"),
 ///   ("Sweet potato", 2, 5, 1),
 ///   ("Red potato", 2, 1, 3),
@@ -85,7 +85,7 @@
 /// - properties (array string): A list of the properties that each choice will be rated by
 /// - ..choices (array): All of the choices that are being rated. The first element of the array should be the name of the
 /// -> array
-#let calc-decision_matrix(properties: (), ..choices) = {
+#let calc-decision-matrix(properties: (), ..choices) = {
   for choice in choices.pos() {
     assert(choice.len() - 1 == properties.len())
   }
@@ -130,6 +130,6 @@
 /// -> content
 #let colored-icon(path, fill: red, width: 100%, height: 100%, fit: "contain") = {
   let raw-icon = read(path)
-  let raw-colored_icon = raw-icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
-  return image.decode(raw-colored_icon, width: width, height: height, fit: fit)
+  let raw-colored-icon = raw-icon.replace("<path", "<path style=\"fill: " + fill.to-hex() + "\"")
+  return image.decode(raw-colored-icon, width: width, height: height, fit: fit)
 }

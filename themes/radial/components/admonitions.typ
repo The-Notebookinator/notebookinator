@@ -18,7 +18,7 @@
 /// -> content
 #let admonition(type: none, body) = {
   let info = admonition-type-metadata.at(type)
-  let colored-icon = utils.change-icon_color(raw_icon: info.icon, fill: info.color)
+  let colored-icon = utils.change-icon-color(raw-icon: info.icon, fill: info.color)
 
   showybox(
     frame: (

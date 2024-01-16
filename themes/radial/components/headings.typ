@@ -18,7 +18,7 @@
 
   if it.level == 1 {
     set text(size: 15pt)
-    highlight(color: surface_3)[
+    highlight(color: surface-3)[
       #box(baseline: 130%, it.body)
     ]
   } else if it.level == 2 {
