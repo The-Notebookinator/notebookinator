@@ -5,13 +5,13 @@
 /// Example Usage:
 ///
 /// ```typ
-/// #create_frontmatter_entry(title: "Glossary")[
+/// #create-frontmatter-entry(title: "Glossary")[
 ///   #components.glossary()
 /// ]
 /// ```
 #let glossary() = {
   columns(2)[
-    #utils.print_glossary(entry => [
+    #utils.print-glossary(entry => [
       == #entry.word
       #entry.definition
     ])

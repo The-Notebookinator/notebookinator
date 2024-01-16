@@ -7,29 +7,27 @@
 /// Example Usage:
 ///
 /// ```typ
-/// #pie_chart(
-///   (8, green, "wins"),
-///   (2, red, "losses")
+/// #pie-chart(
+///   (value: 8, color: green, name: "wins"),
+///   (value: 2, color:  red, name: "losses")
 /// )
 /// ```
 ///
-/// - ..data (array): Each array must contain 3 fields.
-///   + `<integer>` The value of the section
-///   + `<color>` The value of the section
-///   + `<string>` The name of the section
-///   Here's an example of one of these arrays:
-///   `(2, blue, "bicycles")`
+/// - ..data (dictionary): Each dictionary must contain 3 fields.
+///   - value: `<integer>` The value of the section
+///   - color: `<color>` The value of the section
+///   - name: `<string>` The name of the section
 /// -> content
-#let pie_chart(..data) = {
+#let pie-chart(..data) = {
   let total;
   let percentages = ();
 
   for value in data.pos() {
-    total += value.at(0);
+    total += value.value;
   }
 
   for value in data.pos() {
-    percentages.push(calc.round(value.at(0) / total * 100))
+    percentages.push(calc.round(value.value / total * 100))
   }
 
   cetz.canvas(
@@ -38,10 +36,10 @@
 
       let chart(..values, name: none) = {
         let values = values.pos()
-        let anchor_angles = ()
+        let anchor-angles = ()
 
         let offset = 0
-        let total = values.fold(0, (s, v) => s + v.at(0))
+        let total = values.fold(0, (s, v) => s + v.value)
 
         let segment(from, to) = {
           merge-path(close: true, {
@@ -55,22 +53,22 @@
           stroke((paint: black, join: "round"))
 
           for v in values {
-            fill(v.at(1))
-            let value = v.at(0) / total
+            fill(v.color)
+            let value = v.value / total
 
             // Draw the segment
             segment(offset, offset + value)
 
             // Place an anchor for each segment
             let angle = offset * 360deg + value * 180deg
-            anchor(v.at(2), (angle, 1.75))
-            anchor_angles.push(angle)
+            anchor(v.name, (angle, 1.75))
+            anchor-angles.push(angle)
 
             offset += value
           }
         })
 
-        return (chart, anchor_angles)
+        return (chart, anchor-angles)
       }
 
       // Draw the chart
@@ -80,19 +78,19 @@
 
       set-style(mark: (fill: white, start: "o", stroke: black), content: (padding: .1))
       for (index, value) in data.pos().enumerate() {
-        let anchor = "chart." + value.at(2)
+        let anchor = "chart." + value.name
         let angle = angles.at(index)
 
-        let (line_end, anchor_direction) = if angle > 90deg and angle < 275deg {
+        let (line-end, anchor-direction) = if angle > 90deg and angle < 275deg {
           ((-0.5, 0), "right")
         } else {
           ((0.5, 0), "left")
         }
 
-        line(anchor, (to: anchor, rel: (angle, 0.5)), (rel: line_end))
+        line(anchor, (to: anchor, rel: (angle, 0.5)), (rel: line-end))
 
-        content((), [#value.at(2)], anchor: "bottom-" + anchor_direction)
-        content((), [ #percentages.at(index)% ], anchor: "top-" + anchor_direction)
+        content((), [#value.name], anchor: "bottom-" + anchor-direction)
+        content((), [ #percentages.at(index)% ], anchor: "top-" + anchor-direction)
       }
     },
   )
