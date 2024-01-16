@@ -276,15 +276,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1701970546,
-        "narHash": "sha256-eGQG/JUmrf70naovmKd9R6JcZjCHiH8hr20buJrT2zs=",
+        "lastModified": 1701853176,
+        "narHash": "sha256-LBYsTCjZ+U+lgd7Z3H1sBcWwseoHsuepPd66bWgfvhI=",
         "owner": "astrale-sharp",
         "repo": "typstfmt",
-        "rev": "792f08f41d3c081bcc04675100e8a5f615567b3a",
+        "rev": "46b4ec34b4726c3c6541012f433c68c22d9e509c",
         "type": "github"
       },
       "original": {
         "owner": "astrale-sharp",
+        "ref": "0.2.7",
         "repo": "typstfmt",
         "type": "github"
       }
