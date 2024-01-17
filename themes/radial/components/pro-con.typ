@@ -5,7 +5,7 @@
 /// - pros (content): The positive aspects
 /// - cons (content): The negative aspects
 /// -> content
-#let pro_con(pros: [], cons: []) = [
+#let pro-con(pros: [], cons: []) = [
   #let cell = rect.with(width: 100%, inset: 5pt)
   #grid(
     columns: (1fr, 1fr),

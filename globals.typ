@@ -1,5 +1,5 @@
-#let frontmatter_entries = state("frontmatter_entries", ())
+#let frontmatter-entries = state("frontmatter-entries", ())
 #let entries = state("entries", ())
-#let appendix_entries = state("appendix_entries", ())
+#let appendix-entries = state("appendix-entries", ())
 
-#let glossary_entries = state("glossary_entries", ())
+#let glossary-entries = state("glossary-entries", ())

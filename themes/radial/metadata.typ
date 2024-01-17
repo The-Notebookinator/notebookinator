@@ -3,18 +3,18 @@
 
 // These should really be with their respective files, but that causes a cyclic import error, so I put them here.
 
-#let entry_type_metadata = (
-  "identify": (icon: icons.question_mark, color: yellow),
-  "brainstorm": (icon: icons.light_bulb, color: orange),
+#let entry-type-metadata = (
+  "identify": (icon: icons.question-mark, color: yellow),
+  "brainstorm": (icon: icons.light-bulb, color: orange),
   "decide": (icon: icons.target, color: blue),
   "build": (icon: icons.hammer, color: red),
   "program": (icon: icons.terminal, color: purple),
   "test": (icon: icons.flask, color: green),
-  "management": (icon: icons.bar_chart, color: surface_4),
+  "management": (icon: icons.bar-chart, color: surface-4),
   "notebook": (icon: icons.page, color: pink),
 )
 
-#let admonition_type_metadata = (
+#let admonition-type-metadata = (
   "note": (icon: icons.pencil, color: green, title: "Note"),
   "warning": (icon: icons.warning, color: red, title: "Warning"),
   "example": (icon: icons.web, color: purple, title: "Example"),
