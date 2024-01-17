@@ -6,7 +6,7 @@
   *Linear Cover*
 ]
 
-#let frontmatter_entry(context: (:), body) = {
+#let frontmatter-entry(context: (:), body) = {
   show: page.with(
     header: [ 
       #set align(center)
@@ -18,7 +18,7 @@
   body
 }
 
-#let body_entry(context: (:), body) = {
+#let body-entry(context: (:), body) = {
   show: page.with(
     header: [ 
       #set align(center)
@@ -39,7 +39,7 @@
   body
 }
 
-#let appendix_entry(context: (:), body) = {
+#let appendix-entry(context: (:), body) = {
   show: page.with(
     header: [
       #set align(center)

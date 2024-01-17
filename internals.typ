@@ -1,5 +1,5 @@
 #import "./globals.typ"
-#import "./themes/themes.typ": *
+#import "./themes/themes.typ"
 
 #let fallback-to-default(key, theme) = {
   let component = theme.at(key, default: none)
