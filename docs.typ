@@ -209,9 +209,11 @@ Minimal starting point:
 #let radial-graph-module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
 #show-module(radial-graph-module)
 
+#let radial-graph-module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
+#show-module(radial-graph-module)
+
 #let radial_gantt_chart = tidy.parse-module(read("./themes/radial/components/gantt-chart.typ"))
 #show-module(radial_gantt_chart)
-
 
 = Developer Documentation
 
