@@ -1,6 +1,6 @@
 #import "../colors.typ": *
 
-#import "@preview/cetz:0.1.2"
+#import "@preview/cetz:0.2.0"
 
 /// Creates a labeled pie chart.
 ///
@@ -82,21 +82,19 @@
         let angle = angles.at(index)
 
         let (line-end, anchor-direction) = if angle > 90deg and angle < 275deg {
-          ((-0.5, 0), "right")
+          ((-0.5, 0), "east")
         } else {
-          ((0.5, 0), "left")
+          ((0.5, 0), "west")
         }
 
         line(anchor, (to: anchor, rel: (angle, 0.5)), (rel: line-end))
 
-        content((), [#value.name], anchor: "bottom-" + anchor-direction)
-        content((), [ #percentages.at(index)% ], anchor: "top-" + anchor-direction)
+        content((), [#value.name], anchor: "south-" + anchor-direction)
+        content((), [ #percentages.at(index)% ], anchor: "north-" + anchor-direction)
       }
     },
   )
 }
-
-
 
 /// Example Usage:
 /// ```typ
@@ -113,13 +111,7 @@
 /// - y-label (string): The label on the y axis
 /// - ..data (dictionary):
 /// -> content
-#let plot(
-  title: "",
-  x-label: "",
-  y-label: "",
-  length: auto,
-  ..data
-  ) = {
+#let plot(title: "", x-label: "", y-label: "", length: auto, ..data) = {
   // The length of the whole plot is 8.5 units.
   let length = if length == auto { 8.5% } else { length / 8.5 }
 
@@ -128,37 +120,48 @@
 
   set align(center)
   cetz.canvas(
-    length: length, {
+    length: length,
+    {
       import cetz.draw: *
       import cetz.plot
       import cetz.palette
-      
 
+      // Style for the data lines
       let plot-colors = (blue, red, green, yellow, pink, orange)
       let plot-style(i) = {
         let color = plot-colors.at(calc.rem(i, plot-colors.len()))
-        return (stroke: color,
-                fill: color.lighten(75%))
+        return (
+          stroke: (thickness: 1pt, paint: color, cap: "round", join: "round"),
+          fill: color.lighten(75%),
+        )
       }
 
+      set-style(axes: (grid: (
+        stroke: (paint: luma(66.67%), dash: "loosely-dotted", cap: "round"),
+        fill: none,
+      ), tick: (stroke: (cap: "round")), stroke: (cap: "round")))
 
       plot.plot(
         name: "plot",
         plot-style: plot-style,
-        size: (9, 5), axis-style: "left", x-grid: "both", y-grid: "both", {
-        for (index, row) in data.pos().enumerate() {
-          plot.add(row.data)
-          legend.push(
-            (color: plot-colors.at(index), name: row.name)
-          )
-        }
-      })
+        size: (9, 5),
+        axis-style: "left",
+        x-grid: "both",
+        y-grid: "both",
+        {
+          for (index, row) in data.pos().enumerate() {
+            plot.add(row.data)
+            legend.push((color: plot-colors.at(index), name: row.name))
+          }
+        },
+      )
 
-      content("plot.top", [*#title*])
-      content((to: "plot.bottom", rel: (0,-0.5)), [#x_label])
-      content((to: "plot.left", rel: (-0.5, 0)), [#y_label], angle: 270deg)
+      content("plot.north", [*#title*])
+      content((to: "plot.south", rel: (0, -0.5)), [#x-label])
+      content((to: "plot.west", rel: (-0.5, 0)), [#y-label], angle: 90deg)
     },
   )
+
   // legend time
   for label in legend [
     #box(rect(fill: label.color, radius: 1.5pt), width: 0.7em, height: 0.7em)
