@@ -41,7 +41,7 @@
     orange
   } else if type == "select" {
     green
-  } else if type == "build" {
+  } else if type == "implement" {
     blue
   } else if type == "test" {
     purple
