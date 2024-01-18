@@ -1,6 +1,6 @@
 <div align="center">
 
-# The Notebookinator
+![alt text](https://github.com/BattleCh1cken/notebookinator/blob/main/logo.png?raw=true)
 
 </div>
 
