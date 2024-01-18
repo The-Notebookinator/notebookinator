@@ -48,10 +48,6 @@ Once the template is installed, you can import it into your project like this:
   "#import \"@local/notebookinator:"+ version + "\": *"
 )
 
-
-```typ
-#import "@local/notebookinator": *
-```
 Once you've done that you can begin to write your notebook:
 ```typ
 #import themes.default: default-theme, components
