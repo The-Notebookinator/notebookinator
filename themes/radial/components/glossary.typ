@@ -9,11 +9,14 @@
 ///   #components.glossary()
 /// ]
 /// ```
-#let glossary() = {
+#let glossary() = utils.print-glossary(glossary => {
   columns(2)[
-    #utils.print-glossary(entry => [
-      == #entry.word
-      #entry.definition
-    ])
+    #for entry in glossary {
+      box[
+        == #entry.word
+        #entry.definition
+        \
+      ]
+    }
   ]
-}
+})

@@ -10,41 +10,42 @@
 ///   #components.toc()
 /// ]
 /// ```
-#let toc() = {
-  let label(label: "", size: 0.7em) = {
-    let data = entry-type-metadata.at(label)
-    let colored-image = utils.change-icon-color(raw-icon: data.icon, fill: white)
+#let toc() = utils.print-toc(
+  (frontmatter, body, appendix) => {
+    let label(label: "", size: 0.7em) = {
+      let data = entry-type-metadata.at(label)
+      let colored-image = utils.change-icon-color(raw-icon: data.icon, fill: white)
 
-    box(fill: data.color, outset: 3pt, radius: 1.5pt)[
-      #set align(center + horizon)
-      #image.decode(colored-image, height: size)
+      box(fill: data.color, outset: 3pt, radius: 1.5pt)[
+        #set align(center + horizon)
+        #image.decode(colored-image, height: size)
+      ]
+    }
+
+    heading(level: 1)[Entries]
+    linebreak()
+
+    for entry in body [
+      #entry.date.display("[year]/[month]/[day]")
+      #h(5pt)
+      #label(label: entry.type)
+      #h(5pt)
+      #entry.title
+      #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+      #entry.page-number
     ]
-  }
 
-  heading(level: 1)[Entries]
+    linebreak()
+    linebreak()
 
-  linebreak()
+    heading(level: 1)[Appendix]
+    linebreak()
 
-  utils.print-toc(context => [
-    #let end-date = context.end-date.display("[year]/[month]/[day]")
-    #let start-date = context.start-date.display("[year]/[month]/[day]")
-    #end-date#h(5pt)
-    #label(label: context.type)
-    #h(5pt)
-    #context.title
-    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #context.page-number
-  ])
+    for entry in appendix [
+      #entry.title
+      #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+      #entry.page-number
 
-  linebreak()
-
-  heading(level: 1)[Appendix]
-
-  linebreak()
-
-  utils.print-toc(type: "appendix", context => [
-    #context.title
-    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #context.page-number
-  ])
-}
+    ]
+  },
+)
