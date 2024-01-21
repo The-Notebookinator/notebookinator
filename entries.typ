@@ -7,8 +7,7 @@
 /// - section (string): The type of entry. Takes either "frontmatter", "body", or "appendix".
 /// - title (string): The title of the entry.
 /// - type (string): The type of entry. The possible values for this are decided by the theme.
-/// - start-date (datetime): The date that the entry started at.
-/// - end-date (datetime): The date that the entry ended at. If not specified, it will fall back on the `start-date`.
+/// - date (datetime): The date that the entry occured at.
 /// - body (content): The content of the entry.
 #let create-entry(section: none, title: "", type: none, date: none, body) = {
   let (state, entry-label) = if section == "frontmatter" {
