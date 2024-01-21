@@ -52,14 +52,12 @@
 )
 
 /// A utility function meant to help themes implement a glossary
-/// - callback (function): A function returning the content of a single glossary entry
+/// - callback (function): A function that returns the content of the glossary
 /// -> content
 #let print-glossary(callback) = locate(
   loc => {
     let sorted-glossary = globals.glossary-entries.final(loc).sorted(key: ((word, _)) => word)
-    for entry in sorted-glossary {
-      box(callback(entry))
-    }
+    callback(sorted-glossary)
   },
 )
 
