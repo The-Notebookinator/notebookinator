@@ -48,10 +48,6 @@ Once the template is installed, you can import it into your project like this:
   "#import \"@local/notebookinator:"+ version + "\": *"
 )
 
-
-```typ
-#import "@local/notebookinator": *
-```
 Once you've done that you can begin to write your notebook:
 ```typ
 #import themes.default: default-theme, components
@@ -209,9 +205,11 @@ Minimal starting point:
 #let radial-graph-module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
 #show-module(radial-graph-module)
 
+#let radial-graph-module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
+#show-module(radial-graph-module)
+
 #let radial_gantt_chart = tidy.parse-module(read("./themes/radial/components/gantt-chart.typ"))
 #show-module(radial_gantt_chart)
-
 
 = Developer Documentation
 
