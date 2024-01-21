@@ -6,14 +6,15 @@
 ///
 /// Example Usage:
 /// ```typ
-/// utils.print-toc(context => [
-///   #context.title
-///   #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-///   #context.page-number
-/// ])
+/// #let toc() = utils.print-toc((frontmatter, body, appendix) => {
+///   for entry in body [
+///     #entry.title
+///     #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+///     #entry.page-number
+///   ]
+/// })
 /// ```
-/// - type (string): Takes either "frontmatter", "body", or "appendix"
-/// - callback (function): A function which takes the #link(<context>)[context] of the entry as input, and returns the content for a single row
+/// - callback (function): A function which takes the #link(<context>)[context] of all entries as input, and returns the content of the entire table of contents.
 /// -> content
 #let print-toc(callback) = locate(
   loc => {
