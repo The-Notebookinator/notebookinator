@@ -23,7 +23,7 @@
     header: components.title(
       beginning: image.decode(
         utils.change-icon-color(raw-icon: metadata.icon, fill: white), height: 1em,
-      ), end: context.start-date.display("[year]/[month]/[day]"), color: metadata.color, context.title,
+      ), end: context.date.display("[year]/[month]/[day]"), color: metadata.color, context.title,
     ), footer: [
       #line(length: 100%)
       #align(left, [

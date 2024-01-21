@@ -9,19 +9,19 @@
   *Default Cover*
 ]
 
-#let toc() = {
-  utils.print-toc(context => [
-    #context.title
+#let toc() = utils.print-toc((_, body, appendix) => {
+  for entry in body [
+    #entry.title
     #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #context.page-number
-  ])
+    #entry.page-number
+  ]
 
-  utils.print-toc(type: "appendix", context => [
-    #context.title
+  for entry in appendix [
+    #entry.title
     #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #context.page-number
-  ])
-}
+    #entry.page-number
+  ]
+})
 
 #let frontmatter-entry(context: (:), body) = {
   show: page.with(header: [ = Frontmatter header ], footer: [Frontmatter footer])
@@ -42,7 +42,10 @@
 
 #let default-theme = (
   // Global show rules
-  rules: rules, cover: cover,
+  rules: rules,
+  cover: cover,
   // Entry pages
-  frontmatter-entry: frontmatter-entry, body-entry: body-entry, appendix-entry: appendix-entry,
+  frontmatter-entry: frontmatter-entry,
+  body-entry: body-entry,
+  appendix-entry: appendix-entry,
 )

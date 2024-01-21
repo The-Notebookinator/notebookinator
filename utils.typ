@@ -15,13 +15,14 @@
 /// - type (string): Takes either "frontmatter", "body", or "appendix"
 /// - callback (function): A function which takes the #link(<context>)[context] of the entry as input, and returns the content for a single row
 /// -> content
-#let print-toc(type: "body", callback) = {
-  locate(
-    loc => {
-      // Each of the types of entries have their own state variable and label, so we need to decide which ones to use
+#let print-toc(callback) = locate(
+  loc => {
+    // Each of the types of entries have their own state variable and label, so we need to decide which ones to use
+    let helper(type) = {
       let (state, markers) = if type == "frontmatter" {
         (
-          globals.frontmatter-entries, query(selector(<notebook-frontmatter>), loc),
+          globals.frontmatter-entries,
+          query(selector(<notebook-frontmatter>), loc),
         )
       } else if type == "body" {
         (globals.entries, query(selector(<notebook-body>), loc))
@@ -31,19 +32,24 @@
         panic("No valid entry type selected.")
       }
 
+      let result = ()
+
       for (index, entry) in state.final(loc).enumerate() {
         let page-number = counter(page).at(markers.at(index).location()).at(0)
         let context = entry.context
         context.page-number = page-number
-        [
-          #callback(context) \
-        ]
+        result.push(context)
       }
-    },
-  )
-}
+      return result
+    }
 
-// TODO: document what data the callback has access to
+    let frontmatter-entries = helper("frontmatter")
+    let body-entries = helper("body")
+    let appendix-entries = helper("appendix")
+
+    callback(frontmatter-entries, body-entries, appendix-entries)
+  },
+)
 
 /// A utility function meant to help themes implement a glossary
 /// - callback (function): A function returning the content of a single glossary entry
