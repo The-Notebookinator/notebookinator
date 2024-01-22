@@ -1,6 +1,8 @@
 #import "rules.typ": rules
 #import "entries.typ": cover, frontmatter-entry, body-entry, appendix-entry
 #import "format.typ": set-margins, set-heading
+#import "components.typ"
+#import "colors.typ": *
 
 #let linear-theme = (
   // Global show rules
