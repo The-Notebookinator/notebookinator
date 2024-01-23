@@ -19,4 +19,6 @@ This is the Notebookinator, a [Typst](https://github.com/typst/typst) template d
 To get started, read the [documentation](./docs.pdf). If you have questions, or just want to hang out, feel free to join our [Discord server](https://discord.gg/sUpcVPtBDg).
 
 ## Special Thanks
+
 - Maqmoon (logo drawing)
+- [CeTZ](https://github.com/johannes-wolf/cetz) (install process and unit testing)
