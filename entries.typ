@@ -9,7 +9,15 @@
 /// - type (string): The type of entry. The possible values for this are decided by the theme.
 /// - date (datetime): The date that the entry occured at.
 /// - body (content): The content of the entry.
-#let create-entry(section: none, title: "", type: none, date: none, body) = {
+#let create-entry(
+  section: none,
+  title: "",
+  type: none,
+  date: none,
+  author: "",
+  witness: "",
+  body,
+) = {
   let (state, entry-label) = if section == "frontmatter" {
     (globals.frontmatter-entries, label("notebook-frontmatter"))
   } else if section == "body" {
@@ -27,7 +35,12 @@
         [#counter(page).update(1)] // Correctly set the page number for each section
       } + [ #metadata(none) #entry-label ] + body // Place a label on blank content to the table of contents can find each entry
 
-      entries.push((context: (title: title, type: type, date: date), body: final-body))
+      entries.push(
+        (
+          context: (title: title, type: type, date: date, author: author, witness: witness),
+          body: final-body,
+        ),
+      )
       entries
     },
   )
