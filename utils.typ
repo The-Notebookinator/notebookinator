@@ -6,22 +6,24 @@
 ///
 /// Example Usage:
 /// ```typ
-/// utils.print-toc(context => [
-///   #context.title
-///   #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-///   #context.page-number
-/// ])
+/// #let toc() = utils.print-toc((frontmatter, body, appendix) => {
+///   for entry in body [
+///     #entry.title
+///     #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+///     #entry.page-number
+///   ]
+/// })
 /// ```
-/// - type (string): Takes either "frontmatter", "body", or "appendix"
-/// - callback (function): A function which takes the #link(<context>)[context] of the entry as input, and returns the content for a single row
+/// - callback (function): A function which takes the #link(<context>)[context] of all entries as input, and returns the content of the entire table of contents.
 /// -> content
-#let print-toc(type: "body", callback) = {
-  locate(
-    loc => {
-      // Each of the types of entries have their own state variable and label, so we need to decide which ones to use
+#let print-toc(callback) = locate(
+  loc => {
+    // Each of the types of entries have their own state variable and label, so we need to decide which ones to use
+    let helper(type) = {
       let (state, markers) = if type == "frontmatter" {
         (
-          globals.frontmatter-entries, query(selector(<notebook-frontmatter>), loc),
+          globals.frontmatter-entries,
+          query(selector(<notebook-frontmatter>), loc),
         )
       } else if type == "body" {
         (globals.entries, query(selector(<notebook-body>), loc))
@@ -31,29 +33,32 @@
         panic("No valid entry type selected.")
       }
 
+      let result = ()
+
       for (index, entry) in state.final(loc).enumerate() {
         let page-number = counter(page).at(markers.at(index).location()).at(0)
         let context = entry.context
         context.page-number = page-number
-        [
-          #callback(context) \
-        ]
+        result.push(context)
       }
-    },
-  )
-}
+      return result
+    }
 
-// TODO: document what data the callback has access to
+    let frontmatter-entries = helper("frontmatter")
+    let body-entries = helper("body")
+    let appendix-entries = helper("appendix")
+
+    callback(frontmatter-entries, body-entries, appendix-entries)
+  },
+)
 
 /// A utility function meant to help themes implement a glossary
-/// - callback (function): A function returning the content of a single glossary entry
+/// - callback (function): A function that returns the content of the glossary
 /// -> content
 #let print-glossary(callback) = locate(
   loc => {
     let sorted-glossary = globals.glossary-entries.final(loc).sorted(key: ((word, _)) => word)
-    for entry in sorted-glossary {
-      box(callback(entry))
-    }
+    callback(sorted-glossary)
   },
 )
 
