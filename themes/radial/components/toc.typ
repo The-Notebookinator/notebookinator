@@ -1,5 +1,6 @@
 #import "/utils.typ"
 #import "../metadata.typ": *
+#import "./label.typ": *
 
 /// Print out the table of contents
 ///
@@ -10,22 +11,12 @@
 ///   #components.toc()
 /// ]
 /// ```
-#let toc() = utils.print-toc(
-  (frontmatter, body, appendix) => {
-    let label(label: "", size: 0.7em) = {
-      let data = entry-type-metadata.at(label)
-      let colored-image = utils.change-icon-color(raw-icon: data.icon, fill: white)
+#let toc() = utils.print-toc((frontmatter, body, appendix) => {
+  heading(level: 1)[Entries]
+  linebreak()
 
-      box(fill: data.color, outset: 3pt, radius: 1.5pt)[
-        #set align(center + horizon)
-        #image.decode(colored-image, height: size)
-      ]
-    }
-
-    heading(level: 1)[Entries]
-    linebreak()
-
-    for entry in body [
+  stack(spacing: 1em, ..for entry in body {
+    ([
       #entry.date.display("[year]/[month]/[day]")
       #h(5pt)
       #label(label: entry.type)
@@ -33,19 +24,20 @@
       #entry.title
       #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
       #entry.page-number
-    ]
+    ],)
+  })
 
-    linebreak()
-    linebreak()
+  linebreak()
+  linebreak()
 
-    heading(level: 1)[Appendix]
-    linebreak()
+  heading(level: 1)[Appendix]
+  linebreak()
 
-    for entry in appendix [
+  stack(spacing: 1em, ..for entry in appendix {
+    ([
       #entry.title
       #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
       #entry.page-number
-
-    ]
-  },
-)
+    ],)
+  })
+})

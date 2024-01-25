@@ -1,5 +1,6 @@
 #import "./components/headings.typ" as components-heading
 #import "./components/code-blocks.typ" as components-code
+#import "./components/table.typ" as components-table
 
 #let rules(doc) = {
   set text(font: "Calibri", size: 11pt)
@@ -21,7 +22,10 @@
 
   show figure: it => align(center)[
     #it.body
-    _ #it.caption.body _
+
+    #if it.caption!= none [
+      _ #it.caption.body _
+    ]
   ]
 
   set raw(theme: "./radial.tmTheme")
@@ -29,6 +33,8 @@
   show raw.where(block: true): it => components-code.raw-block(it)
 
   show heading: components-heading.heading
+
+  show table: components-table.table
 
   // Display the whole document
   doc
