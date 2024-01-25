@@ -35,18 +35,18 @@
 }
 
 #let set-heading(it, type) = {
-  let color = if type == "define" {
+  let color = if type == "identify" {
     red
   } else if type == "brainstorm" {
     orange
-  } else if type == "select" {
+  } else if type == "decide" {
     green
-  } else if type == "implement" {
+  } else if type == "build" {
     blue
-  } else if type == "test" {
+  } else if type == "program" {
     purple
-  } else if type == "reflect" {
-    pink
+  } else if type == "test" {
+    rgb("#DDB0EB")
   }
   if it.level == 1 {
     set text(18pt)

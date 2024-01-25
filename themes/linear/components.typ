@@ -11,7 +11,7 @@
   "test": pink,
 )
 
-#let toc() = utils.print-toc(
+#let set-toc() = utils.print-toc(
   (_, body, appendix) => style(
     styles => {
       let previous-date
@@ -59,3 +59,31 @@
     },
   ),
 )
+
+#let set-glossary() = utils.print-glossary(
+  glossary => {
+    stack(
+      dir: ttb,
+      spacing: 45in,
+      ..for entry in glossary {([
+        #box(inset: 0.5em, fill: gray)[= #entry.word]
+        #h(5pt)
+        #box(baseline: -10pt, width: 1fr, line(length: 100%))
+
+        #entry.definition
+
+      ],)}
+    ) 
+  }
+)
+
+#let pro-con() = {
+  table(
+    columns: (50%, 50%),
+    inset: 0.5em,
+    [Pros], [Cons],
+    // Pros
+    
+    // Cons
+  )
+}
