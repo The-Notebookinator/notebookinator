@@ -31,8 +31,8 @@
   ), footer: [
     #line(length: 100%)
     #align(left, [
-      *Designed by:* #h(2pt) #context.author \
-      *Witnessed by:* #context.witness
+      *Designed by:* #h(2pt) \
+      *Witnessed by:*
       #h(1fr) #counter(page).display()
     ])
   ])

@@ -2,6 +2,8 @@
 #import "./components/code-blocks.typ" as components-code
 #import "./components/table.typ" as components-table
 
+#import "./colors.typ": *
+
 #let rules(doc) = {
   set text(font: "Calibri", size: 11pt)
   set page("us-letter")
@@ -23,7 +25,7 @@
   show figure: it => align(center)[
     #it.body
 
-    #if it.caption!= none [
+    #if it.caption != none [
       _ #it.caption.body _
     ]
   ]

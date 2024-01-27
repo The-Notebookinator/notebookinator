@@ -33,11 +33,10 @@
   heading(level: 1)[Appendix]
   linebreak()
 
-  stack(spacing: 1em, ..for entry in appendix {
-    ([
-      #entry.title
-      #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-      #entry.page-number
-    ],)
-  })
+  for entry in appendix [
+    #entry.title
+    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+    #entry.page-number
+
+  ]
 })

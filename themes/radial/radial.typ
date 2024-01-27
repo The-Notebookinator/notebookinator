@@ -1,14 +1,14 @@
 #import "./rules.typ": rules
 #import "./entries.typ": cover, frontmatter-entry, body-entry, appendix-entry
 #import "./components/components.typ"
+#import "./colors.typ"
 
 #let radial-theme = (
   // Global show and set rules
   rules: rules,
   cover: cover,
-
   // Entry pages
   frontmatter-entry: frontmatter-entry,
   body-entry: body-entry,
-  appendix-entry: appendix-entry
+  appendix-entry: appendix-entry,
 )
