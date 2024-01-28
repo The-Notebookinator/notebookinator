@@ -19,7 +19,6 @@
   show heading.where(level: 1): it => block(smallcaps(it), below: 1em)
   set heading(numbering: "1.")
 
-  // show link: set text(fill: purple.darken(30%))
   show link: set text(fill: rgb("#1e8f6f"))
   show link: underline
 
@@ -62,13 +61,15 @@
   v(10em)
 
   show: codly-init
-  codly()
+  codly(enable-numbers: false)
+
   show raw.where(block: true): set text(size: .95em)
   show raw.where(block: true): it => pad(x: 4%, it)
 
+  //FIXME: make this work again
   show raw.where(block: false): it => if it.text.starts-with("<") and it.text.ends-with(">") {
     set text(1.2em)
-    tidy.styles.default.show-type(it.text.slice(1, -1))
+    tidy.styles.default.show-type(it.text.slice(1, -1), style-args: tidy.styles.default)
   } else {
     it
   }
