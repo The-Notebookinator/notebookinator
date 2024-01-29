@@ -9,9 +9,9 @@
 #let pink = rgb("#CD89E2")
 
 // Dark
-#let red = rgb("#EBA8BC")
-#let yellow = rgb("#FACC7E")
-#let green = rgb("#68E8CD")
-#let blue = rgb("#8EC5E9")
-#let purple = rgb("#B4AFE1")
-#let pink = rgb("#DDB0EB")
+#let dark-red = rgb("#EBA8BC")
+#let dark-yellow = rgb("#FACC7E")
+#let dark-green = rgb("#68E8CD")
+#let dark-blue = rgb("#8EC5E9")
+#let dark-purple = rgb("#B4AFE1")
+#let dark-pink = rgb("#DDB0EB")

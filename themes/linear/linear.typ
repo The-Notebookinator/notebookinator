@@ -1,7 +1,7 @@
 #import "rules.typ": rules
 #import "entries.typ": cover, frontmatter-entry, body-entry, appendix-entry
-#import "format.typ": set-margins, set-heading
-#import "components.typ": set-toc, set-glossary
+#import "format.typ": margins, heading
+#import "components/components.typ"
 #import "colors.typ": *
 
 #let linear-theme = (

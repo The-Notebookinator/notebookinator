@@ -1,6 +1,4 @@
-
-
-#let set-margins(x, y) = {
+#let margins(x, y) = {
   set line(stroke: 1.5pt)
   let borderTL = 0% + 15%
   let borderTR = 100% - 15%
@@ -34,7 +32,7 @@
   )
 }
 
-#let set-heading(it, type) = {
+#let heading(it, type) = {
   let color = if type == "identify" {
     red
   } else if type == "brainstorm" {
@@ -50,7 +48,7 @@
   }
   if it.level == 1 {
     set text(18pt)
-  }
+  } 
   if it.level == 2 {
     set text(15pt)
   }
