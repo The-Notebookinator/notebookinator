@@ -215,7 +215,7 @@ Minimal starting point:
   for name in names.pos() {
     read(predicate + name + ".typ")
   }
-} 
+}
 
 === Components
 
@@ -263,7 +263,7 @@ Minimal starting point:
 
 #create-body-entry(title: "Day 1", type: "identify", date: datetime(year: 1984, month: 1, day: 1))[
   = Heading
-  
+
   #lorem(50)
 
   #components.pro-con(
@@ -286,7 +286,7 @@ Minimal starting point:
 
 #create-body-entry(title: "Day 2", type: "identify", date: datetime(year: 1984, month: 1, day: 2))[
   = Another Heading
-  
+
   #lorem(50)
 
   #components.decision-matrix(
