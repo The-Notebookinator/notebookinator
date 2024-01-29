@@ -7,10 +7,10 @@
     fill: (col, row) => 
       if row == 0 {
         if col == 0 {
-          dark-green
+          pro-con-green
         }
         if col == 1 {
-          dark-red
+          pro-con-red
         } 
       },
     align(

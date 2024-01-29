@@ -1,3 +1,5 @@
+#import "colors.typ": *
+
 #let set-margins(x, y) = {
   set line(stroke: 1.5pt)
   let borderTL = 0% + 15%
@@ -34,17 +36,17 @@
 
 #let set-heading(it, type) = {
   let color = if type == "identify" {
-    red
+    dark-red
   } else if type == "brainstorm" {
-    orange
+    dark-yellow
   } else if type == "decide" {
-    green
+    dark-green
   } else if type == "build" {
-    blue
+    dark-blue
   } else if type == "program" {
-    purple
+    dark-purple
   } else if type == "test" {
-    rgb("#DDB0EB")
+    dark-pink
   }
   if it.level == 1 {
     set text(18pt)
