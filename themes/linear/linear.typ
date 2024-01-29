@@ -1,6 +1,6 @@
 #import "rules.typ": rules
 #import "entries.typ": cover, frontmatter-entry, body-entry, appendix-entry
-#import "format.typ": margins, heading
+#import "format.typ": set-margins, set-heading
 #import "components/components.typ"
 #import "colors.typ": *
 

@@ -1,4 +1,5 @@
 #import "../../../utils.typ"
+#import "entry-types.typ": *
 
 #let toc() = utils.print-toc(
   (_, body, appendix) => style(

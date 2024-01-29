@@ -1,3 +1,5 @@
+#import "../colors.typ": *
+
 #let pro-con(pros: [], cons: []) = {
   table(
     columns: (50%, 50%),

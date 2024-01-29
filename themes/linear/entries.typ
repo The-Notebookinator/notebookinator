@@ -13,7 +13,7 @@
       #set text(size: 20pt)
       = #context.title 
       ],
-    background: margins(8%, 8%)
+    background: set-margins(8%, 8%)
     )
   body
 }
@@ -31,10 +31,10 @@
       #h(30%)
       Witnessed by:
     ],
-    background: margins(8%, 8%) 
+    background: set-margins(8%, 8%) 
     )
   show heading: it => {
-    heading(it, context.type)
+    set-heading(it, context.type)
   }
   body
 }
@@ -46,7 +46,7 @@
       #set text(size: 20pt)
       = #context.title 
       ], 
-    background: margins(8%, 8%)
+    background: set-margins(8%, 8%)
     )
   body
 }
