@@ -1,7 +1,6 @@
 #import "./components/headings.typ" as components-heading
 #import "./components/code-blocks.typ" as components-code
 
-
 #let rules(doc) = {
   set text(font: "Calibri", size: 11pt)
   set page("us-letter")
@@ -25,6 +24,7 @@
     _ #it.caption.body _
   ]
 
+  set raw(theme: "./radial.tmTheme")
   show raw.where(block: false): components-code.raw-not-block
   show raw.where(block: true): it => components-code.raw-block(it)
 

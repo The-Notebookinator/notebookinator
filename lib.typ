@@ -23,12 +23,21 @@
 /// - body (content): The content of the notebook. This will be ignored. Use the create-entry functions instead.
 /// -> content
 #let notebook(
-  team-name: none, season: none, year: none, cover: none, theme: (:), body,
+  team-name: none,
+  season: none,
+  year: none,
+  cover: none,
+  theme: (:),
+  body,
 ) = {
   let rules = theme.rules
   show: doc => rules(doc)
-  let cover-context = (team-name: team-name, season: season, year: year)
-  page(print-cover(context: cover-context, theme: theme))
+  if cover == none {
+    let cover-context = (team-name: team-name, season: season, year: year)
+    page(print-cover(context: cover-context, theme: theme))
+  } else {
+    page(cover)
+  }
   page[] // Filler page
 
   print-entries(theme: theme)

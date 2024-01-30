@@ -1,5 +1,3 @@
-// TODO: name the colors different things
-
 // Dark
 #let dark-red = rgb("#DE6C8E")
 #let dark-yellow = rgb("#F6AA28")
@@ -17,4 +15,4 @@
 #let pink = rgb("#DDB0EB")
 
 #let pro-con-red = rgb("#e95f5f")
-#let pro-con-green = rgb("#04db69") 
+#let pro-con-green = rgb("#04db69")
