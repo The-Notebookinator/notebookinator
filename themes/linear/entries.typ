@@ -11,7 +11,7 @@
     header: [ 
       #set align(center)
       #set text(size: 20pt)
-      = #context.title 
+      = #context.title
       ],
     background: set-margins(8%, 8%)
     )
@@ -23,7 +23,11 @@
     header: [ 
       #set align(center)
       #set text(size: 20pt) 
-      = #context.title 
+      #box(
+        fill: entry-type-metadata.at(context.type),
+        inset: 
+        [= #context.title]
+      )
       ], 
     footer: [
       #set align(left)

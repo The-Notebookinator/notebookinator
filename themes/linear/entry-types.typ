@@ -1,4 +1,4 @@
-#import "../colors.typ": *
+#import "colors.typ": *
 
 #let entry-type-metadata = (
   "identify": red,

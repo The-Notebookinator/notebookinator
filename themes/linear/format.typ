@@ -1,5 +1,11 @@
-#import "colors.typ": *
+#import "entry-types.typ": *
 
+/// Set the length and width of the line margins
+///
+/// - x: the distance between the left and right borders and the edge of the page
+/// - y: the distance between the top and bottom borders and the edge of the page
+///
+/// TODO: Make text shrink and stretch with margins
 #let set-margins(x, y) = {
   set line(stroke: 1.5pt)
   let borderTL = 0% + 15%
@@ -34,20 +40,13 @@
   )
 }
 
+/// Set the heading type (color) and level
+///
+/// - it: the level of the heading
+/// - type: the type of entry the heading labels
+
 #let set-heading(it, type) = {
-  let color = if type == "identify" {
-    dark-red
-  } else if type == "brainstorm" {
-    dark-yellow
-  } else if type == "decide" {
-    dark-green
-  } else if type == "build" {
-    dark-blue
-  } else if type == "program" {
-    dark-purple
-  } else if type == "test" {
-    dark-pink
-  }
+  let color = entry-type-metadata.at(type)
   if it.level == 1 {
     set text(18pt)
   } 
