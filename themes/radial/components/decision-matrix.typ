@@ -25,7 +25,7 @@
     [],
     // Print out all the properties
     ..for property in properties {
-      ([ *#property* ],)
+      ([ *#property.name* ],)
     },
     // Last box in the row
     [*Total*],
