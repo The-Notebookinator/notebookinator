@@ -31,12 +31,13 @@
     ],
   )
 
-  let weight-vline = vlinex(start: data.len() + 1, stroke: surface-4, expand: -1pt)
+  let weight-vline = vlinex(start: data.len() + 1, stroke: gray, expand: -1pt)
+  let weight-hline = hlinex(start: 1, end: properties.len() + 1, stroke: gray)
 
   tablex(
     auto-lines: false,
     columns: columns,
-    header-rows: 10, // https://github.com/PgBiel/typst-tablex/issues/4
+    header-rows: 99, // https://github.com/PgBiel/typst-tablex/issues/4
     hlinex(),
     // All of the vertical lines
     ..for _ in range(properties.len() + 3) {
@@ -62,17 +63,15 @@
         choice.values.total.value,
       ), hlinex(),)
     },
-    hlinex(),
-    // Weights
-    // TODO: auto gen these
-    [],
+
+    //weight-vline,
+    body-cell[],
     ..for property in properties {
       (weight-vline, body-cell[
-        #set text(fill: surface-4)
         #property.at("weight", default: 1)x
       ],)
     },
     weight-vline,
-    hlinex(start: 1, end: properties.len() + 1, stroke: surface-4),
+    weight-hline,
   )
 }
