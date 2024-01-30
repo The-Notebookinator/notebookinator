@@ -63,8 +63,6 @@
         choice.values.total.value,
       ), hlinex(),)
     },
-
-    //weight-vline,
     body-cell[],
     ..for property in properties {
       (weight-vline, body-cell[

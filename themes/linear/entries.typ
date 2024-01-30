@@ -7,22 +7,30 @@
 ]
 
 #let frontmatter-entry(context: (:), body) = {
-  show: page.with(header: [ 
-    #set align(center)
-    #set text(size: 20pt)
-    = #context.title
-  ], background: set-margins(8%, 8%))
+  show: page.with(
+    //margin: (top: 8em),
+    header: [ 
+      #set align(center)
+      #set text(size: 20pt)
+      
+      #context.title
+      
+    ],
+    background: set-margins(8%, 8%),
+  )
   body
 }
 
 #let body-entry(context: (:), body) = {
-  show: page.with(header: [ 
+  show: page.with(margin: (top: 88pt), header: [ 
     #set align(center)
-    #set text(size: 20pt) 
+    #set text(size: 30pt) 
     #box(
+      //baseline: 2pt,
       fill: entry-type-metadata.at(context.type),
-      inset: 1pt,
-      [= #context.title],
+      width: 300pt,
+      inset: 10pt,
+      [#context.title],
     )
   ], footer: [
     #set align(left)
@@ -30,9 +38,11 @@
     #h(30%)
     Witnessed by:
   ], background: set-margins(8%, 8%))
+  
   show heading: it => {
     set-heading(it, context.type)
   }
+  
   body
 }
 
@@ -40,7 +50,8 @@
   show: page.with(header: [
     #set align(center)
     #set text(size: 20pt)
-    = #context.title 
+    #context.title 
+
   ], background: set-margins(8%, 8%))
   body
 }
