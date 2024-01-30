@@ -1,5 +1,4 @@
-#import "@preview/codly:0.2.0": *
-#import "@preview/tidy:0.1.0"
+#import "./packages.typ": codly, tidy
 
 #let docs-template(
   title: "", subtitle: "", abstract: [], authors: (), url: none, date: none, version: none, body,
