@@ -78,18 +78,17 @@
 /// )
 /// ```
 ///
-/// The function returns an array of dictionaries, one for each choice. Each dictionary contains the name of the choice,
-/// the values for each property, the total, and whether the choice has the highest score or not. Here's an example of what one of these dictionaries might look like:
+/// The function returns an array of dictionaries, one for each choice.
+/// Here's an example of what one of these dictionaries might look like:
 ///
 /// ```typ
-///   #(
-///     name: "Sweet potato",
-///     values: (2, 5, 1),
-///     total: 8,
-///     highest: true,
-///   )
+/// #(name: "Sweet potato", values: (
+///   Versatility: (value: 3, highest: true),
+///   Flavor: (value: 1, highest: false),
+///   Chrunchiness: (value: 1, highest: false),
+///   total: (value: 5, highest: false),
+/// )),
 /// ```
-///
 /// - properties (array string): A list of the properties that each choice will be rated by
 /// - ..choices (array): All of the choices that are being rated. The first element of the array should be the name of the
 /// -> array
