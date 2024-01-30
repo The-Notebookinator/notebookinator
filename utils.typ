@@ -1,7 +1,6 @@
 #import "/globals.typ"
 
 // TODO: document what context provides to the callback
-
 /// Utility function to help themes implement a table of contents.
 ///
 /// Example Usage:
@@ -68,7 +67,11 @@
 ///
 /// ```typ
 /// #calc-decision-matrix(
-///   properties: ("Versatility", "Flavor", "Chrunchiness"),
+///   properties: (
+///     (name: "Versatility", weight: 2),
+///     (name: "Flavor", weight: 6),
+///     (name: "Chrunchiness"), // Defaults to a weight of 1
+///   ),
 ///   ("Sweet potato", 2, 5, 1),
 ///   ("Red potato", 2, 1, 3),
 ///   ("Yellow potato", 2, 2, 3),
@@ -92,21 +95,34 @@
 /// -> array
 #let calc-decision-matrix(properties: (), ..choices) = {
   for choice in choices.pos() {
-    assert(choice.len() - 1 == properties.len())
+    assert(
+      choice.len() - 1 == properties.len(),
+      message: "The number of supplied values did not match the number of properties.",
+    )
   }
 
-  let result = ();
-  let highest = (index: 0, value: 0)
+  // We need to multiply all of the values given by the choice by their respective weights
+  let choices = choices.pos().map(
+    choice => choice.enumerate().map(
+      ((index, value)) => {
+        if type(value) == str { value } else { value * properties.at(index - 1).at("weight", default: 1) }
+      },
+    ),
+  )
 
-  for (index, choice) in choices.pos().enumerate() {
+  let result = ();
+  let highest = (index: 0, value: 0) // Records the index of the choice which had the highest total
+
+  for (index, choice) in choices.enumerate() {
     let name = choice.at(0)
     let values = choice.slice(1)
-    let total = values.sum()
+    let total = values.sum();
 
     if total > highest.value {
       highest.index = index
       highest.value = total
     }
+
     let entry = (name: name, values: values, total: total, highest: false)
     result.push(entry)
   }
