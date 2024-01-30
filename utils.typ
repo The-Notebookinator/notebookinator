@@ -94,41 +94,52 @@
 /// - ..choices (array): All of the choices that are being rated. The first element of the array should be the name of the
 /// -> array
 #let calc-decision-matrix(properties: (), ..choices) = {
-  for choice in choices.pos() {
-    assert(
-      choice.len() - 1 == properties.len(),
-      message: "The number of supplied values did not match the number of properties.",
-    )
-  }
+  // This function follows the follow steps to calculate the outcome of a decision matrix:
+  // 1. Applies all of the weights to each of the values
+  // 2. Calculates the total for each choice
+  // 3. Adds all of the values to a dictionary, labeling them with their respective property names
+  // 4. Iterates over each of the newly organized choices to determine which is the highest for each category (including the total)
+  let choices = choices.pos().enumerate().map(
+    ((index, choice)) => {
+      let name = choice.at(0)
+      let values = choice.slice(1)
 
-  // We need to multiply all of the values given by the choice by their respective weights
-  let choices = choices.pos().map(
-    choice => choice.enumerate().map(
-      ((index, value)) => {
-        if type(value) == str { value } else { value * properties.at(index - 1).at("weight", default: 1) }
-      },
-    ),
+      // 1.  Weight the values
+      values = values.enumerate().map(
+        ((index, value)) => value * properties.at(index).at("weight", default: 1),
+      )
+
+      // 2. Calc total
+      let total = values.sum()
+
+      // 3. Assign the value names
+      let result = (:)
+      for (index, value) in values.enumerate() {
+        result.insert(properties.at(index).name, (value: value, highest: false))
+      }
+      result.insert("total", (value: total, highest: false))
+
+      (name: name, values: result)
+    },
   )
 
-  let result = ();
-  let highest = (index: 0, value: 0) // Records the index of the choice which had the highest total
+  // 4. Check if highest
+  properties.push((name: "total")) // Treat total as a property as well
+  for property in properties {
+    let highest = (index: 0, value: 0) // Records the index of the choice which had the highest total
 
-  for (index, choice) in choices.enumerate() {
-    let name = choice.at(0)
-    let values = choice.slice(1)
-    let total = values.sum();
+    for (index, choice) in choices.enumerate() {
+      let property-value = choice.values.at(property.name).value
 
-    if total > highest.value {
-      highest.index = index
-      highest.value = total
+      if property-value > highest.value {
+        highest.index = index
+        highest.value = property-value
+      }
     }
-
-    let entry = (name: name, values: values, total: total, highest: false)
-    result.push(entry)
+    choices.at(highest.index).values.at(property.name).highest = true;
   }
-  result.at(highest.index).highest = true;
 
-  return result
+  return choices
 }
 
 /// Returns the raw image data, not image content
