@@ -5,11 +5,23 @@
 /// - x: the distance between the left and right borders and the edge of the page
 /// - y: the distance between the top and bottom borders and the edge of the page
 ///
+/// Example usage:
+///
+/// set-margins(8%, 8%)
+///
+/// The distance the left and right borders are from the edge of the page are 8% 
+/// of the  page width
+///
+/// The distance the bottom border is from the the edge of the page is 8% of the 
+/// page length
+///
 /// TODO: Make text shrink and stretch with margins
 #let set-margins(x, y) = {
   set line(stroke: 1.5pt)
-  let borderTL = 0% + 15%
-  let borderTR = 100% - 15%
+  // TL: top left
+  // TR: top right
+  let border-TL = 0% + 15%
+  let border-TR = 100% - 15%
   place(
     // Left border line
     line(start: (0% + x, 5%), end: (0% + x, 100% - y))
@@ -23,20 +35,20 @@
     line(start: (0% + x, 100% - y), end: (100% - x, 100% - y))
   )
   place(
-    // Top left border line -> ——
-    line(start: (0% + x, 5%), end: (borderTL + x, 5%))
+    // TL border line -> ——
+    line(start: (0% + x, 5%), end: (border-TL + x, 5%))
   )
   place(
-    // Top right border line -> ——
-    line(start: (100% - x, 5%), end: (borderTR - x, 5%))
+    // TR border line -> ——
+    line(start: (100% - x, 5%), end: (border-TR - x, 5%))
   )
   place(
-    // Top left border line -> ︱
-    line(start: (borderTL + x, 4%), end: (borderTL + x, 6%))
+    // TL border line -> ︱
+    line(start: (border-TL + x, 4%), end: (border-TL + x, 6%))
   )
   place(
-    // Top left border line -> ︱
-    line(start: (borderTR - x, 4%), end: (borderTR - x, 6%))
+    // TR border line -> ︱
+    line(start: (border-TR - x, 4%), end: (border-TR - x, 6%))
   )
 }
 
