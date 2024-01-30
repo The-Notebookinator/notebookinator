@@ -1,7 +1,8 @@
 #import "../colors.typ": *
 #import "/utils.typ"
 
-#import "@preview/tablex:0.0.5": *
+#import "/packages.typ": tablex
+#import tablex: *
 
 /// A decision matrix table.
 ///

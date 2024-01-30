@@ -1,6 +1,6 @@
 #import "../colors.typ": *
+#import "/packages.typ": cetz
 
-#import "@preview/cetz:0.2.0"
 
 /// Creates a labeled pie chart.
 ///
