@@ -7,36 +7,29 @@
 ]
 
 #let frontmatter-entry(context: (:), body) = {
-  show: page.with(
-    header: [ 
-      #set align(center)
-      #set text(size: 20pt)
-      = #context.title
-      ],
-    background: set-margins(8%, 8%)
-    )
+  show: page.with(header: [ 
+    #set align(center)
+    #set text(size: 20pt)
+    = #context.title
+  ], background: set-margins(8%, 8%))
   body
 }
 
 #let body-entry(context: (:), body) = {
-  show: page.with(
-    header: [ 
-      #set align(center)
-      #set text(size: 20pt) 
-      #box(
-        fill: entry-type-metadata.at(context.type),
-        inset: 
-        [= #context.title]
-      )
-      ], 
-    footer: [
-      #set align(left)
-      Written by:
-      #h(30%)
-      Witnessed by:
-    ],
-    background: set-margins(8%, 8%) 
+  show: page.with(header: [ 
+    #set align(center)
+    #set text(size: 20pt) 
+    #box(
+      fill: entry-type-metadata.at(context.type),
+      inset: 1pt,
+      [= #context.title],
     )
+  ], footer: [
+    #set align(left)
+    Written by:
+    #h(30%)
+    Witnessed by:
+  ], background: set-margins(8%, 8%))
   show heading: it => {
     set-heading(it, context.type)
   }
@@ -44,13 +37,10 @@
 }
 
 #let appendix-entry(context: (:), body) = {
-  show: page.with(
-    header: [
-      #set align(center)
-      #set text(size: 20pt)
-      = #context.title 
-      ], 
-    background: set-margins(8%, 8%)
-    )
+  show: page.with(header: [
+    #set align(center)
+    #set text(size: 20pt)
+    = #context.title 
+  ], background: set-margins(8%, 8%))
   body
 }
