@@ -1,7 +1,4 @@
-#import "./components/headings.typ" as components-heading
-#import "./components/code-blocks.typ" as components-code
-#import "./components/table.typ" as components-table
-
+#import "./format.typ"
 #import "./colors.typ": *
 
 #let rules(doc) = {
@@ -31,12 +28,12 @@
   ]
 
   set raw(theme: "./radial.tmTheme")
-  show raw.where(block: false): components-code.raw-not-block
-  show raw.where(block: true): it => components-code.raw-block(it)
+  show raw.where(block: false): format.raw-not-block
+  show raw.where(block: true): it => format.raw-block(it)
 
-  show heading: components-heading.heading
+  show heading: format.heading
 
-  show table: components-table.table
+  show table: format.table
 
   // Display the whole document
   doc
