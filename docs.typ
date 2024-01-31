@@ -1,6 +1,6 @@
 #import "./docs-template.typ": *
+#import "./packages.typ": tidy
 
-#import "@preview/tidy:0.1.0"
 
 #let version = toml("/typst.toml").package.version
 #let import-statement = "#import \"@preview/tidy:" + version + "\""

@@ -1,8 +1,15 @@
-#import "@preview/codly:0.2.0": *
-#import "@preview/tidy:0.1.0"
+#import "./packages.typ": codly, tidy
+#import codly: *
 
 #let docs-template(
-  title: "", subtitle: "", abstract: [], authors: (), url: none, date: none, version: none, body,
+  title: "",
+  subtitle: "",
+  abstract: [],
+  authors: (),
+  url: none,
+  date: none,
+  version: none,
+  body,
 ) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
@@ -29,17 +36,20 @@
   ]
 
   // Author information.
-  pad(
-    top: 0.5em, x: 2em, grid(
-      columns: (1fr,) * calc.min(3, authors.len()), gutter: 1em, ..authors.map(author => align(center, strong(author))),
-    ),
-  )
+  pad(top: 0.5em, x: 2em, grid(
+    columns: (1fr,) * calc.min(3, authors.len()),
+    gutter: 1em,
+    ..authors.map(author => align(center, strong(author))),
+  ))
 
   v(3cm, weak: true)
 
   // Abstract.
   pad(
-    x: 3.8em, top: 1em, bottom: 1.1em, align(
+    x: 3.8em,
+    top: 1em,
+    bottom: 1.1em,
+    align(
       center,
     )[
       #heading(outlined: false, numbering: none, text(0.85em, smallcaps[Abstract]))
@@ -71,7 +81,11 @@
 #let show-module-fn(module, fn, ..args) = {
   module.functions = module.functions.filter(f => f.name == fn)
   tidy.show-module(
-    module, ..args.pos(), ..args.named(), show-module-name: false, show-outline: false,
+    module,
+    ..args.pos(),
+    ..args.named(),
+    show-module-name: false,
+    show-outline: false,
   )
 }
 
@@ -104,6 +118,8 @@
   }
 
   stack(
-    dir: ltr, [/ #term: #t \ #description], align(right, if default != none { [(default: #default)] }),
+    dir: ltr,
+    [/ #term: #t \ #description],
+    align(right, if default != none { [(default: #default)] }),
   )
 }

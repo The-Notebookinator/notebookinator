@@ -2,7 +2,8 @@
 #import "../icons/icons.typ"
 #import "/utils.typ"
 #import "../metadata.typ": *
-#import "@preview/showybox:2.0.1": showybox
+#import "/packages.typ": showybox
+#import showybox: *
 
 /// A message in a colored box meant to draw the reader's attention.
 ///
