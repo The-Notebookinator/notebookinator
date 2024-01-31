@@ -70,7 +70,7 @@
 ///   properties: (
 ///     (name: "Versatility", weight: 2),
 ///     (name: "Flavor", weight: 6),
-///     (name: "Chrunchiness"), // Defaults to a weight of 1
+///     (name: "Crunchiness"), // Defaults to a weight of 1
 ///   ),
 ///   ("Sweet potato", 2, 5, 1),
 ///   ("Red potato", 2, 1, 3),
@@ -85,7 +85,7 @@
 /// #(name: "Sweet potato", values: (
 ///   Versatility: (value: 3, highest: true),
 ///   Flavor: (value: 1, highest: false),
-///   Chrunchiness: (value: 1, highest: false),
+///   Crunchiness: (value: 1, highest: false),
 ///   total: (value: 5, highest: false),
 /// )),
 /// ```
