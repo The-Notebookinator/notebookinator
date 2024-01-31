@@ -56,8 +56,8 @@
 ///
 /// - it: the level of the heading
 /// - type: the type of entry the heading labels
-
 #let set-heading(it, type) = {
+  show: block
   let color = entry-type-metadata.at(type)
   
   if it.level == 1 {
@@ -73,7 +73,7 @@
   } 
   
   set text(weight: "regular")
-  
+   
   box(inset: 0.5em, fill: color)[#it.body]
   h(5pt)
   box(baseline: -10pt, width: 1fr, line(length: 100%))
