@@ -1,7 +1,6 @@
 #import "/globals.typ"
 
 // TODO: document what context provides to the callback
-
 /// Utility function to help themes implement a table of contents.
 ///
 /// Example Usage:
@@ -68,51 +67,78 @@
 ///
 /// ```typ
 /// #calc-decision-matrix(
-///   properties: ("Versatility", "Flavor", "Chrunchiness"),
+///   properties: (
+///     (name: "Versatility", weight: 2),
+///     (name: "Flavor", weight: 6),
+///     (name: "Crunchiness"), // Defaults to a weight of 1
+///   ),
 ///   ("Sweet potato", 2, 5, 1),
 ///   ("Red potato", 2, 1, 3),
 ///   ("Yellow potato", 2, 2, 3),
 /// )
 /// ```
 ///
-/// The function returns an array of dictionaries, one for each choice. Each dictionary contains the name of the choice,
-/// the values for each property, the total, and whether the choice has the highest score or not. Here's an example of what one of these dictionaries might look like:
+/// The function returns an array of dictionaries, one for each choice.
+/// Here's an example of what one of these dictionaries might look like:
 ///
 /// ```typ
-///   #(
-///     name: "Sweet potato",
-///     values: (2, 5, 1),
-///     total: 8,
-///     highest: true,
-///   )
+/// #(name: "Sweet potato", values: (
+///   Versatility: (value: 3, highest: true),
+///   Flavor: (value: 1, highest: false),
+///   Crunchiness: (value: 1, highest: false),
+///   total: (value: 5, highest: false),
+/// )),
 /// ```
-///
 /// - properties (array string): A list of the properties that each choice will be rated by
 /// - ..choices (array): All of the choices that are being rated. The first element of the array should be the name of the
 /// -> array
 #let calc-decision-matrix(properties: (), ..choices) = {
-  for choice in choices.pos() {
-    assert(choice.len() - 1 == properties.len())
-  }
+  // This function follows the follow steps to calculate the outcome of a decision matrix:
+  // 1. Applies all of the weights to each of the values
+  // 2. Calculates the total for each choice
+  // 3. Adds all of the values to a dictionary, labeling them with their respective property names
+  // 4. Iterates over each of the newly organized choices to determine which is the highest for each category (including the total)
+  let choices = choices.pos().enumerate().map(
+    ((index, choice)) => {
+      let name = choice.at(0)
+      let values = choice.slice(1)
 
-  let result = ();
-  let highest = (index: 0, value: 0)
+      // 1.  Weight the values
+      values = values.enumerate().map(
+        ((index, value)) => value * properties.at(index).at("weight", default: 1),
+      )
 
-  for (index, choice) in choices.pos().enumerate() {
-    let name = choice.at(0)
-    let values = choice.slice(1)
-    let total = values.sum()
+      // 2. Calc total
+      let total = values.sum()
 
-    if total > highest.value {
-      highest.index = index
-      highest.value = total
+      // 3. Assign the value names
+      let result = (:)
+      for (index, value) in values.enumerate() {
+        result.insert(properties.at(index).name, (value: value, highest: false))
+      }
+      result.insert("total", (value: total, highest: false))
+
+      (name: name, values: result)
+    },
+  )
+
+  // 4. Check if highest
+  properties.push((name: "total")) // Treat total as a property as well
+  for property in properties {
+    let highest = (index: 0, value: 0) // Records the index of the choice which had the highest total
+
+    for (index, choice) in choices.enumerate() {
+      let property-value = choice.values.at(property.name).value
+
+      if property-value > highest.value {
+        highest.index = index
+        highest.value = property-value
+      }
     }
-    let entry = (name: name, values: values, total: total, highest: false)
-    result.push(entry)
+    choices.at(highest.index).values.at(property.name).highest = true;
   }
-  result.at(highest.index).highest = true;
 
-  return result
+  return choices
 }
 
 /// Returns the raw image data, not image content
