@@ -40,14 +40,14 @@
       center, 
       text(
         size: 14pt, 
-        weight: "bold", 
+        weight: "semibold", 
         [Pros]
       )),
     align(
       center, 
       text(
         size: 14pt, 
-        weight: "bold", 
+        weight: "semibold", 
         [Cons]
       )),
     pros,
