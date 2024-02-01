@@ -1,5 +1,28 @@
 #import "../colors.typ": *
-
+/// A table displaying pros and cons.
+///
+/// Example Usage:
+/// 
+/// #pro-con(
+///   pros: [
+///     #list(
+///       [Sweet potato],
+///       [Red potato],
+///       [Yellow potato]
+///     )
+///   ]
+///   cons: [
+///     #list(
+///       [Fries],
+///       [Wedges],
+///       [Mashed]
+///     )
+///   ]
+/// )
+///
+/// - pros (content): The positive aspects
+/// - cons (content): The negative aspects
+/// -> content
 #let pro-con(pros: [], cons: []) = {
   table(
     columns: (50%, 50%),

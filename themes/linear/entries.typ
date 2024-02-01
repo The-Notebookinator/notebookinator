@@ -9,18 +9,20 @@
       #grid(columns: (1fr, 1fr), [
         #set text(72pt)
         #context.team-name
+      ], 
+      [
         #set text(20pt)
-         
-        #context.season
-         
-        Engineering Design Notebook
-      ])
-       
+        #align(right, [
+          #context.season
+          
+          Engineering Design Notebook
+        ]) 
+      ])  
     ]
+    #h(5pt)
     #line(length: 135%, stroke: 2pt)
   ]
 }
-
 
 #let frontmatter-entry(context: (:), body) = {
   show: page.with(
@@ -32,7 +34,7 @@
       #context.title
        
     ],
-    background: set-margins(8%, 8%),
+    background: set-margins(8%, 15%),
   )
   body
 }

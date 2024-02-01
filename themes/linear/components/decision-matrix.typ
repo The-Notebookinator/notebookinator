@@ -6,6 +6,20 @@
 
 /// A decision matrix table.
 ///
+/// Example Usage:
+/// ```typ
+/// #decision-matrix(
+///   properties: (
+///     (name: "Versatility", weight: 2),
+///     (name: "Flavor", weight: 6),
+///     (name: "Crunchiness"), // Defaults to a weight of 1
+///   ),
+///   ("Sweet potato", 2, 5, 1),
+///   ("Red potato", 2, 1, 3),
+///   ("Yellow potato", 2, 2, 3),
+/// )
+/// ```
+///
 /// - properties (array): A list of the properties that each choice will be rated by
 /// - ..choices (array): An array containing the name of the choices as its first member,
 /// and values for each of the properties at its following indices

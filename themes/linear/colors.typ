@@ -14,10 +14,11 @@
 #let purple = rgb("#B4AFE1")
 #let pink = rgb("#DDB0EB")
 
+// Component
 #let pro-con-red = rgb("#e95f5f")
 #let pro-con-green = rgb("#04db69")
 
-// TODO: swap these out for the actual surface colors
+// Surface
 #let surface-0 = rgb("#f1f3f5")
 #let surface-1 = rgb("#e9ecef")
 #let surface-2 = rgb("#dee2e6")

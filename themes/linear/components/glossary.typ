@@ -1,5 +1,5 @@
 #import "../../../utils.typ"
-
+ 
 #let glossary() = utils.print-glossary(
   glossary => {
     stack(
