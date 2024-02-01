@@ -3,7 +3,9 @@
 ///
 /// Example Usage:
 ///
+/// ```typ
 /// #set-margins(8%, 15%)
+/// ```
 /// 
 /// - x (size, ratio): the distance from the edge of the page to the left and right margins
 /// - y (size, ratio): the distance from the edge of the page to the bottom margin
