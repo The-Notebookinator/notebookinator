@@ -2,7 +2,7 @@
 /// A table displaying pros and cons.
 ///
 /// Example Usage:
-/// 
+/// ```typ
 /// #pro-con(
 ///   pros: [
 ///     #list(
@@ -19,7 +19,7 @@
 ///     )
 ///   ]
 /// )
-///
+/// ```
 /// - pros (content): The positive aspects
 /// - cons (content): The negative aspects
 /// -> content
