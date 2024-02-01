@@ -1,10 +1,10 @@
 #import "colors.typ": *
 
 #let entry-type-metadata = (
-  "identify": red,
-  "brainstorm": yellow,
-  "decide": green,
-  "build": blue,
-  "program": purple,
-  "test": pink,
+  "identify": light-red,
+  "brainstorm": light-yellow,
+  "decide": light-green,
+  "build": light-blue,
+  "program": light-purple,
+  "test": light-pink,
 )

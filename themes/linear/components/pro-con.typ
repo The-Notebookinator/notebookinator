@@ -30,10 +30,10 @@
     fill: (col, row) => 
       if row == 0 {
         if col == 0 {
-          pro-con-green
+          pro-green
         }
         if col == 1 {
-          pro-con-red
+          con-red
         } 
       },
     align(

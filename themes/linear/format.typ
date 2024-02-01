@@ -60,7 +60,7 @@
     set text(11pt)
   } 
   
-  set text(weight: "regular")
+  set text(weight: "semibold")
    
   box(inset: 0.5em, fill: color)[#it.body]
   h(5pt)

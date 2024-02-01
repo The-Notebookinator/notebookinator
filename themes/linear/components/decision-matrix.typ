@@ -37,7 +37,7 @@
   ])
 
   let body-cell(total: false, highest: none, body) = cellx(
-    fill: if highest == none { white } else if highest and total { dark-green } else if highest { green } else { white },
+    fill: if highest == none { white } else if highest and total { decision-green } else if highest { pro-green } else { white },
     inset: 0.8em,
     [
       #set align(center)

@@ -43,7 +43,7 @@
       #context.title
        
     ],
-    background: set-margins(8%, 15%),
+    background: set-margins(8%, 8%),
   )
   body
 }
