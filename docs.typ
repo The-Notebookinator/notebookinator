@@ -290,17 +290,16 @@ Minimal starting point:
 
 === Components
 
-#let linear-decision-matrix-module = tidy.parse-module(read("./themes/linear/components/decision-matrix.typ"))
-#show-module(linear-decision-matrix-module)
+#let raw-linear-module = parse-modules(
+  "/themes/linear/components/",
+  "decision-matrix",
+  "pro-con",
+  "glossary",
+  "toc",
+)
 
-#let linear-glossary-module = tidy.parse-module(read("./themes/linear/components/glossary.typ"))
-#show-module(linear-glossary-module)
-
-#let linear-pro-con-module = tidy.parse-module(read("./themes/linear/components/pro-con.typ"))
-#show-module(linear-pro-con-module)
-
-#let linear-toc-module = tidy.parse-module(read("./themes/linear/components/toc.typ"))
-#show-module(linear-toc-module)
+#let linear-module = tidy.parse-module(raw-linear-module)
+#show-module(first-heading-level: 3, linear-module)
 
 = Developer Documentation
 
