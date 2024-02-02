@@ -33,7 +33,10 @@
       // Inject the proper labels and settings changes into the user's entry body
       let final-body = if entries.len() == 0 {
         [#counter(page).update(1)] // Correctly set the page number for each section
-      } + [ #metadata(none) #entry-label ] + body // Place a label on blank content to the table of contents can find each entry
+      } + [
+        #metadata(none) #entry-label
+        #counter(footnote).update(0)
+      ] + body // Place a label on blank content to the table of contents can find each entry
 
       entries.push(
         (

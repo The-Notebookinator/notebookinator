@@ -182,34 +182,30 @@ Minimal starting point:
 
 ```
 
+#let parse-modules(predicate, ..names) = {
+  for name in names.pos() {
+    read(predicate + name + ".typ")
+  }
+} 
+
 === Components
 
-#let radial-toc-module = tidy.parse-module(read("./themes/radial/components/toc.typ"))
-#show-module(radial-toc-module)
+#let raw-radial-module = parse-modules(
+  "./themes/radial/components/",
+  "toc",
+  "glossary",
+  "admonitions",
+  "pro-con",
+  "decision-matrix",
+  "tournament",
+  "graphs",
+  "gantt-chart",
+  "team",
+  "label",
+)
 
-#let radial-glossary-module = tidy.parse-module(read("./themes/radial/components/glossary.typ"))
-#show-module(radial-glossary-module)
-
-#let radial-admonitions-module = tidy.parse-module(read("./themes/radial/components/admonitions.typ"))
-#show-module(radial-admonitions-module)
-
-#let radial-pro-con-module = tidy.parse-module(read("./themes/radial/components/pro-con.typ"))
-#show-module(radial-pro-con-module)
-
-#let radial-decision-matrix-module = tidy.parse-module(read("./themes/radial/components/decision-matrix.typ"))
-#show-module(radial-decision-matrix-module)
-
-#let radial-tournament-module = tidy.parse-module(read("./themes/radial/components/tournament.typ"))
-#show-module(radial-tournament-module)
-
-#let radial-graph-module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
-#show-module(radial-graph-module)
-
-#let radial-graph-module = tidy.parse-module(read("./themes/radial/components/graphs.typ"))
-#show-module(radial-graph-module)
-
-#let radial_gantt_chart = tidy.parse-module(read("./themes/radial/components/gantt-chart.typ"))
-#show-module(radial_gantt_chart)
+#let radial-module = tidy.parse-module(raw-radial-module)
+#show-module(first-heading-level: 3, radial-module)
 
 == Linear Theme
 

@@ -93,6 +93,13 @@
 /// - ..choices (array): All of the choices that are being rated. The first element of the array should be the name of the
 /// -> array
 #let calc-decision-matrix(properties: (), ..choices) = {
+  for choice in choices.pos() {
+    assert(
+      choice.len() - 1 == properties.len(),
+      message: "The number of supplied values did not match the number of properties.",
+    )
+  }
+
   // This function follows the follow steps to calculate the outcome of a decision matrix:
   // 1. Applies all of the weights to each of the values
   // 2. Calculates the total for each choice
