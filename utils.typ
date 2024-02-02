@@ -142,6 +142,7 @@
         highest.value = property-value
       }
     }
+    choices.at(highest.index).values.at(property.name).highest = true;
   }
 
   return choices
