@@ -211,6 +211,101 @@ Minimal starting point:
 #let radial_gantt_chart = tidy.parse-module(read("./themes/radial/components/gantt-chart.typ"))
 #show-module(radial_gantt_chart)
 
+== Linear Theme
+
+The Linear theme is a template that uses straight lines and boxes.
+
+You can change the look of body entries by changing their type. The following
+types are available:
+
+- `"identify"`: For entries about the identify stage of the engineering design
+  process.
+- `"brainstorm"`: For entries about the brainstorm stage of the engineering design
+  process.
+- `"decide"`: For entries about the decide stage of the engineering design
+  process.
+- `"build"`: For entries about the build stage of the engineering design process.
+- `"program"`: For entries about the programming stage of the engineering design
+  process.
+- `"test"`: For entries about the testing stage of the engineering design process
+
+Minimal starting point:
+
+```typ
+#create-frontmatter-entry(title: "Table of Contents")[
+  #components.toc()
+]
+
+#create-body-entry(title: "Day 1", type: "identify", date: datetime(year: 1984, month: 1, day: 1))[
+  = Heading
+  
+  #lorem(50)
+
+  #components.pro-con(
+    pros: [
+      #list(
+        [Sweet potato],
+        [Red potato],
+        [Yellow potato]
+      )
+    ],
+    cons: [
+      #list(
+        [Fries],
+        [Wedges],
+        [Mashed]
+      )
+    ]
+  )
+]
+
+#create-body-entry(title: "Day 2", type: "identify", date: datetime(year: 1984, month: 1, day: 2))[
+  = Another Heading
+  
+  #lorem(50)
+
+  #components.decision-matrix(
+    properties: (
+      (name: "Lorem", weight: 2),
+      (name: "Ipsum")
+    ),
+    ("Dolor", 1, 3),
+    ("Sit", 2, 2),
+    ("Amet", 3, 1)
+  )
+
+  == A Smaller Heading
+
+  #lorem(50)
+]
+
+#glossary.add-term("Term 1")[
+  #lorem(10)
+]
+
+#glossary.add-term("Term 2")[
+  #lorem(10)
+]
+
+#create-appendix-entry(title: "Glossary")[
+  #components.glossary()
+]
+```
+
+=== Components
+
+#let linear-decision-matrix-module = tidy.parse-module(read("./themes/linear/components/decision-matrix.typ"))
+#show-module(linear-decision-matrix-module)
+
+#let linear-glossary-module = tidy.parse-module(read("./themes/linear/components/glossary.typ"))
+#show-module(linear-glossary-module)
+
+#let linear-pro-con-module = tidy.parse-module(read("./themes/linear/components/pro-con.typ"))
+#show-module(linear-pro-con-module)
+
+#let linear-toc-module = tidy.parse-module(read("./themes/linear/components/toc.typ"))
+#show-module(linear-toc-module)
+
 = Developer Documentation
 
 == Project Architecture

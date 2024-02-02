@@ -32,12 +32,15 @@
 ) = {
   let rules = theme.rules
   show: doc => rules(doc)
-  if cover == none {
-    let cover-context = (team-name: team-name, season: season, year: year)
-    page(print-cover(context: cover-context, theme: theme))
+
+  let cover-content = if cover == none {
+    let context = (team-name: team-name, season: season, year: year)
+    print-cover(context: context, theme: theme)
   } else {
-    page(cover)
+    cover
   }
+  page(margin: 0pt, cover-content)
+
   page[] // Filler page
 
   print-entries(theme: theme)
