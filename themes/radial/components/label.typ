@@ -2,7 +2,7 @@
 #import "../metadata.typ": *
 #import "/utils.typ"
 
-/// A label that corresponds with one of the entry types
+/// A label that corresponds with one of the entry types.
 ///
 /// - type (string): Any of the radial entry types
 /// - size (size): The size of the label
