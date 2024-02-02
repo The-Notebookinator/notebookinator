@@ -13,7 +13,6 @@
 /// ```
 #let toc() = utils.print-toc((frontmatter, body, appendix) => {
   heading(level: 1)[Entries]
-  linebreak()
 
   stack(spacing: 1em, ..for entry in body {
     ([
@@ -28,10 +27,8 @@
   })
 
   linebreak()
-  linebreak()
 
   heading(level: 1)[Appendix]
-  linebreak()
 
   for entry in appendix [
     #entry.title
