@@ -25,18 +25,18 @@ To get started, read the [documentation](./docs.pdf). If you have questions, or 
 <table>
     <tr>
     <td>
-    <a href="./gallery/radial-4.png.typ">
+    <a href="./gallery/radial.typ">
       <img src="./gallery/radial-4.png" width="350px">
     </a>
   </td>
   <td>
-    <a href="./gallery/radial-5.png.typ">
+    <a href="./gallery/radial.typ">
       <img src="./gallery/radial-5.png" width="350px">
     </a>
   </td>
 
   <td>
-    <a href="./gallery/radial-6.png.typ">
+    <a href="./gallery/radial.typ">
       <img src="./gallery/radial-6.png" width="350px">
     </a>
   </td>
