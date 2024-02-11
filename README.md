@@ -43,6 +43,29 @@ To get started, read the [documentation](./docs.pdf). If you have questions, or 
 </tr>
 </table>
 
+## Linear Theme
+
+<table>
+    <tr>
+    <td>
+    <a href="./gallery/linear.typ">
+      <img src="./gallery/linear-03.png" width="350px">
+    </a>
+  </td>
+  <td>
+    <a href="./gallery/linear.typ">
+      <img src="./gallery/linear-04.png" width="350px">
+    </a>
+  </td>
+
+  <td>
+    <a href="./gallery/linear.typ">
+      <img src="./gallery/linear-05.png" width="350px">
+    </a>
+  </td>
+</tr>
+</table>
+
 ## Special Thanks
 
 - Maqmoon (logo drawing)
