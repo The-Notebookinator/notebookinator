@@ -25,19 +25,19 @@ To get started, read the [documentation](./docs.pdf). If you have questions, or 
 <table>
     <tr>
     <td>
-    <a href="./gallery/radial4.png.typ">
-      <img src="./gallery/radial4.png" width="350px">
+    <a href="./gallery/radial-4.png.typ">
+      <img src="./gallery/radial-4.png" width="350px">
     </a>
   </td>
   <td>
-    <a href="./gallery/radial5.png.typ">
-      <img src="./gallery/radial5.png" width="350px">
+    <a href="./gallery/radial-5.png.typ">
+      <img src="./gallery/radial-5.png" width="350px">
     </a>
   </td>
 
   <td>
-    <a href="./gallery/radial6.png.typ">
-      <img src="./gallery/radial6.png" width="350px">
+    <a href="./gallery/radial-6.png.typ">
+      <img src="./gallery/radial-6.png" width="350px">
     </a>
   </td>
 </tr>

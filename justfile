@@ -10,5 +10,4 @@ docs:
   typst compile docs.typ docs.pdf
 
 gallery:
-  echo test
-  for f in "{{gallery_dir}}"/*.typ; do typst c "$f" --format png "${f/.typ}{n}.png" --root ./; done
+  for f in "{{gallery_dir}}"/*.typ; do typst c "$f" --format png "${f/.typ}-{n}.png" --root ./; done

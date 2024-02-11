@@ -5,6 +5,6 @@ test.typ
 
 # This is kind of hacky, but I need to ignore the images in the gallery that I'm not using
 gallery/*.png
-!gallery/radial4.png
-!gallery/radial5.png
-!gallery/radial6.png
+!gallery/radial-4.png
+!gallery/radial-5.png
+!gallery/radial-6.png
