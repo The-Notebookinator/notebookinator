@@ -1,6 +1,6 @@
 <div align="center">
 
-![alt text](logo.png)
+![alt text](./logo.png)
 
 </div>
 
@@ -18,5 +18,32 @@ This is the Notebookinator, a [Typst](https://github.com/typst/typst) template d
 
 To get started, read the [documentation](./docs.pdf). If you have questions, or just want to hang out, feel free to join our [Discord server](https://discord.gg/sUpcVPtBDg).
 
+## Gallery
+
+### Radial Theme
+
+<table>
+    <tr>
+    <td>
+    <a href="./gallery/radial4.png.typ">
+      <img src="./gallery/radial4.png" width="350px">
+    </a>
+  </td>
+  <td>
+    <a href="./gallery/radial5.png.typ">
+      <img src="./gallery/radial5.png" width="350px">
+    </a>
+  </td>
+
+  <td>
+    <a href="./gallery/radial6.png.typ">
+      <img src="./gallery/radial6.png" width="350px">
+    </a>
+  </td>
+</tr>
+</table>
+
 ## Special Thanks
+
 - Maqmoon (logo drawing)
+- CeTZ (inspiration for a lot of different things)
