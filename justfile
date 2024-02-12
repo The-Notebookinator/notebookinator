@@ -1,3 +1,5 @@
+gallery_dir := "./gallery"
+
 package target:
   ./scripts/package "{{target}}"
 
@@ -6,3 +8,7 @@ install:
 
 docs:
   typst compile docs.typ docs.pdf
+
+gallery:
+  #!/usr/bin/env bash
+  for f in "{{gallery_dir}}"/*.typ; do typst c "$f" --format png "${f/.typ}-{n}.png" --root ./; done

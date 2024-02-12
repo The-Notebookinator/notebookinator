@@ -24,4 +24,5 @@ jobs:
         run: |
           just install
           just docs
+          just gallery
           # TODO: run unit tests here

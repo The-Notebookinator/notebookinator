@@ -69,7 +69,16 @@
   show heading: it => {
     set-heading(it, context.type)
   }
-   
+  show raw.where(block: false): box.with(
+    fill: surface-1,
+    inset: (x: 4pt, y: 0pt),
+    outset: (x: 0pt, y: 4pt),
+  )
+  show raw.where(block: true): block.with(
+    fill: surface-1,
+    inset: 8pt,
+    width: 100%
+  )
   body
 }
 
