@@ -13,6 +13,7 @@ files=(
   glossary.typ
   utils.typ
   globals.typ
+  packages.typ
   internals.typ
   themes/
   typst.toml
