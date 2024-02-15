@@ -16,7 +16,32 @@
   set page(numbering: "1", number-align: center)
   set text(font: "Linux Libertine", lang: "en")
 
-  show heading.where(level: 1): it => block(smallcaps(it), below: 1em)
+  show heading: it => {
+    if it.level == 1 {
+      set align(left)
+      set text(20pt)
+      box(it)
+      box(line(length: 100%))
+    } else if it.level == 2 {
+      set text(18pt)
+      it
+    } else if it.level == 3 {
+      set text(15pt)
+      it
+    } else if it.level == 4 {
+      set text(14pt)
+      it
+    } else if it.level == 5 {
+      set text(12pt)
+      it.body
+    } else if it.level == 6 {
+      set text(12pt)
+      it.body
+    } else {
+      panic("invalid heading level")
+    }
+  }
+
   set heading(numbering: "1.")
 
   show link: set text(fill: rgb("#1e8f6f"))
