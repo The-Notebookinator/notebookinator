@@ -1,4 +1,4 @@
-#import "/utils.typ"
+#import "./components.typ"
 
 #let rules(doc) = {
   doc
@@ -9,33 +9,31 @@
   *Default Cover*
 ]
 
-#let toc() = utils.print-toc((_, body, appendix) => {
-  for entry in body [
-    #entry.title
-    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #entry.page-number
-  ]
-
-  for entry in appendix [
-    #entry.title
-    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #entry.page-number
-  ]
-})
-
 #let frontmatter-entry(context: (:), body) = {
-  show: page.with(header: [ = Frontmatter header ], footer: [Frontmatter footer])
+  show: page.with(
+    header: [ = #context.title
+      #box(width: 1fr, line(length: 100%)) ],
+    footer: align(center, counter(page).display()),
+  )
 
   body
 }
 
 #let body-entry(context: (:), body) = {
-  show: page.with(header: [ = Body header ], footer: [Body footer])
+  show: page.with(
+    header: [ = #context.title
+      #box(width: 1fr, line(length: 100%)) ],
+    footer: align(center, counter(page).display()),
+  )
 
   body
 }
 #let appendix-entry(context: (:), body) = {
-  show: page.with(header: [ = Appendix header ], footer: [Appendix footer])
+  show: page.with(
+    header: [ = #context.title
+      #box(width: 1fr, line(length: 100%)) ],
+    footer: align(center, counter(page).display()),
+  )
 
   body
 }
