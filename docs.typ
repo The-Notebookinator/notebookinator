@@ -1,5 +1,6 @@
 #import "./docs-template.typ": *
-#import "./packages.typ": tidy
+#import "./packages.typ": tidy, gentle-clues
+#import gentle-clues: *
 
 #let version = toml("/typst.toml").package.version
 #let import-statement = "#import \"@preview/tidy:" + version + "\""
@@ -25,6 +26,11 @@
 
 = Installation
 
+#info[
+  This installation process is temporary, as we wait for Typst to overhaul its
+  process for packaging templates and packages.
+]
+
 The best way to install the Notebookinator is as a local package. Make sure you
 have the following software installed on your computer:
 
@@ -40,6 +46,11 @@ git clone https://github.com/BattleCh1cken/notebookinator
 cd notebookinator
 just install
 ```
+
+#info[
+  If you're running this on Windows, you'll need to run these commands in a sh
+  shell, like git-bash or the shell packaged with Cygwin or GitHub Desktop.
+]
 
 = Basic Usage
 
@@ -154,6 +165,20 @@ Context is stored as a dictionary with the following fields:
   `print-toc()` utility function. ],
 )
 
+== Default Theme
+
+The default theme.
+
+#warning[
+  This theme is very minimal, and is generally intended as a fallback for stuff
+  that other themes don't implement.
+]
+
+=== Components
+
+#let default-components-module = tidy.parse-module(read("./themes/default/components.typ"))
+#show-module(default-components-module, first-heading-level: 3)
+
 == Radial Theme
 
 The Radial theme is a minimal theme focusing on nice, rounded corners.
@@ -176,8 +201,11 @@ types are available:
 
 Minimal starting point:
 
-// FIXME: bring this up to date with the actual API
 ```typ
+// Import the template and theme here
+
+#show: notebook.with(theme: radial-theme)
+
 #create-frontmatter-entry(title: "Table of Contents")[
   #components.toc()
 ]
@@ -248,7 +276,7 @@ types are available:
 - `"brainstorm"`: For entries about the brainstorm stage of the engineering design
   process.
 - `"decide"`: For entries about the decide stage of the engineering design
-  process.
+  process/
 - `"build"`: For entries about the build stage of the engineering design process.
 - `"program"`: For entries about the programming stage of the engineering design
   process.
