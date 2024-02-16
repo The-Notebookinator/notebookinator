@@ -62,7 +62,9 @@ Once the template is installed, you can import it into your project like this:
   "#import \"@local/notebookinator:" + version + "\": *",
 )
 
-Once you've done that you can begin to write your notebook: ```typ
+Once you've done that you can begin to write your notebook:
+
+```typ
 #import themes.default: default-theme, components
 
 #show: notebook.with(theme: default-theme)
@@ -72,7 +74,9 @@ Once you've done that you can begin to write your notebook: ```typ
 ]
 ```
 
-You can then compile your notebook with the Typst CLI: ```bash
+You can then compile your notebook with the Typst CLI:
+
+```bash
 typst compile your-notebook-file.typ
 ```
 
