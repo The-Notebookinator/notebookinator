@@ -7,6 +7,7 @@
 
 /// A message in a colored box meant to draw the reader's attention.
 ///
+///
 /// - type (string): The type of admonition.
 ///   Available types include:
 ///   - "note"
@@ -23,10 +24,16 @@
 
   showybox(
     frame: (
-      border-color: info.color, body-color: info.color.lighten(80%), thickness: (left: 4pt), radius: 1.5pt,
-    ), [
+      border-color: info.color,
+      body-color: info.color.lighten(80%),
+      thickness: (left: 4pt),
+      radius: 1.5pt,
+    ),
+    [
       #text(
-        size: 15pt, fill: info.color, [
+        size: 15pt,
+        fill: info.color,
+        [
           #box(baseline: 30%, image.decode(colored-icon, width: 1.5em)) *#info.title*
         ],
       )

@@ -1,26 +1,35 @@
 #import "./docs-template.typ": *
-#import "./packages.typ": tidy
-
+#import "./packages.typ": tidy, gentle-clues
+#import gentle-clues: *
 
 #let version = toml("/typst.toml").package.version
 #let import-statement = "#import \"@preview/tidy:" + version + "\""
 
 #show: docs-template.with(
-  title: "The Notebookinator", subtitle: "Easy formatting for robotics notebooks.", abstract: [
-    Welcome to the Notebookinator, a Typst package meant to simply the notebooking
+  title: "The Notebookinator",
+  subtitle: "Easy formatting for robotics notebooks.",
+  abstract: [
+    Welcome to the Notebookinator, a Typst package meant to simplify the notebooking
     process for the Vex Robotics Competition. Its theming capabilities handle all of
     the styling for you, letting you jump right into writing documentation.
 
     While it was designed with VRC in mind, it could just as easily be used for
     other competitor systems such as the First Robotics Competition and the First
     Tech Challenge.
-  ], version: version, url: "https://github.com/BattleCh1cken/notebookinator",
+  ],
+  version: version,
+  url: "https://github.com/BattleCh1cken/notebookinator",
 )
 
 #outline(indent: true, depth: 3)
 #pagebreak(weak: true)
 
 = Installation
+
+#info[
+  This installation process is temporary, as we wait for Typst to overhaul its
+  process for packaging templates and packages.
+]
 
 The best way to install the Notebookinator is as a local package. Make sure you
 have the following software installed on your computer:
@@ -38,6 +47,11 @@ cd notebookinator
 just install
 ```
 
+#info[
+  If you're running this on Windows, you'll need to run these commands in a sh
+  shell, like git-bash or the shell packaged with Cygwin or GitHub Desktop.
+]
+
 = Basic Usage
 
 Once the template is installed, you can import it into your project like this:
@@ -45,21 +59,23 @@ Once the template is installed, you can import it into your project like this:
 #raw(
   block: true,
   lang: "typ",
-  "#import \"@local/notebookinator:"+ version + "\": *"
+  "#import \"@local/notebookinator:" + version + "\": *",
 )
 
 Once you've done that you can begin to write your notebook:
+
 ```typ
 #import themes.default: default-theme, components
 
 #show: notebook.with(theme: default-theme)
 
 #create-body-entry(title: "My Entry")[
-  #lorem(200)
+ #lorem(200)
 ]
 ```
 
 You can then compile your notebook with the Typst CLI:
+
 ```bash
 typst compile your-notebook-file.typ
 ```
@@ -88,20 +104,35 @@ typst compile your-notebook-file.typ
 Themes are stored as dictionaries with a set number of fields.
 
 #def-arg(
-  "rules", [`<function>`], default: none, [ The show and set rules that will be applied to the document ],
+  "rules",
+  [`<function>`],
+  default: none,
+  [ The show and set rules that will be applied to the document ],
 )
 #def-arg(
-  "cover", [`<function>`], default: none, [ A function that returns the cover of the notebook. Must take context as input. ],
+  "cover",
+  [`<function>`],
+  default: none,
+  [ A function that returns the cover of the notebook. Must take context as input. ],
 )
 #def-arg(
-  "frontmatter-entry", [`<function>`], default: none, [ A function that returns a frontmatter entry. Must take context and body as
+  "frontmatter-entry",
+  [`<function>`],
+  default: none,
+  [ A function that returns a frontmatter entry. Must take context and body as
     input. ],
 )
 #def-arg(
-  "body-entry", [`<function>`], default: none, [ A function that returns a body entry. Must take context and body as input. ],
+  "body-entry",
+  [`<function>`],
+  default: none,
+  [ A function that returns a body entry. Must take context and body as input. ],
 )
 #def-arg(
-  "appendix-entry", [`<function>`], default: none, [ A function that returns a appendix entry. Must take context and body as input. ],
+  "appendix-entry",
+  [`<function>`],
+  default: none,
+  [ A function that returns a appendix entry. Must take context and body as input. ],
 )
 
 === Context <context>
@@ -112,19 +143,45 @@ Context is stored as a dictionary with the following fields:
 
 #def-arg("title", [`<string>`], default: none, [The title of the entry])
 #def-arg(
-  "type", [`<string>` or `<none>`], default: none, [The type of the entry. This value is used differently by different templates.
+  "type",
+  [`<string>` or `<none>`],
+  default: none,
+  [The type of the entry. This value is used differently by different templates.
     Refer to the template level documentation to see what this means for your theme.],
 )
 #def-arg(
-  "start-date", [`<datetime>`], default: none, [The date at which the entry started.],
+  "start-date",
+  [`<datetime>`],
+  default: none,
+  [The date at which the entry started.],
 )
 #def-arg(
-  "end-date", [`<datetime>`], default: none, [The date at which the entry ended.],
+  "end-date",
+  [`<datetime>`],
+  default: none,
+  [The date at which the entry ended.],
 )
 #def-arg(
-  "page-number", [`<integer>` or `<none>`], default: none, [The page number of the first page of the entry. Only available while using the `print-toc()` utility
-  function. ],
+  "page-number",
+  [`<integer>` or `<none>`],
+  default: none,
+  [The page number of the first page of the entry. Only available while using the
+  `print-toc()` utility function. ],
 )
+
+== Default Theme
+
+The default theme.
+
+#warning[
+  This theme is very minimal, and is generally intended as a fallback for stuff
+  that other themes don't implement.
+]
+
+=== Components
+
+#let default-components-module = tidy.parse-module(read("./themes/default/components.typ"))
+#show-module(default-components-module, first-heading-level: 3)
 
 == Radial Theme
 
@@ -149,6 +206,10 @@ types are available:
 Minimal starting point:
 
 ```typ
+// Import the template and theme here
+
+#show: notebook.with(theme: radial-theme)
+
 #create-frontmatter-entry(title: "Table of Contents")[
   #components.toc()
 ]
@@ -186,7 +247,7 @@ Minimal starting point:
   for name in names.pos() {
     read(predicate + name + ".typ")
   }
-} 
+}
 
 === Components
 
@@ -219,7 +280,7 @@ types are available:
 - `"brainstorm"`: For entries about the brainstorm stage of the engineering design
   process.
 - `"decide"`: For entries about the decide stage of the engineering design
-  process.
+  process/
 - `"build"`: For entries about the build stage of the engineering design process.
 - `"program"`: For entries about the programming stage of the engineering design
   process.
@@ -234,7 +295,7 @@ Minimal starting point:
 
 #create-body-entry(title: "Day 1", type: "identify", date: datetime(year: 1984, month: 1, day: 1))[
   = Heading
-  
+
   #lorem(50)
 
   #components.pro-con(
@@ -257,7 +318,7 @@ Minimal starting point:
 
 #create-body-entry(title: "Day 2", type: "identify", date: datetime(year: 1984, month: 1, day: 2))[
   = Another Heading
-  
+
   #lorem(50)
 
   #components.decision-matrix(
@@ -343,8 +404,8 @@ guidelines, check our `CONTRIBUTING.MD` file in our GitHub.
 This section of the document covers how to add your own theme to the template.
 The first thing you'll have to do is create the entry point for your theme.
 Create a new directory inside the `themes/` directory, then create a Typst
-source file inside of that directory. For example, if you had a theme called `foo`,
-the path to your entry point would look like this: `themes/foo/foo.typ`.
+source file inside of that directory. For example, if you had a theme called
+`foo`, the path to your entry point would look like this: `themes/foo/foo.typ`.
 
 Once you do this, you'll have to add your theme to the `themes/themes.typ` file
 like this:
@@ -445,8 +506,8 @@ Once you define all of your functions you'll have to actually define your theme.
 The theme is just a dictionary which stores all of the functions that you just
 defined.
 
-The theme should be defined in your theme's entry point (`themes/foo/foo.typ` for
-this example).
+The theme should be defined in your theme's entry point (`themes/foo/foo.typ`
+for this example).
 
 Here's what the theme would look like in this scenario:
 

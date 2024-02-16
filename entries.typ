@@ -50,10 +50,41 @@
 }
 
 /// Variant of the `#create-entry()` function that creates a frontmatter entry.
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #create-frontmatter-entry(title: "Title")[
+///   #lorem(50)
+/// ]
+/// ```
+///
 #let create-frontmatter-entry = create-entry.with(section: "frontmatter")
 
 /// Variant of the `#create-entry()` function that creates a body entry.
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #create-body-entry(
+///   title: "Title",
+///   date: datetime(year: 2024, month: 1, day: 1),
+///   type: "identify", // Change this depending on what your theme allows
+///   author: "Bobert",
+///   witness: "Bobernius",
+/// )[
+///   #lorem(50)
+/// ]
+/// ```
 #let create-body-entry = create-entry.with(section: "body")
 
 /// Variant of the `#create-entry()` function that creates an appendix entry.
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #create-appendix-entry(title: "Title")[
+///   #lorem(50)
+/// ]
+/// ```
 #let create-appendix-entry = create-entry.with(section: "appendix")
