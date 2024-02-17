@@ -50,15 +50,14 @@
 
 #let body-entry(context: (:), body) = {
   show: page.with(margin: (top: 88pt), header: [ 
-    #set align(center)
-    #set text(size: 30pt) 
-    #box(
-      //baseline: 2pt,
-      fill: entry-type-metadata.at(context.type),
-      width: 300pt,
-      inset: 10pt,
-      [#context.title],
-    )
+    #set text(size: 30pt)
+    #align(center, [
+      #box(
+        fill: entry-type-metadata.at(context.type),
+        inset: 10pt,
+        [#context.title]
+      )
+    ])
   ], footer: [
     #set align(left)
     Written by:
