@@ -25,6 +25,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 - [Style Guides](#style-guides)
 - [Typst Code](#typst-code)
 - [Commit Messages](#commit-messages)
+- [Branches](#branches)
 
 ## I Have a Question
 
@@ -176,7 +177,7 @@ Commit messages should be short and descriptive. This project follows the [Gitmo
 
 Use the unicode version of the emojis wherever possible. This means you should write 🔥 instead of :fire:.
 
-## Branches
+### Branches
 
 Branches must have labels depending on what the branch changes to the project.
 
