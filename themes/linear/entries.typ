@@ -49,7 +49,8 @@
 }
 
 #let body-entry(context: (:), body) = {
-  show: page.with(margin: (top: 88pt), header: [ 
+  show: page.with(margin: (top: 88pt), 
+  header: [ 
     #set align(center)
     #set text(size: 30pt) 
     #box(
@@ -59,16 +60,27 @@
       inset: 10pt,
       [#context.title],
     )
-  ], footer: [
-    #set align(left)
-    Written by:
-    #h(30%)
-    Witnessed by:
-  ], background: set-margins(8%, 8%))
+  ], 
+  footer: [
+    #grid(
+      columns: (2fr, 2fr, 1fr),
+      [
+        Written by:
+      ],
+      [
+        Witnessed by:
+      ],
+      [
+        #align(right, box(fill: surface-1, outset: 8pt, counter(page).display()))
+      ]
+    )
+  ], 
+  background: set-margins(8%, 8%))
    
   show heading: it => {
     set-heading(it, context.type)
   }
+
   show raw.where(block: false): box.with(
     fill: surface-1,
     inset: (x: 4pt, y: 0pt),
@@ -79,6 +91,7 @@
     inset: 8pt,
     width: 100%
   )
+  
   body
 }
 
