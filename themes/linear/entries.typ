@@ -37,11 +37,8 @@
   show: page.with(
     //margin: (top: 8em),
     header: [ 
-      #set align(center)
       #set text(size: 25pt)
-       
-      #context.title
-       
+      #align(center, [#context.title])
     ],
     background: set-margins(8%, 8%),
   )
@@ -49,7 +46,8 @@
 }
 
 #let body-entry(context: (:), body) = {
-  show: page.with(margin: (top: 88pt), header: [ 
+  show: page.with(margin: (top: 88pt), 
+  header: [ 
     #set text(size: 30pt)
     #align(center, [
       #box(
@@ -58,12 +56,14 @@
         [#context.title]
       )
     ])
-  ], footer: [
+  ], 
+  footer: [
     #set align(left)
     Written by:
     #h(30%)
     Witnessed by:
-  ], background: set-margins(8%, 8%))
+  ], 
+  background: set-margins(8%, 8%))
    
   show heading: it => {
     set-heading(it, context.type)
