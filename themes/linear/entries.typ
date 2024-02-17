@@ -65,10 +65,10 @@
     #grid(
       columns: (2fr, 2fr, 1fr),
       [
-        Written by:
+        Written by: #h(10pt) #context.author
       ],
       [
-        Witnessed by:
+        Witnessed by: #h(10pt) #context.witness
       ],
       [
         #align(right, box(fill: surface-1, outset: 8pt, counter(page).display()))
