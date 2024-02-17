@@ -176,6 +176,16 @@ Commit messages should be short and descriptive. This project follows the [Gitmo
 
 Use the unicode version of the emojis wherever possible. This means you should write 🔥 instead of :fire:.
 
+## Branches
+
+Branches must have labels depending on what the branch changes to the project.
+
+- Fix: improves a pre-existing feature
+- Feature: adds a new feature
+- Theme: adds a new theme
+
+A complete branch name would be **theme/your-theme-name** or **feature/theme-cover**.
+
 ## Attribution
 
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
