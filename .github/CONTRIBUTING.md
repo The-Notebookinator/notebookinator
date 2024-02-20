@@ -17,15 +17,15 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 ## Table of Contents
 
 - [I Have a Question](#i-have-a-question)
-- [I Want To Contribute](#i-want-to-contribute)
-- [Reporting Bugs](#reporting-bugs)
-- [Suggesting Enhancements](#suggesting-enhancements)
-- [Your First Code Contribution](#your-first-code-contribution)
-- [Improving The Documentation](#improving-the-documentation)
+  - [I Want To Contribute](#i-want-to-contribute)
+  - [Reporting Bugs](#reporting-bugs)
+  - [Suggesting Enhancements](#suggesting-enhancements)
+  - [Your First Code Contribution](#your-first-code-contribution)
+  - [Improving The Documentation](#improving-the-documentation)
 - [Style Guides](#style-guides)
-- [Typst Code](#typst-code)
-- [Commit Messages](#commit-messages)
-- [Branches](#branches)
+  - [Typst Code](#typst-code)
+  - [Commit Messages](#commit-messages)
+  - [Branches](#branches)
 
 ## I Have a Question
 
