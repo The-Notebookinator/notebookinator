@@ -53,7 +53,7 @@
     ],
   )
 
-  set-border()
+  set-border(context.type)
 
   body
 }
@@ -86,7 +86,7 @@
     ], 
   )
 
-  set-border()
+  set-border(context.type)
    
   show heading: it => {
     set-heading(it, context.type)
@@ -123,7 +123,7 @@
     ]
   )
   
-  set-border()
+  set-border(context.type)
   
   body
 }

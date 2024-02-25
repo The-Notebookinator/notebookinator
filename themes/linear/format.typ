@@ -6,12 +6,19 @@
 /// ```typ
 /// #set-border()
 /// ```
-#let set-border() = {
+#let set-border(type) = {
   let top-axis = -8.4%    // The title line height
+  let bottom-axis = 100%  // The automatic bottom border
+  
+  // Adjusts top and bottom borders for frontmatter and appendix entries
+  if (type == none) {
+    top-axis = -6.6% 
+    bottom-axis = 106%
+  }
+  
   let left-axis = -10%    // 10% less than the automatic left border (0%)
   let right-axis = 110%   // 10% more than the automatic right border (100%)
-  let bottom-axis = 100%  // The automatic bottom border
-
+  
   set line(stroke: 1.5pt)
   // Top left border
   place(line(start: (left-axis, top-axis), end: (0%, top-axis)))
