@@ -35,35 +35,58 @@
 
 #let frontmatter-entry(context: (:), body) = {
   show: page.with(
-    //margin: (top: 8em),
     header: [ 
       #set text(size: 25pt)
-      #align(center, [#context.title])
+      #set line(stroke: 1.5pt)
+      #align(center + horizon, grid(columns: (1fr, auto, 1fr),
+      [
+        #line(length: 100%)
+      ],
+      [
+        #h(20pt)
+        #context.title
+        #h(20pt)
+      ],
+      [
+        #line(length: 100%)
+      ]))
     ],
-    background: set-margins(8%, 8%),
   )
+
+  set-border()
+
   body
 }
 
 #let body-entry(context: (:), body) = {
-  show: page.with(margin: (top: 88pt), 
-  header: [ 
-    #set text(size: 30pt)
-    #align(center, [
-      #box(
-        fill: entry-type-metadata.at(context.type),
-        inset: 10pt,
-        [#context.title]
-      )
-    ])
-  ], 
-  footer: [
-    #set align(left)
-    Written by:
-    #h(30%)
-    Witnessed by:
-  ], 
-  background: set-margins(8%, 8%))
+  show: page.with(margin: (top: 88pt),
+    header: [ 
+      #set text(size: 30pt)
+      #set line(stroke: 1.5pt)
+
+      #align(center + horizon, grid(columns: (1fr, auto, 1fr),
+      [
+       #line(length: 100%)
+      ],
+      [
+        #h(20pt)
+        #box(fill: entry-type-metadata.at(context.type), outset: 10pt, [#context.title])
+        #h(20pt)
+      ],
+      [
+        #line(length: 100%)
+      ]))
+    ], 
+
+    footer: [
+      #set align(left)
+      Written by:
+      #h(30%)
+      Witnessed by:
+    ], 
+  )
+
+  set-border()
    
   show heading: it => {
     set-heading(it, context.type)
@@ -83,10 +106,24 @@
 
 #let appendix-entry(context: (:), body) = {
   show: page.with(header: [
-    #set align(center)
     #set text(size: 25pt)
-    #context.title 
-     
-  ], background: set-margins(8%, 8%))
+    #set line(stroke: 1.5pt)
+    #align(center + horizon, grid(columns: (1fr, auto, 1fr),
+      [
+        #line(length: 100%)
+      ],
+      [
+        #h(20pt)
+        #context.title
+        #h(20pt)
+      ],
+      [
+        #line(length: 100%)
+      ]))
+    ]
+  )
+  
+  set-border()
+  
   body
 }
