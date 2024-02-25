@@ -14,16 +14,20 @@
     columns: (10em, 1fr),
     gutter: 20pt,
     rect(width: 100%, height: 100%, fill: red),
-    grid(rows: (1fr, 1fr), [
-      #set align(horizon)
-      #set text(50pt, font: "Tele-Marines")
-      #context.team-name
-    ], [
-      #set text(30pt, fill: red)
-      Digital Engineering Notebook
+    grid(
+      rows: (1fr, 1fr),
+      [
+        #set align(horizon)
+        #set text(50pt, font: "Tele-Marines", fill: gradient.linear(red, yellow))
+        #context.team-name
+      ],
+      [
+        #set text(30pt, fill: red)
+        Digital Engineering Notebook
 
-      #set text(20pt, fill: black)
-      #context.season
-    ]),
+        #set text(20pt, fill: black)
+        #context.season
+      ],
+    ),
   )
 }
