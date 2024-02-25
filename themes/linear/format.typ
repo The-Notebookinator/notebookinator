@@ -16,8 +16,8 @@
     bottom-axis = 106%
   }
   
-  let left-axis = -10%    // 10% less than the automatic left border (0%)
-  let right-axis = 110%   // 10% more than the automatic right border (100%)
+  let left-axis = -8%    // 8% less than the automatic left border (0%)
+  let right-axis = 108%   // 8% more than the automatic right border (100%)
   
   set line(stroke: 1.5pt)
   // Top left border
