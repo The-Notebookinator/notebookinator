@@ -17,14 +17,15 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 ## Table of Contents
 
 - [I Have a Question](#i-have-a-question)
-- [I Want To Contribute](#i-want-to-contribute)
-- [Reporting Bugs](#reporting-bugs)
-- [Suggesting Enhancements](#suggesting-enhancements)
-- [Your First Code Contribution](#your-first-code-contribution)
-- [Improving The Documentation](#improving-the-documentation)
+  - [I Want To Contribute](#i-want-to-contribute)
+  - [Reporting Bugs](#reporting-bugs)
+  - [Suggesting Enhancements](#suggesting-enhancements)
+  - [Your First Code Contribution](#your-first-code-contribution)
+  - [Improving The Documentation](#improving-the-documentation)
 - [Style Guides](#style-guides)
-- [Typst Code](#typst-code)
-- [Commit Messages](#commit-messages)
+  - [Typst Code](#typst-code)
+  - [Commit Messages](#commit-messages)
+  - [Branches](#branches)
 
 ## I Have a Question
 
@@ -175,6 +176,16 @@ Currently we do not have an established coding style. In the future we'll use th
 Commit messages should be short and descriptive. This project follows the [Gitmoji](https://gitmoji.dev/about) commit style.
 
 Use the unicode version of the emojis wherever possible. This means you should write 🔥 instead of :fire:.
+
+### Branches
+
+Branches must have labels depending on what the branch changes to the project.
+
+- Fix: improves a pre-existing feature
+- Feature: adds a new feature
+- Theme: adds a new theme
+
+A complete branch name would be **theme/your-theme-name** or **feature/theme-cover**.
 
 ## Attribution
 
