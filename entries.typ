@@ -18,12 +18,12 @@
   witness: "",
   body,
 ) = {
-  let (state, entry-label) = if section == "frontmatter" {
-    (globals.frontmatter-entries, label("notebook-frontmatter"))
+  let (state, entry-label-name) = if section == "frontmatter" {
+    (globals.frontmatter-entries, "notebook-frontmatter")
   } else if section == "body" {
-    (globals.entries, label("notebook-body"))
+    (globals.entries, "notebook-body")
   } else if section == "appendix" {
-    (globals.appendix-entries, label("notebook-appendix"))
+    (globals.appendix-entries, "notebook-appendix")
   } else {
     panic("No valid entry type selected")
   }
@@ -34,7 +34,8 @@
       let final-body = if entries.len() == 0 {
         [#counter(page).update(1)] // Correctly set the page number for each section
       } + [
-        #metadata(none) #entry-label
+        #metadata(none) #label(entry-label-name) // Place a label to help the toc find the page numbers of the entries
+        #metadata(none) #label(entry-label-name + "-" + str(entries.len()))
         #counter(footnote).update(0)
       ] + body // Place a label on blank content to the table of contents can find each entry
 
