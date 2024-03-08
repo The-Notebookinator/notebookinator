@@ -1,8 +1,8 @@
 ---
 name: Bug Report
 about: Report a bug in the project
-title: "[BUG]"
-labels: "needs reproduction"
+title: "🐛"
+labels: "repro:required"
 assignees: ""
 ---
 
