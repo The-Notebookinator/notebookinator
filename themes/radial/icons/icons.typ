@@ -2,7 +2,7 @@
 
 #let question-mark = read("./question-mark.svg")
 #let light-bulb = read("./light-bulb.svg")
-#let target = read("./light-bulb.svg")
+#let target = read("./target.svg")
 #let hammer = read("./hammer.svg")
 #let terminal = read("./terminal.svg")
 #let flask = read("./flask.svg")
