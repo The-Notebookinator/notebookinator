@@ -4,11 +4,6 @@
 
 /// The generic entry creation function. This function has three entry variants - frontmatter, body, and appendix - used to create each page.
 ///
-/// *Example Usage*
-///
-/// ```typ
-/// 
-/// ```
 /// - section (string): The type of entry. Takes either "frontmatter", "body", or "appendix".
 /// - title (string): The title of the entry.
 /// - type (string): The type of entry. The possible values for this are decided by the theme.
@@ -59,8 +54,12 @@
 /// *Example Usage:*
 ///
 /// ```typ
-/// #create-frontmatter-entry(title: "Title")[
+/// #create-frontmatter-entry(title: "Frontmatter")[
+///   = Heading
 ///   #lorem(50)
+///
+///   == Subheading
+///   #lorem(25)
 /// ]
 /// ```
 ///
@@ -78,7 +77,11 @@
 ///   author: "Bobert",
 ///   witness: "Bobernius",
 /// )[
+///   = Heading
 ///   #lorem(50)
+///
+///   == Subheading
+///   #lorem(25)
 /// ]
 /// ```
 #let create-body-entry = create-entry.with(section: "body")
@@ -88,8 +91,12 @@
 /// *Example Usage:*
 ///
 /// ```typ
-/// #create-appendix-entry(title: "Title")[
+/// #create-appendix-entry(title: "Appendix")[
+///   = Heading
 ///   #lorem(50)
+///
+///   == Subheading
+///   #lorem(25)
 /// ]
 /// ```
 #let create-appendix-entry = create-entry.with(section: "appendix")
