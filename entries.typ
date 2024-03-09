@@ -55,11 +55,7 @@
 ///
 /// ```typ
 /// #create-frontmatter-entry(title: "Frontmatter")[
-///   = Heading
 ///   #lorem(50)
-///
-///   == Subheading
-///   #lorem(25)
 /// ]
 /// ```
 ///
@@ -77,11 +73,7 @@
 ///   author: "Bobert",
 ///   witness: "Bobernius",
 /// )[
-///   = Heading
 ///   #lorem(50)
-///
-///   == Subheading
-///   #lorem(25)
 /// ]
 /// ```
 #let create-body-entry = create-entry.with(section: "body")
@@ -92,11 +84,7 @@
 ///
 /// ```typ
 /// #create-appendix-entry(title: "Appendix")[
-///   = Heading
 ///   #lorem(50)
-///
-///   == Subheading
-///   #lorem(25)
 /// ]
 /// ```
 #let create-appendix-entry = create-entry.with(section: "appendix")

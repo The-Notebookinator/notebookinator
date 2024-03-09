@@ -30,7 +30,7 @@
   })
 })
 
-/// Print out the glossary
+/// Prints out the glossary.
 ///
 /// Example Usage:
 ///
