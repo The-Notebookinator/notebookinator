@@ -16,10 +16,10 @@
 /// )
 /// ```
 /// - team-name (string): The name of your team.
-/// - season (string): The name of the current season
-/// - year (string): The years in which the notebook is being written
-/// - theme (theme): The theme that will be applied to all of the entries. If no theme is specified it will fall back on the default theme.
-/// - cover (content): the title page of the notebook
+/// - season (string): The name of the current season.
+/// - year (string): The years in which the notebook is being written.
+/// - theme (theme): The theme that will be applied to all of the entries. If no theme is specified, it will fall back on the default theme.
+/// - cover (content): The title page of the notebook.
 /// - body (content): The content of the notebook. This will be ignored. Use the create-entry functions instead.
 /// -> content
 #let notebook(
