@@ -34,8 +34,8 @@
   show: doc => rules(doc)
 
   let cover-content = if cover == none {
-    let context = (team-name: team-name, season: season, year: year)
-    print-cover(context: context, theme: theme)
+    let ctx = (team-name: team-name, season: season, year: year)
+    print-cover(ctx: ctx, theme: theme)
   } else {
     cover
   }

@@ -40,7 +40,7 @@
 
       entries.push(
         (
-          context: (title: title, type: type, date: date, author: author, witness: witness),
+          ctx: (title: title, type: type, date: date, author: author, witness: witness),
           body: final-body,
         ),
       )

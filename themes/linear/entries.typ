@@ -1,7 +1,7 @@
 #import "format.typ": *
 #import "./colors.typ": *
 
-#let cover(context: (:)) = {
+#let cover(ctx: (:)) = {
   v(50pt)
 
   line(length: 100%, stroke: 2pt)
@@ -9,12 +9,12 @@
   rect(inset: 30pt, fill: surface-0, width: 100%)[
     #grid(columns: (1fr, 3fr), gutter: 2fr, [
       #set text(72pt)
-      #context.team-name
+      #ctx.team-name
     ], 
     [
       #align(right, [
         #set text(20pt)
-        #context.season
+        #ctx.season
         
         Engineering Design Notebook
       ])
@@ -28,12 +28,12 @@
     #box(
       width: 150pt,
       stroke: (top: white, bottom: white, left: black, right: black),
-      context.year
+      ctx.year
     )
   ])
 }
 
-#let frontmatter-entry(context: (:), body) = {
+#let frontmatter-entry(ctx: (:), body) = {
   show: page.with(
     header: [ 
       #set text(size: 25pt)
@@ -44,7 +44,7 @@
       ],
       [
         #h(20pt)
-        #context.title
+        #ctx.title
         #h(20pt)
       ],
       [
@@ -53,12 +53,12 @@
     ],
   )
 
-  set-border(context.type)
+  set-border(ctx.type)
 
   body
 }
 
-#let body-entry(context: (:), body) = {
+#let body-entry(ctx: (:), body) = {
   show: page.with(margin: (top: 88pt), 
   header: [ 
     #set text(size: 30pt)
@@ -70,7 +70,7 @@
       ],
       [
         #h(20pt)
-        #box(fill: entry-type-metadata.at(context.type), outset: 10pt, [#context.title])
+        #box(fill: entry-type-metadata.at(ctx.type), outset: 10pt, [#ctx.title])
         #h(20pt)
       ],
       [
@@ -80,10 +80,10 @@
   footer: [
     #grid(columns: (2fr, 2fr, 1fr),
       [
-        Written by: #h(10pt) #context.author
+        Written by: #h(10pt) #ctx.author
       ],
       [
-        Witnessed by: #h(10pt) #context.witness
+        Witnessed by: #h(10pt) #ctx.witness
       ],
       [
         #align(right, box(fill: surface-1, outset: 8pt, counter(page).display()))
@@ -92,10 +92,10 @@
   ], 
   )
   
-  set-border(context.type)
+  set-border(ctx.type)
    
   show heading: it => {
-    set-heading(it, context.type)
+    set-heading(it, ctx.type)
   }
 
   show raw.where(block: false): box.with(
@@ -112,7 +112,7 @@
   body
 }
 
-#let appendix-entry(context: (:), body) = {
+#let appendix-entry(ctx: (:), body) = {
   show: page.with(header: [
     #set text(size: 25pt)
     #set line(stroke: 1.5pt)
@@ -122,7 +122,7 @@
       ],
       [
         #h(20pt)
-        #context.title
+        #ctx.title
         #h(20pt)
       ],
       [
@@ -131,7 +131,7 @@
     ]
   )
   
-  set-border(context.type)
+  set-border(ctx.type)
   
   body
 }
