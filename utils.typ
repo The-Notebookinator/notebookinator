@@ -56,7 +56,7 @@
 /// -> content
 #let print-glossary(callback) = locate(
   loc => {
-    let sorted-glossary = globals.glossary-entries.final(loc).sorted(key: ((word, _)) => word)
+    let sorted-glossary = globals.glossary-entries.final(loc).sorted(key: ((word: word, definition: _)) => word)
     callback(sorted-glossary)
   },
 )
