@@ -5,43 +5,43 @@
 #import "./metadata.typ": entry-type-metadata
 
 // TODO: make an actual cover
-#let cover(context: (:)) = [
+#let cover(ctx: (:)) = [
   #set align(center)
   *Radial Cover*
 ]
 
-#let frontmatter-entry(context: (:), body) = {
+#let frontmatter-entry(ctx: (:), body) = {
   show: page.with(
-    header: components.title(context.title),
+    header: components.title(ctx.title),
     footer: align(right, counter(page).display("i")),
   )
   body
 }
 
-#let body-entry(context: (:), body) = {
-  let metadata = entry-type-metadata.at(context.type)
+#let body-entry(ctx: (:), body) = {
+  let metadata = entry-type-metadata.at(ctx.type)
   show: page.with(header: components.title(
     beginning: image.decode(
       utils.change-icon-color(raw-icon: metadata.icon, fill: white),
       height: 1em,
     ),
-    end: context.date.display("[year]/[month]/[day]"),
+    end: ctx.date.display("[year]/[month]/[day]"),
     color: metadata.color,
-    context.title,
+    ctx.title,
   ), footer: [
     #line(length: 100%)
     #align(left, [
-      *Designed by:* #context.author #h(2pt) \
-      *Witnessed by:* #context.witness
+      *Designed by:* #ctx.author #h(2pt) \
+      *Witnessed by:* #ctx.witness
       #h(1fr) #counter(page).display()
     ])
   ])
   body
 }
 
-#let appendix-entry(context: (:), body) = {
+#let appendix-entry(ctx: (:), body) = {
   show: page.with(
-    header: components.title(context.title),
+    header: components.title(ctx.title),
     footer: align(right, counter(page).display()),
   )
 

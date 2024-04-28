@@ -2,7 +2,7 @@
 #import "./utils.typ"
 #import "./themes/themes.typ"
 
-/// Generic entry creation function.
+/// The generic entry creation function. This function has three entry variants - frontmatter, body, and appendix - used to create each page.
 ///
 /// - section (string): The type of entry. Takes either "frontmatter", "body", or "appendix".
 /// - title (string): The title of the entry.
@@ -40,7 +40,7 @@
 
       entries.push(
         (
-          context: (title: title, type: type, date: date, author: author, witness: witness),
+          ctx: (title: title, type: type, date: date, author: author, witness: witness),
           body: final-body,
         ),
       )
@@ -54,7 +54,7 @@
 /// *Example Usage:*
 ///
 /// ```typ
-/// #create-frontmatter-entry(title: "Title")[
+/// #create-frontmatter-entry(title: "Frontmatter")[
 ///   #lorem(50)
 /// ]
 /// ```
@@ -83,7 +83,7 @@
 /// *Example Usage:*
 ///
 /// ```typ
-/// #create-appendix-entry(title: "Title")[
+/// #create-appendix-entry(title: "Appendix")[
 ///   #lorem(50)
 /// ]
 /// ```

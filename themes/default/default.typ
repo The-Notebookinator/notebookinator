@@ -4,14 +4,14 @@
   doc
 }
 
-#let cover(context: (:)) = [
+#let cover(ctx: (:)) = [
   #set align(center)
   *Default Cover*
 ]
 
-#let frontmatter-entry(context: (:), body) = {
+#let frontmatter-entry(ctx: (:), body) = {
   show: page.with(
-    header: [ = #context.title
+    header: [ = #ctx.title
       #box(width: 1fr, line(length: 100%)) ],
     footer: align(center, counter(page).display()),
   )
@@ -19,18 +19,18 @@
   body
 }
 
-#let body-entry(context: (:), body) = {
+#let body-entry(ctx: (:), body) = {
   show: page.with(
-    header: [ = #context.title
+    header: [ = #ctx.title
       #box(width: 1fr, line(length: 100%)) ],
     footer: align(center, counter(page).display()),
   )
 
   body
 }
-#let appendix-entry(context: (:), body) = {
+#let appendix-entry(ctx: (:), body) = {
   show: page.with(
-    header: [ = #context.title
+    header: [ = #ctx.title
       #box(width: 1fr, line(length: 100%)) ],
     footer: align(center, counter(page).display()),
   )

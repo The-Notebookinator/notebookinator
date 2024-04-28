@@ -30,12 +30,12 @@
   })
 })
 
-/// Print out the glossary
+/// Prints out the glossary.
 ///
 /// Example Usage:
 ///
 /// ```typ
-/// #create-frontmatter-entry(title: "Glossary")[
+/// #create-appendix-entry(title: "Glossary")[
 ///   #components.glossary()
 /// ]
 /// ```
@@ -51,7 +51,19 @@
 
 /// A decision matrix table.
 ///
-/// - properties (array): A list of the properties that each choice will be rated by
+/// *Example Usage*
+/// ```typ
+/// #components.decision-matrix(
+///   properties: (
+///     (name: "Flavor", weight: 2),
+///     (name: "Crunchiness"), // The weight defaults to 1
+///   ),
+///   ("Sweet Potato", 1, 2),
+///   ("Baked Potato", 2, 1)
+/// )
+///
+/// ```
+/// - properties (array): A list of the properties that each choice will be rated by and the weight of each property
 /// - ..choices (array): An array containing the name of the choices as its first member,
 /// and values for each of the properties at its following indices
 /// -> content
@@ -78,6 +90,23 @@
 
 /// A table displaying pros and cons.
 ///
+/// *Example Usage*
+/// ```typ
+/// #components.pro-con(
+///  pros: [
+///    #list(
+///      "Sweet potato",
+///      "Baked potato"
+///    )
+///  ],
+///  cons: [
+///    #list(
+///      "Fries",
+///      "Wedges"
+///    )
+///  ]
+/// )
+/// ```
 /// - pros (content): The positive aspects
 /// - cons (content): The negative aspects
 /// -> content
