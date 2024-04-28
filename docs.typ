@@ -125,7 +125,7 @@ Themes are stored as dictionaries with a set number of fields.
   "body-entry",
   [`<function>`],
   default: none,
-  [ A function that returns a body entry. Must take ctx body as input. ],
+  [ A function that returns a body entry. Must take ctx and body as input. ],
 )
 #def-arg(
   "appendix-entry",
