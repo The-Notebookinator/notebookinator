@@ -86,7 +86,7 @@
         Witnessed by: #h(10pt) #ctx.witness
       ],
       [
-        #align(right, box(fill: surface-1, outset: 8pt, counter(page).display()))
+        #align(right, box(fill: surface-1, outset: 8pt, context counter(page).display()))
       ]
     )
   ], 
