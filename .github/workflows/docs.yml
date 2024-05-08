@@ -1,0 +1,42 @@
+name: GH Pages Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      - name: Install Typst
+        uses: yusancky/setup-typst@v3
+        id: setup-typst
+
+      - name: Install Mdbook
+        uses: extractions/setup-crate@v1
+        with:
+          owner: rust-lang
+          name: mdBook
+
+      - name: Build 🏗️
+        run: |
+          cd docs
+          mdbook build
+
+      - name: Deploy to GitHub Pages 🚀
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: book
