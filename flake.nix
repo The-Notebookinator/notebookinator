@@ -30,6 +30,7 @@
           pkgs.act
           pkgs.nodePackages_latest.prettier
           pkgs.just
+          pkgs.mdbook
         ];
       };
 
