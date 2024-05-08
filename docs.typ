@@ -101,7 +101,7 @@ typst compile your-notebook-file.typ
 
 === Theme <theme>
 
-Themes are stored as dictionaries with a set number of fields.
+Themes are stored as dictionaries with the following fields:
 
 #def-arg(
   "rules",
@@ -171,7 +171,7 @@ Context is stored as a dictionary with the following fields:
 
 == Default Theme
 
-The default theme.
+The default theme contains all the basic components for an engineering notebook, including a pros and cons table and a decision matrix template.
 
 #warning[
   This theme is very minimal, and is generally intended as a fallback for stuff

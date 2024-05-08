@@ -2,9 +2,10 @@
 #import tablex: tablex, cellx
 #import "/utils.typ"
 
-/// Print out the table of contents
+/// Prints the table of contents.
 ///
-/// Example Usage:
+/// *Example Usage:*
+///
 /// ```typ
 /// #create-frontmatter-entry(title: "Table of Contents")[
 ///   #components.toc()
@@ -30,9 +31,9 @@
   })
 })
 
-/// Print out the glossary
+/// Prints the glossary.
 ///
-/// Example Usage:
+/// *Example Usage:*
 ///
 /// ```typ
 /// #create-frontmatter-entry(title: "Glossary")[
@@ -49,7 +50,21 @@
   })
 })
 
-/// A decision matrix table.
+/// Prints a decision matrix table.
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #components.decision-matrix(
+///    properties: (
+///      (name: "Category 1"),
+///      (name: "Category 2"),
+///      (name: "Category 3")
+///    ),
+///    ("Decision", 4, 3, 2),
+///    ("Matrix", 1, 2, 3),
+///  )
+/// ```
 ///
 /// - properties (array): A list of the properties that each choice will be rated by
 /// - ..choices (array): An array containing the name of the choices as its first member,
@@ -76,7 +91,16 @@
   )
 }
 
-/// A table displaying pros and cons.
+/// Prints a pros and cons table.
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #components.pro-con(
+///   pros: "Pros",
+///   cons: "Cons"
+/// )
+/// ```
 ///
 /// - pros (content): The positive aspects
 /// - cons (content): The negative aspects
