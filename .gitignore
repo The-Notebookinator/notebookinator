@@ -12,4 +12,6 @@ gallery/*.png
 !gallery/linear-03.png
 !gallery/linear-04.png
 !gallery/linear-05.png
+
 docs/book
+docs/src/reference.pdf
