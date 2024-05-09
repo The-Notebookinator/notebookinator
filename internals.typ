@@ -13,11 +13,11 @@
 /// Internal function used by the template to print out the cover
 ///
 /// - theme (theme):
-/// - context (dictionary):
+/// - ctx (dictionary):
 /// -> content
-#let print-cover(theme: (:), context: (:)) = {
+#let print-cover(theme: (:), ctx: (:)) = {
   let cover-func = fallback-to-default("cover", theme)
-  cover-func(context: context)
+  cover-func(ctx: ctx)
 }
 
 /// Internal function used by the template to print out all of the entries
@@ -30,7 +30,7 @@
       for entry in state.final(loc) [
         #let entry-func = fallback-to-default(section + "-entry", theme)
         #let body = [] + entry.body
-        #entry-func(body, context: entry.context)
+        #entry-func(body, ctx: entry.ctx)
       ]
     })
   }

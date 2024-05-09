@@ -113,29 +113,28 @@ Themes are stored as dictionaries with the following fields:
   "cover",
   [`<function>`],
   default: none,
-  [ A function that returns the cover of the notebook. Must take context as input. ],
+  [ A function that returns the cover of the notebook. Must take ctx as input. ],
 )
 #def-arg(
   "frontmatter-entry",
   [`<function>`],
   default: none,
-  [ A function that returns a frontmatter entry. Must take context and body as
-    input. ],
+  [ A function that returns a frontmatter entry. Must take ctx and body as input. ],
 )
 #def-arg(
   "body-entry",
   [`<function>`],
   default: none,
-  [ A function that returns a body entry. Must take context and body as input. ],
+  [ A function that returns a body entry. Must take ctx and body as input. ],
 )
 #def-arg(
   "appendix-entry",
   [`<function>`],
   default: none,
-  [ A function that returns a appendix entry. Must take context and body as input. ],
+  [ A function that returns a appendix entry. Must take ctx and body as input. ],
 )
 
-=== Context <context>
+=== Context <ctx>
 
 Provides information to a callback about how it's being called.
 
@@ -442,7 +441,7 @@ content.
 Here's a minimal example of what these functions might look like:
 
 ```typ
-#let frontmatter-entry(context: (:), body) = {
+#let frontmatter-entry(ctx: (:), body) = {
   show: page.with(
     header: [ = Frontmatter header ],
     footer: counter(page).display("i")
@@ -453,7 +452,7 @@ Here's a minimal example of what these functions might look like:
 ```
 
 ```typ
-#let body-entry(context: (:), body) = {
+#let body-entry(ctx: (:), body) = {
   show: page.with(
     header: [ = Body header ],
     footer: counter(page).display("1")
@@ -464,7 +463,7 @@ Here's a minimal example of what these functions might look like:
 ```
 
 ```typ
-#let appendix-entry(context: (:), body) = {
+#let appendix-entry(ctx: (:), body) = {
   show: page.with(
     header: [ = Appendix header ],
     footer: counter(page).display("i")
@@ -495,7 +494,7 @@ year.
 Here's an example cover:
 
 ```typ
-#let cover(context: (:)) = [
+#let cover(ctx: (:)) = [
   #set align(center)
   *Foo Cover*
 ]
