@@ -31,9 +31,8 @@ jobs:
 
       - name: Build
         run: |
-          cd docs/src
-          typst compile reference.typ
-          cd ..
+          typst compile docs/src/reference.typ --root ./
+          cd docs
           mdbook build
 
       - name: Deploy to GitHub Pages
