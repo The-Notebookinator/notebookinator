@@ -1,7 +1,7 @@
 #import "../colors.typ": *
-/// A table displaying pros and cons.
+/// Prints a pros and cons table.
 ///
-/// Example Usage:
+/// *Example Usage*
 /// ```typ
 /// #pro-con(
 ///   pros: [

@@ -150,16 +150,10 @@ Context is stored as a dictionary with the following fields:
     Refer to the template level documentation to see what this means for your theme.],
 )
 #def-arg(
-  "start-date",
+  "date",
   [`<datetime>`],
   default: none,
   [The date at which the entry started.],
-)
-#def-arg(
-  "end-date",
-  [`<datetime>`],
-  default: none,
-  [The date at which the entry ended.],
 )
 #def-arg(
   "page-number",
@@ -286,7 +280,7 @@ types are available:
   process.
 - `"test"`: For entries about the testing stage of the engineering design process
 
-Minimal starting point:
+*Minimal Starting Point*
 
 ```typ
 #create-frontmatter-entry(title: "Table of Contents")[
@@ -367,7 +361,9 @@ Minimal starting point:
 == Project Architecture
 
 The Notebookinator is split into two sections, the base template, and the
-themes. The base template functions as the backend of the project. It handles
+themes. 
+
+The base template functions as the backend of the project. It handles
 all of the information processing, keeps track of global state, makes sure page
 numbers are correct, and so on. It exposes the main API that the user interacts
 for creating entries and creating glossary entries.
@@ -378,6 +374,8 @@ inside of entries. This could include things like admonitions, charts, and
 decision matrices.
 
 == File Structure
+
+We organize the Notebookinator by using the following:
 
 - `lib.typ`: The entrypoint for the whole template.
 - `internals.typ`: All of the internal function calls that should not be used by
@@ -401,11 +399,15 @@ guidelines, check our `CONTRIBUTING.MD` file in our GitHub.
 
 === Creating the Entry Point
 
-This section of the document covers how to add your own theme to the template.
-The first thing you'll have to do is create the entry point for your theme.
-Create a new directory inside the `themes/` directory, then create a Typst
+The first thing you'll have to do to implement your own theme is create the entry point for your theme.
+
+Create a new directory inside the `themes/` directory and then create a Typst
 source file inside of that directory. For example, if you had a theme called
 `foo`, the path to your entry point would look like this: `themes/foo/foo.typ`.
+
+- themes
+  - foo
+    - foo.typ
 
 Once you do this, you'll have to add your theme to the `themes/themes.typ` file
 like this:
@@ -420,17 +422,17 @@ functions in the theme.
 
 Next you'll have to implement the functions contained inside the theme. These
 functions are all called internally by the template. While we recommend that you
-create implementations for all of them, if you omit one the template will fall
-back on the default theme.
+create implementations for all of them, if you omit one *from the theme function*,  the template will fall back on the default theme.
 
 The first functions you should implement are the ones that render the entries.
 You'll need three of these, one for each type of entry (frontmatter, body, and
 appendix).
 
-Each of these functions must take a context parameter, and a body parameter. The
+Each of these functions must take a context parameter and a body parameter. The
 context parameter provides important information, like the type of entry, and
-the date it was written at. The body parameter contains the content written by
-the user.
+the date it was written at. 
+// Reference the entry context documentation here
+The body parameter contains the content written by the user, such as the page text.
 
 // TODO: document the context data type
 

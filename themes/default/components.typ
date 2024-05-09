@@ -4,7 +4,7 @@
 
 /// Prints the table of contents.
 ///
-/// *Example Usage:*
+/// *Example Usage*
 ///
 /// ```typ
 /// #create-frontmatter-entry(title: "Table of Contents")[
@@ -33,7 +33,7 @@
 
 /// Prints the glossary.
 ///
-/// *Example Usage:*
+/// *Example Usage*
 ///
 /// ```typ
 /// #create-frontmatter-entry(title: "Glossary")[
@@ -52,7 +52,7 @@
 
 /// Prints a decision matrix table.
 ///
-/// *Example Usage:*
+/// *Example Usage*
 ///
 /// ```typ
 /// #components.decision-matrix(
@@ -93,7 +93,7 @@
 
 /// Prints a pros and cons table.
 ///
-/// *Example Usage:*
+/// *Example Usage*
 ///
 /// ```typ
 /// #components.pro-con(
