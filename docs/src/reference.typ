@@ -3,6 +3,8 @@
 #import "@preview/tidy:0.2.0"
 #import "@preview/gentle-clues:0.6.0": *
 
+#set heading(numbering: "1.")
+
 #let show-module = tidy.show-module.with(show-outline: false, sort-functions: none, first-heading-level: 2)
 
 #let def-arg(term, t, default: none, description) = {
@@ -39,6 +41,10 @@
 }
 
 // ------------------ Document content -------------------------
+
+= Outline
+
+#outline(title: none, indent: true, depth: 3)
 
 = API Reference
 
