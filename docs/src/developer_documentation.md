@@ -53,7 +53,7 @@ like this:
 Do not use a glob import, we don't want to pollute the namespace with the
 functions in the theme.
 
-=== Implementing Theme Functions
+### Implementing Theme Functions
 
 Next you'll have to implement the functions contained inside the theme. These
 functions are all called internally by the template. While we recommend that you
