@@ -138,7 +138,7 @@ Here's an example cover:
 
 ### Defining the Theme
 
-// TODO: create a theme type documentation thingy
+<!-- TODO: create a theme type documentation thingy-->
 Once you define all of your functions you'll have to actually define your theme.
 The theme is just a dictionary which stores all of the functions that you just
 defined.
