@@ -28,6 +28,7 @@
           pkgs.nodePackages_latest.prettier
           pkgs.just
           pkgs.mdbook
+          pkgs.mdbook-admonish
         ];
       };
 

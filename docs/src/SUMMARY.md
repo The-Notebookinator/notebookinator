@@ -1,6 +1,7 @@
 # Summary
 
 - [Introduction](./introduction.md)
-- [Getting Started](./getting_started.md)
+- [Installation](./installation.md)
+- [Basic Usage](./basic_usage.md)
 - [API Reference](./reference.md)
 - [Developer Documentation](./developer_documentation.md)

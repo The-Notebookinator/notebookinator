@@ -1,32 +1,6 @@
-# Installation
-
-#info[
-This installation process is temporary, as we wait for Typst to overhaul its
-process for packaging templates and packages.
-]
-
-The best way to install the Notebookinator is as a local package. Make sure you
-have the following software installed on your computer:
-
-- [Typst](https://github.com/casey/just#installation)
-- [Git](https://github.com/casey/just#installation)
-- [VSCode](https://code.visualstudio.com/)
-- [just](https://github.com/casey/just#installation)
-
-Once you've installed everything, simply run the following commands:
-
-```bash
-git clone https://github.com/BattleCh1cken/notebookinator
-cd notebookinator
-just install
-```
-
-> If you're running this on Windows, you'll need to run these commands in a sh
-> shell, like git-bash or the shell packaged with Cygwin or GitHub Desktop.
-
 # Basic Usage
 
-Once the template is installed, you can import it into your project like this:
+Once you have the Notebookinator installed, we recommend you use our [official template](https://github.com/The-Notebookinator/quick-start-template) to bootstrap your project.
 
 ```typ
 #import "@local/notebookinator:1.0.1": *
