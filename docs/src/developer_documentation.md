@@ -138,7 +138,8 @@ Here's an example cover:
 
 ### Defining the Theme
 
-// TODO: create a theme type documentation thingy
+<!-- TODO: create a theme type documentation thingy -->
+
 Once you define all of your functions you'll have to actually define your theme.
 The theme is just a dictionary which stores all of the functions that you just
 defined.
@@ -162,10 +163,67 @@ Here's what the theme would look like in this scenario:
 )
 ```
 
-### Creating Components
+### Preparing Your Components
 
 With your base theme done, you may want to create some additional components for
 you to use while writing your entries. This could be anything, including graphs,
-tables, Gantt charts, or anything else your heart desires.
+tables, Gantt charts, or anything else your heart desires. To create a standard 
+theme, we recommend the following components:
 
-<!-- TODO: define a standard set of components that themes should implement.-->
+- Table of contents `toc()`
+- Decision matrix: `decision-matrix()`
+- Pros and cons table: `pro-con()`
+- Glossary: `glossary()`
+
+First, you need to create a namespace to store all of your components like so:
+
+`themes/foo/components/`
+
+We recommend creating a `components.typ` file so you can glob import each component, 
+especially if you plan to implement a lot:
+
+`components/components.typ`
+
+Inside the components directory, create your three basic component files (the table of 
+contents, decision matrix, pros and cons table, and glossary). Then, glob import each 
+file in the `components.typ` file.
+
+```typ
+#import "toc.typ": *
+#import "decision-matrix.typ": *
+#import "pro-con.typ": *
+#import "glossary.typ": *
+```
+
+To render each component, you need to define a function inside the designated component
+file. Note that, if these functions are left blank, the Notebookinator will render the 
+Default Theme component if applicable.
+
+The following is an example for the table of contents component:
+
+```typ
+#let toc() = {
+  // You will customize the table of contents here later.
+}
+```
+
+Finally, import the `components.typ` file where you defined your theme function (in this
+case, `themes/foo/foo.typ`).
+
+```typ
+#import "components/components.typ": *
+
+#let foo-theme = (
+  ...
+)
+```
+
+### Creating Components
+
+
+
+## Implementing a Private Theme
+
+This section will explain how to create your own theme locally, without adding it
+to the Notebookinator. This process is similar to that of the 
+[Implementing Your Own Theme](#implementing-your-own-theme) section
