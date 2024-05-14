@@ -19,9 +19,6 @@ files=(
   typst.toml
   LICENSE
   README.md
-  docs.typ
-  docs-template.typ
-  docs.pdf
 )
 
 # Local package directories per platform
