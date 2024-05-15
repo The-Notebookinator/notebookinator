@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛎
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Install Typst
@@ -29,15 +29,17 @@ jobs:
           owner: rust-lang
           name: mdBook
 
-      - uses: extractions/setup-crate@v1
+      - name: Install Mdbook admonish
+        uses: extractions/setup-crate@v1
         with:
           owner: tommilligan
           name: mdbook-admonish
 
-      - uses: extractions/setup-crate@v1
+      - name: Install Mdbook typst doc
+        uses: extractions/setup-crate@v1
         with:
           owner: fenjalien
-          name: typst-mdbook-doc
+          name: mdbook-typst-doc
 
       - name: Build
         run: |
