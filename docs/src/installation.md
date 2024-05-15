@@ -24,7 +24,6 @@ Make sure you have the following software installed:
 - [Typst](https://github.com/casey/just#installation)
 - [Git](https://github.com/casey/just#installation)
 - [VSCode](https://code.visualstudio.com/)
-- [just](https://github.com/casey/just#installation)
 
 Once you've installed everything, run the following commands:
 
@@ -35,9 +34,7 @@ shell, like git-bash or the shell packaged with Cygwin or GitHub Desktop.
 
 ```bash
 git clone https://github.com/BattleCh1cken/notebookinator
-cd notebookinator
-just install
-cd ..
+./notebookinator/scripts/package @local
 rm -rf notebookinator
 ```
 
