@@ -29,6 +29,16 @@ jobs:
           owner: rust-lang
           name: mdBook
 
+      - uses: extractions/setup-crate@v1
+        with:
+          owner: tommilligan
+          name: mdbook-admonish
+
+      - uses: extractions/setup-crate@v1
+        with:
+          owner: fenjalien
+          name: typst-mdbook-doc
+
       - name: Build
         run: |
           typst compile docs/src/reference.typ --root ./
