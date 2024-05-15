@@ -10,7 +10,7 @@ process for packaging templates and packages.
 The easiest way to use the Notebookinator is to use our devcontainer/codespace. This will automatically install all of the needed dependencies inside of a Docker container. We recommend using our [quick start template](https://github.com/The-Notebookinator/quick-start-template) for the best experience.
 
 ```admonish warning
-While this aproach is easier, you may encounter some performance issues as your notebook increases in size.
+While this approach is easier, you may encounter some performance issues as your notebook increases in size.
 ```
 
 The only thing you'll need in preparation is a [GitHub](https://github.com/) account (only if using Codespaces) and [VSCode](https://code.visualstudio.com/) installed. Once you do that, just follow the instructions in the [README](https://github.com/The-Notebookinator/quick-start-template).
