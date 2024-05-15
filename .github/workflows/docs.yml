@@ -36,10 +36,11 @@ jobs:
           name: mdbook-admonish
 
       - name: Install Mdbook typst doc
-        uses: extractions/setup-crate@v1
+        uses: baptiste0928/cargo-install@v3
         with:
-          owner: fenjalien
-          name: mdbook-typst-doc
+          crate: mdbook-typst-doc
+          git: https://github.com/fenjalien/mdbook-typst-doc
+          tag: 0.1.2
 
       - name: Build
         run: |
