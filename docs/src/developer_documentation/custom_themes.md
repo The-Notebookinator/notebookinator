@@ -230,11 +230,145 @@ Then, import your `components.typ` into your theme's entry point:
 
 ### Pro / Con Component
 
+Pro / con components tend to be extremely simple. Define a function called `pro-con` inside your `foo/components/pro-con.typ` file:
+
+```typ
+#pro-con(pros: [], cons: []) = {
+  // implement your table here
+}
+```
+
+For examples on how to create a pro / con table, check out out how [other themes](https://github.com/The-Notebookinator/notebookinator/tree/main/themes) implement them.
+
 ### TOC Component
+
+The next three components are a bit more complicated, so we'll be spending a little more time explaining how they work. Each of these components requires some information about the document itself (things like the page numbers of entries, etc.). Normally fetching this data can be rather annoying, but fortunately the Notebookinator has created some utility functions to abstract this.
+
+To get started with your table of contents, first define a function called `toc` in your `foo/components/toc.typ` file.
+
+However, unlike the `pro-con` function, this function will depend on the `print-toc` utility function. This looks like this:
+
+```typ
+// foo/components/toc.typ
+
+// Use this import if you're developing in the Notebookinator directly
+#import "/utils.typ"
+
+// Use this import if you're using the notebookinator as an external dependency
+#import "@local/notebookinator:1.0.1": utils
+
+#let toc() = utils.print-toc((frontmatter, body, appendix) => {
+ // ...
+}
+```
+
+This syntax might look a little weird, so lets break it down. We're defining the function `toc`, which is equal to the `utils.print-toc` function. The `utils.print-toc` function takes 1 argument, and this argument is a function. We're choosing to pass in a [lambda](https://typst.app/docs/reference/foundations/function/#unnamed) function here, since this function only makes sense in the context of the table of contents (we won't need to call it in multiple places).
+
+Inside this lambda we have access to the frontmatter, body, and appendix variables. These variables are all [arrays](https://typst.app/docs/reference/foundations/array/), which dictionaries which all contain the same information as the `ctx` variables from [this](#creating-the-entries) section, with the addition of a `page-number` field, which is an [integer](https://typst.app/docs/reference/foundations/int/).
+
+With these variables, we can simply loop over each one, and print out another entry in the table of contents each time.
+
+Here's what that looks like for the frontmatter entries:
+
+```typ
+// foo/components/toc.typ
+
+#import "/utils.typ"
+
+#let toc() = utils.print-toc((_, body, appendix) => {
+  // replace frontmatter with _
+  // to indicate we aren't using it
+
+  heading[Contents]
+
+  stack(spacing: 0.5em, ..for entry in body {
+    ([
+      #entry.title
+      #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
+      #entry.page-number
+    ],)
+  })
+
+  // TODO: do the same loop for the body entries as well
+}
+```
 
 ### Decision Matrix Component
 
+No data needs to be fetched for the decision matrix, however we do provide a helper function to calculate which choice has the highest score overall, and per category.
+
+```typ
+// foo/components/decision-matrix.typ
+
+#import "/utils.typ"
+
+#let decision-matrix(properties: (), ..choices) = {
+  let data = utils.calc-decision-matrix(properties: properties, ..choices)
+}
+```
+
+Once you've calculated your results, you can render a table displaying them. Here's a simple example to get you started, copied from the `default-theme`:
+
+```typ
+#let decision-matrix(properties: (), ..choices) = {
+  let data = utils.calc-decision-matrix(properties: properties, ..choices)
+
+  tablex( // table element
+    // the extra 2 columns account for the names of the choices and the total
+    columns: for _ in range(properties.len() + 2) {
+      (1fr,)
+    },
+
+    [], // Blank box
+
+    // first we'll display all of the names on the top row
+    ..for property in properties {
+      ([ *#property.name* ],)
+    },
+
+    // then we'll add an extra column for the total
+    [*Total*],
+
+    // then we'll add a row for each of the choices, and their scores
+    ..for choice in data {
+      // Override the fill if the choice has the highest score
+      let cell = if choice.values.total.highest { cellx.with(fill: green) } else { cellx }
+      (cell[*#choice.name*], ..for value in choice.values {
+        (cell[#value.at(1).value],)
+      })
+    },
+
+  )
+}
+```
+
 ### Glossary Component
+
+The glossary component is similar to the table of components in that it requires information about the document to function.
+
+To get access to the glossary entries, you can use the `print-glossary` function provided by the `utils` to fetch all of the glossary terms, in alphabetical order.
+
+The function passed into the `print-glossary` function has access to the `glossary` variable, which is an [array](https://typst.app/docs/reference/foundations/array/). Each entry in the array is a dictionary containing a `word` field and a `definition` field. Both are [strings](https://typst.app/docs/reference/foundations/str/).
+
+```typ
+// foo/components/glossary.typ
+
+// Use this import if you're developing in the Notebookinator directly
+#import "/utils.typ"
+
+// Use this import if you're using the notebookinator as an external dependency
+#import "@local/notebookinator:1.0.1": utils
+
+#let glossary() = utils.print-glossary(glossary => {
+  stack(spacing: 0.5em, ..for entry in glossary {
+    ([
+      = #entry.word
+
+      #entry.definition
+    ],)
+  })
+}
+```
 
 ## Using the Theme
 
