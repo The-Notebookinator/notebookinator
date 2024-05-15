@@ -29,9 +29,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 ## I Have a Question
 
-<!-- FIXME: replace with real url -->
-
-> If you want to ask a question, we assume that you have read the available [Documentation]().
+> If you want to ask a question, we assume that you have read the available [Documentation](https://the-notebookinator.github.io/notebookinator/).
 
 Before you ask a question, it is best to search for existing [Issues](https://github.com/BattleCh1cken/notebookinator.git/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 
