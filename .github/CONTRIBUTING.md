@@ -29,7 +29,9 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 ## I Have a Question
 
-> If you want to ask a question, we assume that you have read the available [Documentation](../docs.pdf).
+<!-- FIXME: replace with real url -->
+
+> If you want to ask a question, we assume that you have read the available [Documentation]().
 
 Before you ask a question, it is best to search for existing [Issues](https://github.com/BattleCh1cken/notebookinator.git/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 
@@ -40,21 +42,6 @@ If you then still feel the need to ask a question and need clarification, we rec
 - Provide project and platform versions (typst, other packages, etc), depending on what seems relevant.
 
 We will then take care of the issue as soon as possible.
-
-<!--
-You might want to create a separate issue tag for questions and include it in this description. People should then tag their issues accordingly.
-
-Depending on how large the project is, you may want to outsource the questioning, e.g. to Stack Overflow or Gitter. You may add additional contact and information possibilities:
-- IRC
-- Slack
-- Gitter
-- Stack Overflow tag
-- Blog
-- FAQ
-- Roadmap
-- E-Mail List
-- Forum
--->
 
 ## I Want To Contribute
 
@@ -153,15 +140,33 @@ You can then [commit](#commit-messages) your changes to your fork. Once you are 
 
 ### Improving The Documentation
 
-We use [Tidy](https://github.com/Mc-Zen/tidy/tree/main) to generate our documentation. This means that most of our documentation is written directly in the code as comments.
+We use a combination of [mdBook](https://github.com/rust-lang/mdBook) and [Tidy](https://github.com/Mc-Zen/tidy/tree/main) to generate our documentation.
 
-You can improve the documentation in the following places:
+All of the documentation can be found inside of the [`docs/`](../docs) directory.
 
+- The guides located in [`docs/src/`](../docs/src)
 - The comments directly in the code
-- The documentation in [`docs.typ`](../docs.typ)
-- The template for the docs at [`docs-template.typ`](../docs-template.typ)
 - The [README](../README.md)
 - The [contributing guide](./CONTRIBUTING.md)(this file)
+
+You can preview your changes locally with the mdbook cli. The first thing you'll need to do is install all of the dependences.
+
+```bash
+cargo install --git https://github.com/typst/typst --locked typst-cli
+cargo install mdbook
+cargo install mdbook-admonish
+cargo install --git https://github.com/fenjalien/mdbook-typst-doc.git
+```
+
+Once everything has installed, render the documentation with these commands:
+
+```bash
+typst compile docs/src/reference.typ --root ./
+cd docs
+mdbook serve
+```
+
+You can then view your notebook by visiting <localhost:8000>.
 
 Once you've made your changes, submit your changes as a pull request, as described above.
 

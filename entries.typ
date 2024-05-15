@@ -2,7 +2,7 @@
 #import "./utils.typ"
 #import "./themes/themes.typ"
 
-/// The generic entry creation function. This function has three entry variants - frontmatter, body, and appendix - used to create each page.
+/// The generic entry creation function. This function is not meant to be called by the user. Instead, use the three entry variants, frontmatter, body, and appendix, to create entries.
 ///
 /// - section (string): The type of entry. Takes either "frontmatter", "body", or "appendix".
 /// - title (string): The title of the entry.

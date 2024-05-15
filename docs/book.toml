@@ -1,0 +1,19 @@
+[book]
+authors = ["BattleCh1cken"]
+language = "en"
+multilingual = false
+src = "src"
+title = "The Notebookinator"
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
+
+[preprocessor.typst-doc]
+command = "mdbook-typst-doc"
+
+[output.html]
+additional-css = [
+  "./mdbook-admonish.css",
+  "./typst-doc.css"
+]
