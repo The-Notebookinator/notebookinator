@@ -34,7 +34,7 @@ The template stores all of the frontmatter entries into the `frontmatter.typ` fi
 
 Frontmatter entries are rendered in the order they are created.
 
-### Body
+#### Body
 
 The most common type of entry is the body entry. These entries store all of your notebook's main content.
 
@@ -83,7 +83,7 @@ The first thing you'll need to do is edit which theme is being imported in `pack
 // packages.typ
 
 // this file allows us to only specify package versions once
-#import "@local/notebookinator:1.0.1": * // TODO: change to the installed version
+#import "@local/notebookinator:1.0.1": *
 #import themes.linear: linear-theme, components // components is imported here so we don't have to specify which theme's components we're using.
 ```
 
