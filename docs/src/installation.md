@@ -21,8 +21,8 @@ This installation process is a little harder, and requires more software to be m
 
 Make sure you have the following software installed:
 
-- [Typst](https://github.com/casey/just#installation)
-- [Git](https://github.com/casey/just#installation)
+- [Typst](https://github.com/typst/typst?tab=readme-ov-file#installation)
+- [Git](https://git-scm.com/downloads)
 - [VSCode](https://code.visualstudio.com/)
 
 Once you've installed everything, run the following commands:
