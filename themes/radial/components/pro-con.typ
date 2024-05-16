@@ -1,4 +1,4 @@
-#import "../colors.typ": *
+#include "../colors.typ"
 
 /// A table displaying pros and cons.
 ///

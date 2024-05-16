@@ -1,6 +1,6 @@
 #import "/globals.typ"
 
-// TODO: document what context provides to the callback
+// TODO: document what ctx provides to the callback
 /// Utility function to help themes implement a table of contents.
 ///
 /// Example Usage:
@@ -13,7 +13,7 @@
 ///   ]
 /// })
 /// ```
-/// - callback (function): A function which takes the #link(<context>)[context] of all entries as input, and returns the content of the entire table of contents.
+/// - callback (function): A function which takes the #link(<ctx>)[ctx] of all entries as input, and returns the content of the entire table of contents.
 /// -> content
 #let print-toc(callback) = locate(
   loc => {
@@ -36,9 +36,9 @@
 
       for (index, entry) in state.final(loc).enumerate() {
         let page-number = counter(page).at(markers.at(index).location()).at(0)
-        let context = entry.context
-        context.page-number = page-number
-        result.push(context)
+        let ctx = entry.ctx
+        ctx.page-number = page-number
+        result.push(ctx)
       }
       return result
     }
@@ -56,7 +56,7 @@
 /// -> content
 #let print-glossary(callback) = locate(
   loc => {
-    let sorted-glossary = globals.glossary-entries.final(loc).sorted(key: ((word, _)) => word)
+    let sorted-glossary = globals.glossary-entries.final(loc).sorted(key: ((word: word, definition: _)) => word)
     callback(sorted-glossary)
   },
 )

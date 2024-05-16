@@ -1,7 +1,7 @@
 #import "format.typ": *
 #import "./colors.typ": *
 
-#let cover(context: (:)) = {
+#let cover(ctx: (:)) = {
   v(50pt)
 
   line(length: 100%, stroke: 2pt)
@@ -9,12 +9,12 @@
   rect(inset: 30pt, fill: surface-0, width: 100%)[
     #grid(columns: (1fr, 3fr), gutter: 2fr, [
       #set text(72pt)
-      #context.team-name
+      #ctx.team-name
     ], 
     [
       #align(right, [
         #set text(20pt)
-        #context.season
+        #ctx.season
         
         Engineering Design Notebook
       ])
@@ -28,57 +28,110 @@
     #box(
       width: 150pt,
       stroke: (top: white, bottom: white, left: black, right: black),
-      context.year
+      ctx.year
     )
   ])
 }
 
-#let frontmatter-entry(context: (:), body) = {
+#let frontmatter-entry(ctx: (:), body) = {
   show: page.with(
-    //margin: (top: 8em),
     header: [ 
-      #set align(center)
       #set text(size: 25pt)
-       
-      #context.title
-       
+      #set line(stroke: 1.5pt)
+      #align(center + horizon, grid(columns: (1fr, auto, 1fr),
+      [
+        #line(length: 100%)
+      ],
+      [
+        #h(20pt)
+        #ctx.title
+        #h(20pt)
+      ],
+      [
+        #line(length: 100%)
+      ]))
     ],
-    background: set-margins(8%, 8%),
   )
+
+  set-border(ctx.type)
+
   body
 }
 
-#let body-entry(context: (:), body) = {
-  show: page.with(margin: (top: 88pt), header: [ 
-    #set align(center)
-    #set text(size: 30pt) 
-    #box(
-      //baseline: 2pt,
-      fill: entry-type-metadata.at(context.type),
-      width: 300pt,
-      inset: 10pt,
-      [#context.title],
+#let body-entry(ctx: (:), body) = {
+  show: page.with(margin: (top: 88pt), 
+  header: [ 
+    #set text(size: 30pt)
+    #set line(stroke: 1.5pt)
+
+    #align(center + horizon, grid(columns: (1fr, auto, 1fr),
+      [
+       #line(length: 100%)
+      ],
+      [
+        #h(20pt)
+        #box(fill: entry-type-metadata.at(ctx.type), outset: 10pt, [#ctx.title])
+        #h(20pt)
+      ],
+      [
+        #line(length: 100%)
+      ]))
+    ], 
+  footer: [
+    #grid(columns: (2fr, 2fr, 1fr),
+      [
+        Written by: #h(10pt) #ctx.author
+      ],
+      [
+        Witnessed by: #h(10pt) #ctx.witness
+      ],
+      [
+        #align(right, box(fill: surface-1, outset: 8pt, context counter(page).display()))
+      ]
     )
-  ], footer: [
-    #set align(left)
-    Written by:
-    #h(30%)
-    Witnessed by:
-  ], background: set-margins(8%, 8%))
+  ], 
+  )
+  
+  set-border(ctx.type)
    
   show heading: it => {
-    set-heading(it, context.type)
+    set-heading(it, ctx.type)
   }
-   
+
+  show raw.where(block: false): box.with(
+    fill: surface-1,
+    inset: (x: 4pt, y: 0pt),
+    outset: (x: 0pt, y: 4pt),
+  )
+  show raw.where(block: true): block.with(
+    fill: surface-1,
+    inset: 8pt,
+    width: 100%
+  )
+  
   body
 }
 
-#let appendix-entry(context: (:), body) = {
+#let appendix-entry(ctx: (:), body) = {
   show: page.with(header: [
-    #set align(center)
     #set text(size: 25pt)
-    #context.title 
-     
-  ], background: set-margins(8%, 8%))
+    #set line(stroke: 1.5pt)
+    #align(center + horizon, grid(columns: (1fr, auto, 1fr),
+      [
+        #line(length: 100%)
+      ],
+      [
+        #h(20pt)
+        #ctx.title
+        #h(20pt)
+      ],
+      [
+        #line(length: 100%)
+      ]))
+    ]
+  )
+  
+  set-border(ctx.type)
+  
   body
 }

@@ -2,7 +2,7 @@
 #import "./utils.typ"
 #import "./themes/themes.typ"
 
-/// Generic entry creation function.
+/// The generic entry creation function. This function is not meant to be called by the user. Instead, use the three entry variants, frontmatter, body, and appendix, to create entries.
 ///
 /// - section (string): The type of entry. Takes either "frontmatter", "body", or "appendix".
 /// - title (string): The title of the entry.
@@ -40,7 +40,7 @@
 
       entries.push(
         (
-          context: (title: title, type: type, date: date, author: author, witness: witness),
+          ctx: (title: title, type: type, date: date, author: author, witness: witness),
           body: final-body,
         ),
       )
@@ -50,10 +50,41 @@
 }
 
 /// Variant of the `#create-entry()` function that creates a frontmatter entry.
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #create-frontmatter-entry(title: "Frontmatter")[
+///   #lorem(50)
+/// ]
+/// ```
+///
 #let create-frontmatter-entry = create-entry.with(section: "frontmatter")
 
 /// Variant of the `#create-entry()` function that creates a body entry.
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #create-body-entry(
+///   title: "Title",
+///   date: datetime(year: 2024, month: 1, day: 1),
+///   type: "identify", // Change this depending on what your theme allows
+///   author: "Bobert",
+///   witness: "Bobernius",
+/// )[
+///   #lorem(50)
+/// ]
+/// ```
 #let create-body-entry = create-entry.with(section: "body")
 
 /// Variant of the `#create-entry()` function that creates an appendix entry.
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #create-appendix-entry(title: "Appendix")[
+///   #lorem(50)
+/// ]
+/// ```
 #let create-appendix-entry = create-entry.with(section: "appendix")

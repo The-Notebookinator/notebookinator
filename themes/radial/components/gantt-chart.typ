@@ -1,4 +1,5 @@
 #import "/packages.typ": timeliney
+#import "../colors.typ": *
 
 /// A gantt chart for task management
 ///

@@ -40,7 +40,7 @@
       ]
     }
 
-    grid(
+    box(grid(
       columns: (1fr, 1fr, 1fr, 1fr, 1fr),
       header-cell(radius: (top-left: 1.5pt))[*Match*],
       header-cell[*Red Alliance*],
@@ -52,7 +52,7 @@
       alliance-info(alliance: match.blue-alliance),
       bool-icon(match.auton),
       bool-icon(match.awp),
-    )
+    ))
 
     if not match.at("notes", default: none) == none [
       === Notes

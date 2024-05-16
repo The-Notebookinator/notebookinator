@@ -1,49 +1,35 @@
 #import "entry-types.typ": *
-/// Sets the length and width of the margins
+/// Formats the border lines
 ///
 /// Example Usage:
 ///
 /// ```typ
-/// #set-margins(8%, 15%)
+/// #set-border()
 /// ```
-/// 
-/// - x (size, ratio): the distance from the edge of the page to the left and right margins
-/// - y (size, ratio): the distance from the edge of the page to the bottom margin
-/// -> content
-#let set-margins(x, y) = {
+#let set-border(type) = {
+  let top-axis = -8.4%    // The title line height
+  let bottom-axis = 100%  // The automatic bottom border
+  
+  // Adjusts top and bottom borders for frontmatter and appendix entries
+  if (type == none) {
+    top-axis = -6.6% 
+    bottom-axis = 106%
+  }
+  
+  let left-axis = -8%    // 8% less than the automatic left border (0%)
+  let right-axis = 108%   // 8% more than the automatic right border (100%)
+  
   set line(stroke: 1.5pt)
-  // TL: top left
-  // TR: top right
-  let border-TL = 0% + 15%
-  let border-TR = 100% - 15%
-  place(
-    // Left border line
-    line(start: (0% + x, 5%), end: (0% + x, 100% - y)),
-  )
-  place(
-    // Right border line
-    line(start: (100% - x, 5%), end: (100% - x, 100% - y)),
-  )
-  place(
-    // Bottom border line
-    line(start: (0% + x, 100% - y), end: (100% - x, 100% - y)),
-  )
-  place(
-    // TL border line -> ——
-    line(start: (0% + x, 5%), end: (border-TL + x, 5%)),
-  )
-  place(
-    // TR border line -> ——
-    line(start: (100% - x, 5%), end: (border-TR - x, 5%)),
-  )
-  place(
-    // TL border line -> ︱
-    line(start: (border-TL + x, 4%), end: (border-TL + x, 6%)),
-  )
-  place(
-    // TR border line -> ︱
-    line(start: (border-TR - x, 4%), end: (border-TR - x, 6%)),
-  )
+  // Top left border
+  place(line(start: (left-axis, top-axis), end: (0%, top-axis)))
+  // Top right border
+  place(line(start: (right-axis, top-axis), end: (100%, top-axis)))
+  // Left border
+  place(line(start: (left-axis, top-axis), end: (left-axis, bottom-axis)))
+  // Right border
+  place(line(start: (right-axis, top-axis), end: (right-axis, bottom-axis)))
+  // Bottom border
+  place(line(start: (left-axis, bottom-axis), end: (right-axis, bottom-axis)))
 }
 
 #let set-heading(it, type) = {
