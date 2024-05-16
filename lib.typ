@@ -34,7 +34,7 @@
   show: doc => rules(doc)
 
   let cover-ctx = (team-name: team-name, season: season, year: year)
-  let cover-ctx = if cover == none {
+  let cover-content = if cover == none {
     let ctx = (team-name: team-name, season: season, year: year)
     print-cover(ctx: ctx, theme: theme)
   } else {
@@ -44,6 +44,6 @@
 
   page[] // Filler page
 
-  print-entries(theme: theme, cover-context: cover-context)
+  print-entries(theme: theme, cover-ctx: cover-ctx)
   body // FIXME: this should be ignored, but the document doesn't properly render without it.
 }
