@@ -16,19 +16,31 @@
 /// )
 /// ```
 /// - team-name (string): The name of your team.
-/// - season (string): The name of the current season
-/// - year (string): The years in which the notebook is being written
-/// - theme (theme): The theme that will be applied to all of the entries. If no theme is specified it will fall back on the default theme.
-/// - cover (content): the title page of the notebook
+/// - season (string): The name of the current season.
+/// - year (string): The years in which the notebook is being written.
+/// - theme (theme): The theme that will be applied to all of the entries. If no theme is specified, it will fall back on the default theme.
+/// - cover (content): The title page of the notebook.
 /// - body (content): The content of the notebook. This will be ignored. Use the create-entry functions instead.
 /// -> content
 #let notebook(
-  team-name: none, season: none, year: none, cover: none, theme: (:), body,
+  team-name: none,
+  season: none,
+  year: none,
+  cover: none,
+  theme: (:),
+  body,
 ) = {
   let rules = theme.rules
   show: doc => rules(doc)
-  let cover-context = (team-name: team-name, season: season, year: year)
-  page(print-cover(context: cover-context, theme: theme))
+
+  let cover-content = if cover == none {
+    let ctx = (team-name: team-name, season: season, year: year)
+    print-cover(ctx: ctx, theme: theme)
+  } else {
+    cover
+  }
+  page(margin: 0pt, cover-content)
+
   page[] // Filler page
 
   print-entries(theme: theme)

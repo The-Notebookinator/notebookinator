@@ -1,48 +1,49 @@
-#import "/utils.typ"
+#import "./components.typ"
 
 #let rules(doc) = {
   doc
 }
 
-#let cover(context: (:)) = [
+#let cover(ctx: (:)) = [
   #set align(center)
   *Default Cover*
 ]
 
-#let toc() = {
-  utils.print-toc(context => [
-    #context.title
-    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #context.page-number
-  ])
-
-  utils.print-toc(type: "appendix", context => [
-    #context.title
-    #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-    #context.page-number
-  ])
-}
-
-#let frontmatter-entry(context: (:), body) = {
-  show: page.with(header: [ = Frontmatter header ], footer: [Frontmatter footer])
+#let frontmatter-entry(ctx: (:), body) = {
+  show: page.with(
+    header: [ = #ctx.title
+      #box(width: 1fr, line(length: 100%)) ],
+    footer: align(center, counter(page).display()),
+  )
 
   body
 }
 
-#let body-entry(context: (:), body) = {
-  show: page.with(header: [ = Body header ], footer: [Body footer])
+#let body-entry(ctx: (:), body) = {
+  show: page.with(
+    header: [ = #ctx.title
+      #box(width: 1fr, line(length: 100%)) ],
+    footer: align(center, counter(page).display()),
+  )
 
   body
 }
-#let appendix-entry(context: (:), body) = {
-  show: page.with(header: [ = Appendix header ], footer: [Appendix footer])
+#let appendix-entry(ctx: (:), body) = {
+  show: page.with(
+    header: [ = #ctx.title
+      #box(width: 1fr, line(length: 100%)) ],
+    footer: align(center, counter(page).display()),
+  )
 
   body
 }
 
 #let default-theme = (
   // Global show rules
-  rules: rules, cover: cover,
+  rules: rules,
+  cover: cover,
   // Entry pages
-  frontmatter-entry: frontmatter-entry, body-entry: body-entry, appendix-entry: appendix-entry,
+  frontmatter-entry: frontmatter-entry,
+  body-entry: body-entry,
+  appendix-entry: appendix-entry,
 )

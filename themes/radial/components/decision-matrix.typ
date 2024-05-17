@@ -1,7 +1,8 @@
 #import "../colors.typ": *
 #import "/utils.typ"
 
-#import "@preview/tablex:0.0.5": *
+#import "/packages.typ": tablex
+#import tablex: *
 
 /// A decision matrix table.
 ///
@@ -15,7 +16,9 @@
   set align(center)
 
   tablex(
-    auto-lines: false, columns: properties.len() + 2, fill: (_, row) => {
+    auto-lines: false,
+    columns: properties.len() + 2,
+    fill: (_, row) => {
       if calc.odd(row) { surface-3 }
       if calc.even(row) { surface-1 }
     },
@@ -25,17 +28,17 @@
     [],
     // Print out all the properties
     ..for property in properties {
-      ([ *#property* ],)
+      ([ *#property.name* ],)
     },
     // Last box in the row
     [*Total*],
     // Print out the data for each choice
     ..for choice in data {
       // Override the fill if the choice has the highest score
-      let cell = if choice.highest { cellx.with(fill: green) } else { cellx }
+      let cell = if choice.values.total.highest { cellx.with(fill: green) } else { cellx }
       (cell[*#choice.name*], ..for value in choice.values {
-        (cell[#value],)
-      }, cell[#choice.total])
+        (cell[#value.at(1).value],)
+      })
     },
     // Bottom line
     hlinex(stroke: (cap: "round", thickness: 2pt)),
