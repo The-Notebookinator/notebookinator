@@ -4,7 +4,7 @@
 
 #let frontmatter-entry(ctx: (:), body) = {
   show: page.with(
-    footer: align(center, counter(page).display()),
+    footer: align(center, context counter(page).display()),
     background: place(rect(fill: gray, height: 100%, width: 15pt)),
   )
 
@@ -45,7 +45,7 @@
         ],
         [
           #set align(center)
-          #counter(page).display()
+          #context counter(page).display()
         ],
         [
           #set align(right)
@@ -71,6 +71,7 @@
   body
 }
 
+// TODO: make an actual appendix entry
 #let appendix-entry(ctx: (:), body) = {
   show: page.with(header: [ = Appendix header ], footer: [Appendix footer])
 

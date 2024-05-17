@@ -1,6 +1,6 @@
 #import "./format.typ": *
 #import "./entries.typ": *
-#import "./components.typ"
+#import "./components/components.typ"
 
 #let pyro-theme = (
   // Global show rules
