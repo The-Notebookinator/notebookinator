@@ -1,4 +1,5 @@
 #import "./colors.typ": *
+#import "./format.typ": format-heading
 
 #let entry-type-metadata = (
   identify: (
@@ -49,6 +50,7 @@
   ctx: (:),
   body,
 ) = {
+  show heading: it => format-heading(it, surface-0)
   show: page.with(
     margin: (
       top: 5em,
@@ -88,6 +90,7 @@
   body,
 ) = {
   let metadata = entry-type-metadata.at(ctx.type)
+  show heading: it => format-heading(it, metadata.color.lighten(60%))
   show: page.with(
     header: {
       // background bar
