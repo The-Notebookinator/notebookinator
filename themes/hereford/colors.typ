@@ -1,5 +1,8 @@
+// TODO: these names are terrible, fix them
 #let dark-red = rgb("#e05c4a")
 #let light-dark-red = rgb("#f86f5d")
+
+
 #let red = rgb("#e06666")
 #let light-red = rgb("#ea9999")
 #let orange = rgb("#f6b26b")
@@ -18,6 +21,9 @@
 #let light-brown = rgb("#deafab")
 #let gray = rgb("#999999")
 #let light-gray = rgb("#b7b7b7")
+
+#let pro-green = rgb("#a5f1a3")
+#let con-red = rgb("#ff9999")
 
 #let surface-0 = rgb("#d9d9d9")
 #let surface-1 = rgb("#cccccc")
