@@ -3,7 +3,7 @@
 #let frontmatter-entry(ctx: (:), body) = {
   show: page.with(
     header: [ = #ctx.title],
-    footer: counter(page).display("i")
+    footer: context counter(page).display("i")
   )
 
   body
@@ -22,56 +22,50 @@
 
   show: page.with(
     paper: "us-letter",
-    margin: (top: 100pt),
+    margin: (top: 90pt),
     header: align(center)[
       #text(size:24pt)[#header-map.at(ctx.type)] \
       #grid(
         rows: 10pt,
         columns: (auto, auto, auto),
         column-gutter: 10pt,
-        align(horizon)[#line(length: 100%)],
+        align(horizon+right)[#line(length: 100% + 35pt)],
         align(top)[#ctx.title],
-        align(horizon)[#line(length: 100%)]
+        align(horizon+left)[#line(length: 100% + 35pt)]
       )
     ],
-    footer: context counter(page).display()
+    footer: context(counter(page).display())
   )
 
-  context ( if calc.even(counter(page).get().at(0)) {
-    grid( 
-      rows: auto,
-      columns: (1fr, 19fr),
-      column-gutter: 10pt,
-      box(fill: color-map.at(ctx.type).transparentize(50%), height: 100%, width: 100%)[
+  context(if calc.even(counter(page).get().at(0)){
+    place(left + top, dx: -35pt, dy: -25pt)[
+      #box(fill: color-map.at(ctx.type).transparentize(50%), height: 100%, width: 5%)[
         #align(horizon)[
           #rotate(90deg, origin : center, reflow: true)[
             #header-map.at(ctx.type)#v(40%)
           ]
         ]
-      ],
-      body
-    )
+      ]
+    ]
   } else {
-    grid(
-      rows: auto,
-      columns: (19fr, 1fr),
-      column-gutter: 10pt,
-      body,
-      box(fill: color-map.at(ctx.type).transparentize(50%), height: 100%, width: 100%)[
+    place(right + top, dx: 35pt, dy: -25pt)[
+      #box(fill: color-map.at(ctx.type).transparentize(50%), height: 100%, width: 5%)[
         #align(horizon)[
-          #rotate(-90deg, origin : center, reflow: true)[
+          #rotate(90deg, origin : center, reflow: true)[
             #v(40%)#header-map.at(ctx.type)
           ]
         ]
       ]
-    )
+    ]
   })
+  context(repr(counter(page).get().at(0)))
+  //body
 }
 
 #let appendix-entry(ctx: (:), body) = {
   show: page.with(
     header: [ = #ctx.title],
-    footer: counter(page).display("i")
+    footer: context counter(page).display("i")
   )
 
   body
