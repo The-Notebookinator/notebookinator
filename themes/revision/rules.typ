@@ -1,5 +1,5 @@
 #let rules(doc) = {
-  set text(font: "Roboto", size: 12pt)
+  set text(font: "linux libertine", size: 12pt)
   set page("us-letter")
 
   // Enforce the correct font on Excalidraw drawings
