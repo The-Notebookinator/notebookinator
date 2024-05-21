@@ -95,7 +95,17 @@
 // Pro / Con
 #let make-pro-con(
   callback,
-) = { }
+) = {
+  return (
+    pros: [],
+    cons: [],
+  ) => {
+    callback(
+      pros,
+      cons,
+    )
+  }
+}
 
 // Decision Matrix
 #let make-decision-matrix(
@@ -105,4 +115,7 @@
 // TODO: add method for these extra components:
 // - plot
 // - pie chart
-//
+// - admonition
+// - gantt chart
+// - tournament
+// - team
