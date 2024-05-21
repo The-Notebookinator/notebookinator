@@ -11,7 +11,7 @@
 /// })
 /// ```
 /// - callback (function): A function which takes the #link(<ctx>)[ctx] of all entries as input, and returns the content of the entire table of contents.
-/// -> content
+/// -> function
 #let make-toc(
   callback,
 ) = {
@@ -62,7 +62,6 @@
     return result
   }
 
-
   return () => context {
     let frontmatter-entries = helper("frontmatter")
     let body-entries = helper("body")
@@ -76,6 +75,34 @@
   }
 }
 
-// Glossary
+/// Constructor for a glossary function
+/// - callback (function): A function that returns the content of the glossary
+/// -> function
+#let make-glossary(
+  callback,
+) = {
+  return () => context {
+    let sorted-glossary = globals.glossary-entries.final().sorted(key: (
+      (
+        word: word,
+        definition: definition,
+      ),
+    ) => word)
+    callback(sorted-glossary)
+  }
+}
+
 // Pro / Con
+#let make-pro-con(
+  callback,
+) = { }
+
 // Decision Matrix
+#let make-decision-matrix(
+  callback,
+) = { }
+
+// TODO: add method for these extra components:
+// - plot
+// - pie chart
+//

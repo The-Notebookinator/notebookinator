@@ -2,20 +2,6 @@
 
 
 
-/// A utility function meant to help themes implement a glossary
-/// - callback (function): A function that returns the content of the glossary
-/// -> content
-#let print-glossary(
-  callback,
-) = locate(loc => {
-  let sorted-glossary = globals.glossary-entries.final(loc).sorted(key: (
-    (
-      word: word,
-      definition: definition,
-    ),
-  ) => word)
-  callback(sorted-glossary)
-})
 
 /// A utility function that does the calculation for decision matrices for you
 ///
