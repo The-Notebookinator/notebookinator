@@ -11,23 +11,50 @@
 ///   #components.toc()
 /// ]
 /// ```
-#let toc() = utils.print-toc((_, body, appendix) => {
+#let toc = utils.make-toc((
+  _,
+  body,
+  appendix,
+) => {
   heading[Contents]
-  stack(spacing: 0.5em, ..for entry in body {
-    ([
-      #entry.title
-      #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-      #entry.page-number
-    ],)
-  })
+  stack(
+    spacing: 0.5em,
+    ..for entry in body {
+      (
+        [
+          #entry.title
+          #box(
+            width: 1fr,
+            line(
+              length: 100%,
+              stroke: (
+                dash: "dotted",
+              ),
+            ),
+          )
+          #entry.page-number
+        ],
+      )
+    },
+  )
 
   heading[Appendix]
   stack(..for entry in appendix {
-    ([
-      #entry.title
-      #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-      #entry.page-number
-    ],)
+    (
+      [
+        #entry.title
+        #box(
+          width: 1fr,
+          line(
+            length: 100%,
+            stroke: (
+              dash: "dotted",
+            ),
+          ),
+        )
+        #entry.page-number
+      ],
+    )
   })
 })
 
@@ -40,14 +67,19 @@
 ///   #components.glossary()
 /// ]
 /// ```
-#let glossary() = utils.print-glossary(glossary => {
-  stack(spacing: 0.5em, ..for entry in glossary {
-    ([
-      = #entry.word
+#let glossary = utils.make-glossary(glossary => {
+  stack(
+    spacing: 0.5em,
+    ..for entry in glossary {
+      (
+        [
+          = #entry.word
 
-      #entry.definition
-    ],)
-  })
+          #entry.definition
+        ],
+      )
+    },
+  )
 })
 
 /// Prints a decision matrix table.
@@ -82,8 +114,14 @@
 /// - ..choices (array): An array containing the name of the choices as its first member,
 /// and values for each of the properties at its following indices
 /// -> content
-#let decision-matrix(properties: (), ..choices) = {
-  let data = utils.calc-decision-matrix(properties: properties, ..choices)
+#let decision-matrix(
+  properties: (),
+  ..choices,
+) = {
+  let data = utils.calc-decision-matrix(
+    properties: properties,
+    ..choices,
+  )
   tablex(
     columns: for _ in range(properties.len() + 2) {
       (1fr,)
@@ -134,9 +172,15 @@
 /// - pros (content): The positive aspects
 /// - cons (content): The negative aspects
 /// -> content
-#let pro-con(pros: [], cons: []) = {
+#let pro-con(
+  pros: [],
+  cons: [],
+) = {
   tablex(
-    columns: (1fr, 1fr),
+    columns: (
+      1fr,
+      1fr,
+    ),
     cellx(fill: green)[*Pros*],
     cellx(fill: red)[*Cons*],
     [#pros],
