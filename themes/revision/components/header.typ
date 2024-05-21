@@ -7,3 +7,7 @@
   "program" : "Program Solution",
   "improve" : "Improve Solution"
 )
+
+#let header(title) = {
+  rect(height: auto, width: auto)[=== #title]
+}
