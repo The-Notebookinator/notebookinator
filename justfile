@@ -8,5 +8,7 @@ install:
 
 gallery:
   #!/usr/bin/env bash
-  for f in "{{gallery_dir}}"/*.typ; do typst c "$f" --format png "${f/.typ}-{n}.png" --root ./; done
-  exit 1
+  set -euxo pipefail
+  for f in "{{gallery_dir}}"/*.typ; do
+    typst c "$f" --format png "${f/.typ}-{n}.png" --root ./
+  done
