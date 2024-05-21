@@ -1,5 +1,6 @@
 #import "./entries.typ": *
 #import "./rules.typ": *
+#import "colors.typ": *
 #import "./components/components.typ"
 
 #let revision-theme = (

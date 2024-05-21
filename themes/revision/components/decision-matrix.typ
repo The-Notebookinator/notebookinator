@@ -1,6 +1,6 @@
 #import "/utils.typ"
 #import "/packages.typ": tablex
-#import "/themes/revision/colors.typ": *
+#import "../colors.typ": *
 #import tablex: *
 
 #let decision-matrix(properties: none, ..choices) = {

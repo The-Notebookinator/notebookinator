@@ -8,7 +8,7 @@
   
   stack(
     spacing: none,
-    [#heading(level: 1)[ENTRIES] #v(1em)],
+    [#heading(level: 1)[ENTRIES]#v(1em)],
     [#grid(
       rows: 1em,
       columns: (1fr, 10fr, 2fr),

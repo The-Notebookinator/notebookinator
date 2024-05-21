@@ -11,7 +11,7 @@
   "brainstorm" : orange,
   "select" : yellow,
   "build" : green,
-  "test" : blue,
-  "program" : indigo,
+  "program" : blue,
+  "test" : indigo,
   "improve" : violet,
 )

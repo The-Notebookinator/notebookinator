@@ -1,4 +1,4 @@
-#import "/themes/revision/colors.typ": *
+#import "../colors.typ": *
 
 #let pro-con(pros: [], cons: []) = {
   table(
