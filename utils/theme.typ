@@ -13,6 +13,20 @@
   )
 }
 
+#let check-multiple-types(
+  ctx,
+  fields,
+  expected-type,
+) = {
+  for field in fields {
+    check-type(
+      ctx,
+      field,
+      expected-type,
+    )
+  }
+}
+
 #let make-theme(
   rules: none,
   cover: none,
@@ -28,6 +42,26 @@
     body-entry: body-entry,
     appendix-entry: appendix-entry,
   )
+}
+
+#let make-cover(
+  callback,
+) = {
+  return (
+    ctx: (:),
+  ) => {
+    check-multiple-types(
+      ctx,
+      (
+        "team-name",
+        "season",
+        "year",
+      ),
+      str,
+    )
+
+    callback(ctx)
+  }
 }
 
 #let make-frontmatter-entry(

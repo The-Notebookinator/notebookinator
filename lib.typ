@@ -23,9 +23,9 @@
 /// - body (content): The content of the notebook. This will be ignored. Use the create-entry functions instead.
 /// -> content
 #let notebook(
-  team-name: none,
-  season: none,
-  year: none,
+  team-name: "",
+  season: "",
+  year: "",
   cover: none,
   theme: (:),
   body,

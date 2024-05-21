@@ -7,12 +7,10 @@
   doc
 }
 
-#let cover(
-  ctx: (:),
-) = [
+#let cover = utils.make-cover(ctx => [
   #set align(center)
   *Default Cover*
-]
+])
 
 #let frontmatter-entry = utils.make-frontmatter-entry((
   ctx,
@@ -26,7 +24,7 @@
       ) ],
     footer: align(
       center,
-      counter(page).display(),
+      context counter(page).display("i"),
     ),
   )
 
@@ -45,7 +43,7 @@
       ) ],
     footer: align(
       center,
-      counter(page).display(),
+      context counter(page).display(),
     ),
   )
 
@@ -64,10 +62,9 @@
       ) ],
     footer: align(
       center,
-      counter(page).display(),
+      context counter(page).display("i"),
     ),
   )
-
   body
 })
 }
