@@ -1,7 +1,6 @@
 #import "/globals.typ"
 
-
-
+// TODO: move this to a constructor
 
 /// A utility function that does the calculation for decision matrices for you
 ///

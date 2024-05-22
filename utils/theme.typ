@@ -1,3 +1,8 @@
+/*
+This file contains all of the constructors for core theme related constructors.
+All of the constructors also perform checks to ensure that all of the types are correct.
+*/
+
 #let check-type(
   ctx,
   field,
@@ -41,6 +46,24 @@
     frontmatter-entry: frontmatter-entry,
     body-entry: body-entry,
     appendix-entry: appendix-entry,
+  )
+}
+
+#let make-rules(
+  callback,
+) = {
+  assert.eq(
+    type(
+      callback([test]),
+    ),
+    content,
+    message: "The callback function does not return content. Make sure that you've properly returned the document.",
+  )
+
+  return (
+    doc => {
+      callback(doc)
+    }
   )
 }
 
@@ -121,22 +144,19 @@
       },
     )
 
-    // @typstyle off
-    check-type(ctx, "title", str)
-
-    // @typstyle off
-    check-type(ctx, "type", str)
+    check-multiple-types(
+      ctx,
+      (
+        "title",
+        "type",
+        "author", // TODO: decide on the standard process for entry attribution
+        "witness",
+      ),
+      str,
+    )
 
     // @typstyle off
     check-type(ctx, "date", datetime)
-
-    // @typstyle off
-    check-type(ctx, "author", str)
-
-    // @typstyle off
-    check-type(ctx, "witness", str)
-
-
 
     if not valid-entry-types.contains(ctx.type) {
       panic("Entry type '" + str(ctx.type) + "' Valid types include:" + valid-types-printable)

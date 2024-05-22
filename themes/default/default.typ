@@ -1,11 +1,9 @@
 #import "./components.typ"
 #import "/utils.typ"
 
-#let rules(
-  doc,
-) = {
+#let rules = utils.make-rules(doc => {
   doc
-}
+})
 
 #let cover = utils.make-cover(ctx => [
   #set align(center)
