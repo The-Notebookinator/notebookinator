@@ -34,15 +34,26 @@
   show: doc => rules(doc)
 
   let cover-content = if cover == none {
-    let ctx = (team-name: team-name, season: season, year: year)
-    print-cover(ctx: ctx, theme: theme)
+    let ctx = (
+      team-name: team-name,
+      season: season,
+      year: year,
+    )
+    (
+      theme.cover
+    )(ctx: ctx)
   } else {
     cover
   }
-  page(margin: 0pt, cover-content)
+  page(
+    margin: 0pt,
+    cover-content,
+  )
 
-  page[] // Filler page
+  page[]
+  // Filler page
 
   print-entries(theme: theme)
-  body // FIXME: this should be ignored, but the document doesn't properly render without it.
+  body
+  // FIXME: this should be ignored, but the document doesn't properly render without it.
 }

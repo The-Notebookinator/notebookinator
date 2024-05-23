@@ -39,7 +39,19 @@ All of the constructors also perform checks to ensure that all of the types are 
   body-entry: none,
   appendix-entry: none,
 ) = {
-  // TODO: sub in default theme functions if not present
+  for input in (
+    rules,
+    cover,
+    frontmatter-entry,
+    body-entry,
+    appendix-entry,
+  ) {
+    assert.eq(
+      type(input),
+      function,
+    )
+  }
+
   return (
     rules: rules,
     cover: cover,

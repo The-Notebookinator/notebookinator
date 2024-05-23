@@ -115,7 +115,15 @@
 // TODO: redo this api, it kind of sucks rn
 #let make-decision-matrix(
   callback,
-) = { }
+) = {
+  return (
+    properties: (),
+    ..choices,
+  ) => {
+    // I have no idea what to pass in here
+    callback()
+  }
+}
 
 /// A constructor for an admonition component
 /// - callback (function): A function that returns the content for the admonition
