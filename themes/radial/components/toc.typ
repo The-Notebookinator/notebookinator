@@ -34,9 +34,7 @@
     },
   )
 
-  if (
-    appendix.len() <= 0
-  ) {
+  if (appendix.len() <= 0) {
     return
   }
 

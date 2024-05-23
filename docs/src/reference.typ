@@ -5,7 +5,11 @@
 
 #set heading(numbering: "1.")
 
-#let show-module = tidy.show-module.with(show-outline: false, sort-functions: none, first-heading-level: 2)
+#let show-module = tidy.show-module.with(
+  show-outline: false,
+  sort-functions: none,
+  first-heading-level: 2,
+)
 
 #let def-arg(term, t, default: none, description) = {
   if type(t) == str {
@@ -36,7 +40,12 @@
   stack(
     dir: ltr,
     [/ #term: #t \ #description],
-    align(right, if default != none { [(default: #default)] }),
+    align(
+      right,
+      if default != none {
+        [(default: #default)]
+      },
+    ),
   )
 }
 
@@ -125,7 +134,7 @@ Context is stored as a dictionary with the following fields:
   [`<integer>` or `<none>`],
   default: none,
   [The page number of the first page of the entry. Only available while using the
-  `print-toc()` utility function. ],
+    `print-toc()` utility function. ],
 )
 
 == Default Theme
@@ -140,7 +149,9 @@ including a pros and cons table and a decision matrix template.
 
 === Components
 
-#let default-components-module = tidy.parse-module(read("../../themes/default/components.typ"))
+#let default-components-module = tidy.parse-module(
+  read("../../themes/default/components.typ"),
+)
 #show-module(default-components-module, first-heading-level: 3)
 
 == Radial Theme

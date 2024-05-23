@@ -50,20 +50,14 @@
   // 3. Adds all of the values to a dictionary, labeling them with their respective property names
   // 4. Iterates over each of the newly organized choices to determine which is the highest for each category (including the total)
   let choices = choices.pos().enumerate().map((
-    (
-      index,
-      choice,
-    ),
+    (index, choice),
   ) => {
     let name = choice.at(0)
     let values = choice.slice(1)
 
     // 1.  Weight the values
     values = values.enumerate().map((
-      (
-        index,
-        value,
-      ),
+      (index, value),
     ) => value * properties.at(index).at(
       "weight",
       default: 1,
@@ -74,10 +68,7 @@
 
     // 3. Assign the value names
     let result = (:)
-    for (
-      index,
-      value,
-    ) in values.enumerate() {
+    for (index, value) in values.enumerate() {
       result.insert(
         properties.at(index).name,
         (
@@ -112,10 +103,7 @@
     )
     // Records the index of the choice which had the highest total
 
-    for (
-      index,
-      choice,
-    ) in choices.enumerate() {
+    for (index, choice) in choices.enumerate() {
       let property-value = choice.values.at(property.name).value
 
       if property-value > highest.value {

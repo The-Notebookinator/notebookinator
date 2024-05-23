@@ -24,8 +24,7 @@
       [
         #set text(72pt)
         #ctx.team-name
-      ],
-      [
+      ], [
         #align(
           right,
           [
@@ -36,6 +35,7 @@
           ],
         )
       ],
+
     )
   ]
   h(5pt)
@@ -80,15 +80,14 @@
         ),
         [
           #line(length: 100%)
-        ],
-        [
+        ], [
           #h(20pt)
           #ctx.title
           #h(20pt)
-        ],
-        [
+        ], [
           #line(length: 100%)
         ],
+
       ),
     )
   ])
@@ -120,8 +119,7 @@
           ),
           [
             #line(length: 100%)
-          ],
-          [
+          ], [
             #h(20pt)
             #box(
               fill: entry-type-metadata.at(ctx.type),
@@ -129,10 +127,10 @@
               [#ctx.title],
             )
             #h(20pt)
-          ],
-          [
+          ], [
             #line(length: 100%)
           ],
+
         ),
       )
     ],
@@ -145,11 +143,9 @@
         ),
         [
           Written by: #h(10pt) #ctx.author
-        ],
-        [
+        ], [
           Witnessed by: #h(10pt) #ctx.witness
-        ],
-        [
+        ], [
           #align(
             right,
             box(
@@ -159,6 +155,7 @@
             ),
           )
         ],
+
       )
     ],
   )
@@ -209,15 +206,14 @@
         ),
         [
           #line(length: 100%)
-        ],
-        [
+        ], [
           #h(20pt)
           #ctx.title
           #h(20pt)
-        ],
-        [
+        ], [
           #line(length: 100%)
         ],
+
       ),
     )
   ])
