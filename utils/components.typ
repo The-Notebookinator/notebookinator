@@ -14,16 +14,9 @@
 /// ```
 /// - callback (function): A function which takes the #link(<ctx>)[ctx] of all entries as input, and returns the content of the entire table of contents.
 /// -> function
-#let make-toc(
-  callback,
-) = {
-  let helper(
-    type,
-  ) = {
-    let (
-      state,
-      markers,
-    ) = if type == "frontmatter" {
+#let make-toc(callback) = {
+  let helper(type) = {
+    let (state, markers) = if type == "frontmatter" {
       (
         globals.frontmatter-entries,
         query(
@@ -50,10 +43,7 @@
 
     let result = ()
 
-    for (
-      index,
-      entry,
-    ) in state.final().enumerate() {
+    for (index, entry) in state.final().enumerate() {
       let page-number = counter(page).at(
         markers.at(index).location(),
       ).at(0)
@@ -80,15 +70,10 @@
 /// Constructor for a glossary component
 /// - callback (function): A function that returns the content of the glossary
 /// -> function
-#let make-glossary(
-  callback,
-) = {
+#let make-glossary(callback) = {
   return () => context {
     let sorted-glossary = globals.glossary-entries.final().sorted(key: (
-      (
-        word: word,
-        definition: definition,
-      ),
+      (word: word, definition: definition),
     ) => word)
     callback(sorted-glossary)
   }
@@ -97,9 +82,7 @@
 /// Constructor for a pro / con component
 /// - callback (function): A function that returns the content of the glossary
 /// -> function
-#let make-pro-con(
-  callback,
-) = {
+#let make-pro-con(callback) = {
   return (
     pros: [],
     cons: [],
@@ -113,9 +96,7 @@
 
 // Decision Matrix
 // TODO: redo this api, it kind of sucks rn
-#let make-decision-matrix(
-  callback,
-) = {
+#let make-decision-matrix(callback) = {
   return (
     properties: (),
     ..choices,
@@ -128,9 +109,7 @@
 /// A constructor for an admonition component
 /// - callback (function): A function that returns the content for the admonition
 /// -> function
-#let make-admonition(
-  callback,
-) = {
+#let make-admonition(callback) = {
   let valid-types = (
     "note",
     "example",
@@ -151,10 +130,7 @@
     },
   )
 
-  return (
-    type: none,
-    body,
-  ) => {
+  return (type: none, body) => {
     if not valid-types.contains(type) {
       panic("Entry type '" + str(type) + "' Valid types include:" + valid-types-printable)
     }

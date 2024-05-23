@@ -30,14 +30,26 @@
     (1fr,)
   }
 
-  let title-cell(body) = cellx(fill: surface-2, inset: 0.8em, [
-    #set text(13pt)
-    #set align(center)
-    #body
-  ])
+  let title-cell(body) = cellx(
+    fill: surface-2,
+    inset: 0.8em,
+    [
+      #set text(13pt)
+      #set align(center)
+      #body
+    ],
+  )
 
   let body-cell(total: false, highest: none, body) = cellx(
-    fill: if highest == none { white } else if highest and total { decision-green } else if highest { pro-green } else { white },
+    fill: if highest == none {
+      white
+    } else if highest and total {
+      decision-green
+    } else if highest {
+      pro-green
+    } else {
+      white
+    },
     inset: 0.8em,
     [
       #set align(center)

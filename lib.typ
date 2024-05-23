@@ -39,9 +39,8 @@
       season: season,
       year: year,
     )
-    (
-      theme.cover
-    )(ctx: ctx)
+
+    (theme.cover)(ctx: ctx)
   } else {
     cover
   }
@@ -50,8 +49,8 @@
     cover-content,
   )
 
-  page[]
   // Filler page
+  page[]
 
   print-entries(theme: theme)
   body
