@@ -1,5 +1,6 @@
 #import "../colors.typ": *
 #import "/packages.typ": cetz
+#import "/utils.typ"
 
 /// Creates a labeled pie chart.
 ///
@@ -17,7 +18,7 @@
 ///   - color: `<color>` The value of the section
 ///   - name: `<string>` The name of the section
 /// -> content
-#let pie-chart(..data) = {
+#let pie-chart = utils.make-pie-chart(data => {
   let total
   let percentages = ()
 
@@ -104,7 +105,7 @@
       )
     }
   })
-}
+})
 
 /// Example Usage:
 /// ```typ
@@ -121,7 +122,7 @@
 /// - y-label (string): The label on the y axis
 /// - ..data (dictionary):
 /// -> content
-#let plot(title: "", x-label: "", y-label: "", length: auto, ..data) = {
+#let plot = utils.make-plot((title, x-label, y-label, length, data) => {
   // The length of the whole plot is 8.5 units.
   let length = if length == auto {
     8.5%
@@ -186,4 +187,4 @@
     #label.name
     #h(10pt)
   ]
-}
+})

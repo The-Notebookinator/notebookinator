@@ -250,6 +250,24 @@
   }
 }
 
+/// A constructor for a pie chart component
+/// - callback (function): A function that returns the content for the pie chart
+/// -> function
+#let make-pie-chart(callback) = {
+  return (..data) => {
+    callback(data)
+  }
+}
+
+/// A constructor for a plot component
+/// - callback (function): A function that returns the content for the plot
+/// -> function
+#let make-plot(callback) = {
+  return (title: "", x-label: "", y-label: "", length: auto, ..data) => {
+    callback(title, x-label, y-label, length, data)
+  }
+}
+
 // TODO: add method for these extra components:
 // - plot
 // - pie chart
