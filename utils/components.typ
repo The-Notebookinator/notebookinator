@@ -103,6 +103,11 @@
           not alternate-format,
           message: "Property should be of type 'str'",
         )
+
+        if property.at("weight", default: none) == none {
+          property.insert("weight", 1)
+        }
+
         assert.eq(type(property.name), str)
         assert(type(property.weight) == float or type(property.weight) == int)
       }
