@@ -12,7 +12,7 @@
 ///   ]
 /// })
 /// ```
-/// - callback (function): A function which takes the #link(<ctx>)[ctx] of all entries as input, and returns the content of the entire table of contents.
+/// - callback (function): A function which returns the content of the toc
 /// -> function
 #let make-toc(callback) = {
   let helper(type) = {
@@ -80,29 +80,132 @@
 }
 
 /// Constructor for a pro / con component
-/// - callback (function): A function that returns the content of the glossary
+/// - callback (function): A function that returns the content of the pro / con table
 /// -> function
 #let make-pro-con(callback) = {
-  return (
-    pros: [],
-    cons: [],
-  ) => {
-    callback(
-      pros,
-      cons,
-    )
+  return (pros: [], cons: []) => {
+    callback(pros, cons)
   }
 }
 
-// Decision Matrix
-// TODO: redo this api, it kind of sucks rn
+/// Constructor for a decision matrix
+/// - callback (function): A function that returns the content of the matrix
+/// -> function
 #let make-decision-matrix(callback) = {
-  return (
-    properties: (),
-    ..choices,
-  ) => {
-    // I have no idea what to pass in here
-    callback()
+  return (properties: (), ..choices) => {
+    // ensure the properties are passed in correctly
+    let alternate-format = false
+    for property in properties {
+      if type(property) == str {
+        alternate-format = true
+      } else {
+        assert(
+          not alternate-format,
+          message: "Property should be of type 'str'",
+        )
+        assert.eq(type(property.name), str)
+        assert(type(property.weight) == float or type(property.weight) == int)
+      }
+    }
+
+    // ensure the choices are passed in correctly
+    for choice in choices.pos() {
+      for (index, rating) in choice.enumerate() {
+        if index == 0 {
+          assert.eq(type(rating), str)
+          continue
+        }
+
+        assert(
+          type(rating) == int or type(rating) == float,
+          message: "Values for decision matrices must be of type 'float' or 'int'",
+        )
+      }
+
+      assert.eq(
+        choice.len() - 1,
+        properties.len(),
+        message: "The number of supplied values did not match the number of properties.",
+      )
+    }
+
+    // the calculation should only need to parse data in one format,
+    // so if the user passed in the alternate, format we'll just convert it to the standard one
+    properties = if alternate-format {
+      properties.map(property => (name: property, weight: 1))
+    } else {
+      properties
+    }
+
+    // now we can actually calculate the data
+    let data = (:)
+
+    for (index, choice) in choices.pos().enumerate() {
+      let name = choice.at(0)
+
+      let values = choice.slice(1)
+      let unweighted-total = values.sum()
+
+      let weighted-values = values.enumerate().map((
+        (index, value),
+      ) => value * properties.at(index).at(
+        "weight",
+        default: 1,
+      ))
+      let weighted-total = weighted-values.sum()
+
+      let property-data = (:)
+
+      for (index, property) in properties.enumerate() {
+        property-data.insert(
+          property.name,
+          (
+            unweighted: values.at(index),
+            weighted: weighted-values.at(index),
+            highest: false,
+          ),
+        )
+      }
+
+      property-data.insert(
+        "total",
+        (
+          unweighted: unweighted-total,
+          weighted: weighted-total,
+          highest: false,
+        ),
+      )
+
+      data.insert(
+        name,
+        property-data,
+      )
+    }
+
+    // now that we've filled in all of the data, we can calculate which choice won
+
+    // we're going to treat total like another property for the sake of calculating if it won
+    properties.push((name: "total"))
+
+    for property in properties {
+      let highest = ( // Records the index of the choice which had the highest total
+        index: 0,
+        value: 0,
+      )
+
+      for (index, choice) in data {
+        let property-value = choice.at(property.name).weighted
+        if property-value > highest.value {
+          highest.index = index
+          highest.value = property-value
+        }
+      }
+      data.at(highest.index).at(property.name).highest = true
+    }
+    properties.pop()
+
+
+    return callback(properties, data)
   }
 }
 

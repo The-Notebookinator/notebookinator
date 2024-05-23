@@ -6,7 +6,7 @@
 })
 
 #let cover = utils.make-cover(ctx => [
-  #set align(center)
+  #set align(center + horizon)
   *Default Cover*
 ])
 

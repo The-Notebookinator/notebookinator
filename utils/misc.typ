@@ -77,6 +77,7 @@
         ),
       )
     }
+
     result.insert(
       "total",
       (
@@ -91,11 +92,13 @@
     )
   })
 
+  repr(choices)
+
   // 4. Check if highest
-  properties.push((
+  properties.push(( // Treat total as a property as well
     name: "total",
   ))
-  // Treat total as a property as well
+
   for property in properties {
     let highest = (
       index: 0,
