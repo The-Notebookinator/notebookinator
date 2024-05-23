@@ -39,8 +39,7 @@
   show raw.where(block: true): it => format.raw-block(it)
 
   show heading: format.heading
-
-  show table: format.table
+  //show table: format.table
 
   // Display the whole document
   doc

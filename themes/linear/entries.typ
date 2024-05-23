@@ -104,7 +104,7 @@
           box(
             fill: entry-type-metadata.at(ctx.type),
             outset: 10pt,
-            [#ctx.title],
+            ctx.title,
           )
           h(20pt)
         },

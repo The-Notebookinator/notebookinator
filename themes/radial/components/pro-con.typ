@@ -1,4 +1,4 @@
-#include "../colors.typ"
+#import "../colors.typ": *
 #import "/utils.typ"
 
 #let pro-con = utils.make-pro-con((pros, cons) => {
