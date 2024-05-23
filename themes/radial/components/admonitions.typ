@@ -4,7 +4,6 @@
 #import "../metadata.typ": *
 #import "/packages.typ": showybox
 #import showybox: *
-#include "/utils.typ"
 
 #let admonition = utils.make-admonition((
   type,

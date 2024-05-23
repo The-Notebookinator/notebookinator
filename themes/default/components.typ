@@ -1,5 +1,3 @@
-#import "/packages.typ": tablex
-#import tablex: tablex, cellx
 #import "/utils.typ"
 
 /// Prints the table of contents.
@@ -175,14 +173,14 @@
   pros: [],
   cons: [],
 ) = {
-  tablex(
+  table(
     columns: (
       1fr,
       1fr,
     ),
-    cellx(fill: green)[*Pros*],
-    cellx(fill: red)[*Cons*],
-    [#pros],
-    [#cons],
+    table.cell(fill: green)[*Pros*],
+    table.cell(fill: red)[*Cons*],
+    pros,
+    cons,
   )
 }
