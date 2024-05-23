@@ -3,11 +3,7 @@ This file contains all of the constructors for core theme related constructors.
 All of the constructors also perform checks to ensure that all of the types are correct.
 */
 
-#let check-type(
-  ctx,
-  field,
-  expected-type,
-) = {
+#let check-type(ctx, field, expected-type) = {
   let given-type = type(
     ctx.at(field),
   )
@@ -18,11 +14,7 @@ All of the constructors also perform checks to ensure that all of the types are 
   )
 }
 
-#let check-multiple-types(
-  ctx,
-  fields,
-  expected-type,
-) = {
+#let check-multiple-types(ctx, fields, expected-type) = {
   for field in fields {
     check-type(
       ctx,
@@ -61,9 +53,7 @@ All of the constructors also perform checks to ensure that all of the types are 
   )
 }
 
-#let make-rules(
-  callback,
-) = {
+#let make-rules(callback) = {
   assert.eq(
     type(
       callback([test]),
@@ -72,19 +62,13 @@ All of the constructors also perform checks to ensure that all of the types are 
     message: "The callback function does not return content. Make sure that you've properly returned the document.",
   )
 
-  return (
-    doc => {
-      callback(doc)
-    }
-  )
+  return doc => {
+    callback(doc)
+  }
 }
 
-#let make-cover(
-  callback,
-) = {
-  return (
-    ctx: (:),
-  ) => {
+#let make-cover(callback) = {
+  return (ctx: (:)) => {
     check-multiple-types(
       ctx,
       (
@@ -99,37 +83,20 @@ All of the constructors also perform checks to ensure that all of the types are 
   }
 }
 
-#let make-frontmatter-entry(
-  callback,
-) = {
-  assert.eq(
-    type(callback),
-    function,
-  )
+#let make-frontmatter-entry(callback) = {
+  assert.eq(type(callback), function)
 
-  return (
-    ctx: (:),
-    body,
-  ) => {
-    check-type(
-      ctx,
-      "title",
-      str,
-    )
-    callback(
-      ctx,
-      body,
-    )
+  return (ctx: (:), body) => {
+    check-type(ctx, "title", str)
+
+    callback(ctx, body)
   }
 }
 
 #let make-body-entry(
   callback,
 ) = {
-  assert.eq(
-    type(callback),
-    function,
-  )
+  assert.eq(type(callback), function)
 
   return (
     ctx: (:),
@@ -148,10 +115,7 @@ All of the constructors also perform checks to ensure that all of the types are 
 
     let valid-types-printable = valid-entry-types.fold(
       "",
-      (
-        base,
-        value,
-      ) => {
+      (base, value) => {
         base + " '" + value + "'"
       },
     )
@@ -167,17 +131,13 @@ All of the constructors also perform checks to ensure that all of the types are 
       str,
     )
 
-    // @typstyle off
     check-type(ctx, "date", datetime)
 
     if not valid-entry-types.contains(ctx.type) {
       panic("Entry type '" + str(ctx.type) + "' Valid types include:" + valid-types-printable)
     }
 
-    callback(
-      ctx,
-      body,
-    )
+    callback(ctx, body)
   }
 }
 
