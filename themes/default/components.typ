@@ -2,9 +2,10 @@
 #import tablex: tablex, cellx
 #import "/utils.typ"
 
-/// Print out the table of contents
+/// Prints the table of contents.
 ///
-/// Example Usage:
+/// *Example Usage*
+///
 /// ```typ
 /// #create-frontmatter-entry(title: "Table of Contents")[
 ///   #components.toc()
@@ -32,7 +33,7 @@
 
 /// Prints out the glossary.
 ///
-/// Example Usage:
+/// *Example Usage*
 ///
 /// ```typ
 /// #create-appendix-entry(title: "Glossary")[
@@ -49,7 +50,21 @@
   })
 })
 
-/// A decision matrix table.
+/// Prints a decision matrix table.
+///
+/// *Example Usage*
+///
+/// ```typ
+/// #components.decision-matrix(
+///    properties: (
+///      (name: "Category 1"),
+///      (name: "Category 2"),
+///      (name: "Category 3")
+///    ),
+///    ("Decision", 4, 3, 2),
+///    ("Matrix", 1, 2, 3),
+///  )
+/// ```
 ///
 /// *Example Usage*
 /// ```typ
@@ -88,7 +103,16 @@
   )
 }
 
-/// A table displaying pros and cons.
+/// Prints a pros and cons table.
+///
+/// *Example Usage*
+///
+/// ```typ
+/// #components.pro-con(
+///   pros: "Pros",
+///   cons: "Cons"
+/// )
+/// ```
 ///
 /// *Example Usage*
 /// ```typ

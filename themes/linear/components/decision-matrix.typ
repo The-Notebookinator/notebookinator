@@ -4,9 +4,9 @@
 #import "/packages.typ": tablex
 #import tablex: *
 
-/// A decision matrix table.
+/// Prints a decision matrix table.
 ///
-/// Example Usage:
+/// *Example Usage*
 /// ```typ
 /// #decision-matrix(
 ///   properties: (

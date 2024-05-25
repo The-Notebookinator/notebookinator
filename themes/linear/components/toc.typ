@@ -1,8 +1,8 @@
 #import "../../../utils.typ"
 #import "../entry-types.typ": *
-/// Print out the table of contents
+/// Prints the table of contents.
 ///
-/// Example Usage:
+/// *Example Usage*
 /// ```typ
 /// #create-frontmatter-entry(title: "Table of Contents")[
 ///   #components.toc()
