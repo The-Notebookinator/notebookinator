@@ -94,6 +94,10 @@
 #let make-decision-matrix(callback) = {
   return (properties: (), ..choices) => {
     // ensure the properties are passed in correctly
+    //
+    // this variable tracks whether the user
+    // is using the alternate mode of passing in arguments,
+    // where each property is a str instead of a dictionary
     let alternate-format = false
     for property in properties {
       if type(property) == str {
