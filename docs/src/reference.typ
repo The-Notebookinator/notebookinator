@@ -2,6 +2,7 @@
 
 #import "@preview/tidy:0.3.0"
 #import "@preview/gentle-clues:0.6.0": *
+#import "@preview/codly:0.2.0": *
 
 #let show-module = tidy.show-module.with(
   show-outline: false,
@@ -46,6 +47,9 @@
     ),
   )
 }
+
+#show: codly-init.with()
+#codly()
 
 // ------------------ Document content -------------------------
 

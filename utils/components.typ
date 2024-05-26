@@ -2,7 +2,7 @@
 
 /// A constructor for a table of contents component.
 ///
-/// Example Usage:
+/// *Example Usage:*
 /// ```typ
 /// #let toc = utils.make-toc((frontmatter, body, appendix) => {
 ///   for entry in body [
@@ -12,7 +12,7 @@
 ///   ]
 /// })
 /// ```
-/// - callback (function): A function which returns the content of the toc
+/// - callback (function): A function which returns the content of the toc. The function must take `frontmatter`, `body`, and `appendix` arguments.
 /// -> function
 #let make-toc(callback) = {
   let helper(type) = {
@@ -68,7 +68,25 @@
 }
 
 /// Constructor for a glossary component
-/// - callback (function): A function that returns the content of the glossary
+///
+/// *Example Usage:*
+/// ```typ
+/// #let glossary = utils.make-glossary(glossary => {
+///   stack(
+///     spacing: 0.5em,
+///     ..for entry in glossary {
+///       (
+///         [
+///           = #entry.word
+///
+///           #entry.definition
+///         ],
+///       )
+///     },
+///   )
+/// })
+/// ```
+/// - callback (function): A function that returns the content of the glossary. The function must take a `glossary` argument.
 /// -> function
 #let make-glossary(callback) = {
   return () => context {
@@ -80,7 +98,24 @@
 }
 
 /// Constructor for a pro / con component
-/// - callback (function): A function that returns the content of the pro / con table
+///
+/// *Example Usage:*
+/// ```typ
+/// #let pro-con = utils.make-pro-con((pros, cons) => {
+///   table(
+///     columns: (
+///       1fr,
+///       1fr,
+///     ),
+///     table.cell(fill: green)[*Pros*],
+///     table.cell(fill: red)[*Cons*],
+///     pros,
+///     cons,
+///   )
+/// })
+/// ```
+///
+/// - callback (function): A function that returns the content of the pro / con table. The function must take `pros` and `cons` arguments.
 /// -> function
 #let make-pro-con(callback) = {
   return (pros: [], cons: []) => {
@@ -89,7 +124,14 @@
 }
 
 /// Constructor for a decision matrix
-/// - callback (function): A function that returns the content of the matrix
+///
+/// *Example Usage:*
+/// ```typ
+/// #let decision-matrix = utils.make-decision-matrix((properties, data) => {
+///   // ...
+/// })
+/// ```
+/// - callback (function): A function that returns the content of the matrix. The function must `properties` and `data` arguments.
 /// -> function
 #let make-decision-matrix(callback) = {
   return (properties: (), ..choices) => {
@@ -218,8 +260,24 @@
   }
 }
 
-/// A constructor for an admonition component
-/// - callback (function): A function that returns the content for the admonition
+/// A constructor for an admonition component.
+///
+/// *Example Usage:*
+/// ```typ
+/// #let admonition = utils.make-admonition((type, body) => {
+///   //..
+/// }
+/// ```
+/// - callback (function): A function that returns the content for the admonition. The function must take `type` and `body` arguments.
+///   Valid types include:
+///    - `"note"`
+///    - `"example"`
+///    - `"warning"`
+///    - `"quote"`
+///    - `"equation"`
+///    - `"decision"`
+///    - `"build"`
+///
 /// -> function
 #let make-admonition(callback) = {
   let valid-types = (
@@ -255,7 +313,15 @@
 }
 
 /// A constructor for a pie chart component
-/// - callback (function): A function that returns the content for the pie chart
+///
+/// *Example Usage:*
+///
+/// ```typ
+/// #let pie-chart = utils.make-pie-chart(data => {
+///   // ...
+/// })
+/// ```
+/// - callback (function): A function that returns the content for the pie chart. The function must take a `data` argument.
 /// -> function
 #let make-pie-chart(callback) = {
   return (..data) => {
@@ -264,7 +330,16 @@
 }
 
 /// A constructor for a plot component
-/// - callback (function): A function that returns the content for the plot
+///
+/// *Example Usage:*
+/// ```typ
+/// #let plot = utils.make-plot((title, x-label, y-label, length, data) => {
+///   // ...
+/// })
+/// ```
+///
+/// - callback (function): A function that returns the content for the plot.
+///   The function must take `title`, `x-label`, `y-label`, `length`, and `data` arguments.
 /// -> function
 #let make-plot(callback) = {
   return (title: "", x-label: "", y-label: "", length: auto, ..data) => {

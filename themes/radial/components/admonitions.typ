@@ -5,10 +5,7 @@
 #import "/packages.typ": showybox
 #import showybox: *
 
-#let admonition = utils.make-admonition((
-  type,
-  body,
-) => {
+#let admonition = utils.make-admonition((type, body) => {
   let info = admonition-type-metadata.at(type)
   let colored-icon = utils.change-icon-color(
     raw-icon: info.icon,
