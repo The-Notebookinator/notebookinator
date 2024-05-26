@@ -5,15 +5,12 @@
 /// *Example Usage*
 ///
 /// ```typ
-/// #create-frontmatter-entry(title: "Table of Contents")[
+/// #create-body-entry(title: "Table Of Contents")[
 ///   #components.toc()
 /// ]
 /// ```
-#let toc = utils.make-toc((
-  _,
-  body,
-  appendix,
-) => {
+/// -> content
+#let toc = utils.make-toc((_, body, appendix) => {
   heading[Contents]
   stack(
     spacing: 0.5em,
@@ -25,9 +22,7 @@
             width: 1fr,
             line(
               length: 100%,
-              stroke: (
-                dash: "dotted",
-              ),
+              stroke: (dash: "dotted"),
             ),
           )
           #entry.page-number
@@ -37,6 +32,7 @@
   )
 
   heading[Appendix]
+
   stack(..for entry in appendix {
     (
       [
@@ -61,10 +57,11 @@
 /// *Example Usage*
 ///
 /// ```typ
-/// #create-appendix-entry(title: "Glossary")[
-///   #components.glossary()
-/// ]
+/// #glossary.add-term("Foo", lorem(10))
+/// #glossary.add-term("Bar", lorem(5))
+/// #components.glossary()
 /// ```
+/// -> content
 #let glossary = utils.make-glossary(glossary => {
   stack(
     spacing: 0.5em,
@@ -84,33 +81,35 @@
 ///
 /// *Example Usage*
 ///
-/// ```typ
-/// #components.decision-matrix(
+/// #example(
+/// `components.decision-matrix(
 ///   properties: (
-///     "Category 1", // weights will default to 1
-///     "Category 2",
-///     "Category 3",
+///     "Cat. 1", // weights will default to 1
+///     "Cat. 2",
+///     "Cat. 3",
 ///   ),
-///   ("Decision", 4, 3, 2),
-///   ("Matrix", 1, 2, 3),
+///   ("Choice 1", 4, 3, 2),
+///   ("Choice 2", 1, 2, 3),
+/// )`,
+/// scale-preview: 100%
 /// )
-/// ```
 ///
-/// *Example Usage*
-/// ```typ
-/// #components.decision-matrix(
+/// #example(
+/// `components.decision-matrix(
 ///   properties: (
 ///     (name: "Flavor", weight: 2),
-///     (name: "Crunchiness", weight: 1),
+///     (name: "Crunch", weight: 1),
 ///   ),
 ///   ("Sweet Potato", 1, 2),
 ///   ("Baked Potato", 2, 1)
 /// )
-///
-/// ```
+/// `,
+/// scale-preview: 100%
+/// )
 /// - properties (array): A list of the properties that each choice will be rated by and the weight of each property
 /// - ..choices (array): An array containing the name of the choices as its first member,
 /// and values for each of the properties at its following indices
+///
 /// -> content
 #let decision-matrix = utils.make-decision-matrix((properties, data) => {
   table(
@@ -142,16 +141,10 @@
 ///
 /// *Example Usage*
 ///
-/// ```typ
-/// #components.pro-con(
-///   pros: "Pros",
-///   cons: "Cons"
-/// )
-/// ```
+/// #example(`components.pro-con(pros: lorem(10), cons: lorem(5))`, scale-preview: 100%)
 ///
-/// *Example Usage*
-/// ```typ
-/// #components.pro-con(
+/// #example(
+/// `components.pro-con(
 ///  pros: [
 ///    #list(
 ///      "Sweet potato",
@@ -165,14 +158,11 @@
 ///    )
 ///  ]
 /// )
-/// ```
+/// `, scale-preview: 100%)
 /// - pros (content): The positive aspects
 /// - cons (content): The negative aspects
 /// -> content
-#let pro-con(
-  pros: [],
-  cons: [],
-) = {
+#let pro-con = utils.make-pro-con((pros, cons) => {
   table(
     columns: (
       1fr,
@@ -183,4 +173,9 @@
     pros,
     cons,
   )
-}
+})
+
+// TODO: implementations for
+// - admonition
+// - plot
+// - pie chart

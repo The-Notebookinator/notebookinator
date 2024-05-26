@@ -10,16 +10,15 @@
   *Default Cover*
 ])
 
-#let frontmatter-entry = utils.make-frontmatter-entry((
-  ctx,
-  body,
-) => {
+#let frontmatter-entry = utils.make-frontmatter-entry((ctx, body) => {
   show: page.with(
-    header: [ = #ctx.title
+    header: [
+      = #ctx.title
       #box(
         width: 1fr,
         line(length: 100%),
-      ) ],
+      )
+    ],
     footer: align(
       center,
       context counter(page).display("i"),
@@ -29,16 +28,15 @@
   body
 })
 
-#let body-entry = utils.make-body-entry((
-  ctx,
-  body,
-) => {
+#let body-entry = utils.make-body-entry((ctx, body) => {
   show: page.with(
-    header: [ = #ctx.title
+    header: [
+      = #ctx.title
       #box(
         width: 1fr,
         line(length: 100%),
-      ) ],
+      )
+    ],
     footer: align(
       center,
       context counter(page).display(),
@@ -48,12 +46,10 @@
   body
 })
 
-#let appendix-entry = utils.make-appendix-entry((
-  ctx,
-  body,
-) => {
+#let appendix-entry = utils.make-appendix-entry((ctx, body) => {
   show: page.with(
-    header: [ = #ctx.title
+    header: [
+      = #ctx.title
       #box(
         width: 1fr,
         line(length: 100%),
