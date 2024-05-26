@@ -7,7 +7,7 @@
 #let show-module = tidy.show-module.with(
   show-outline: false,
   sort-functions: none,
-  first-heading-level: 2,
+  first-heading-level: 1,
 )
 
 #let def-arg(term, t, default: none, description) = {
@@ -48,12 +48,14 @@
   )
 }
 
+#set heading(numbering: "1.")
+
 #show: codly-init.with()
 #codly()
 
 // ------------------ Document content -------------------------
 
-#outline(title: none, indent: true, depth: 1)
+#outline(title: none, indent: true, depth: 2)
 
 = Template
 
@@ -90,10 +92,10 @@ All of the components across each theme share the same API, so changing themes s
   ),
 )
 
-#show-module(default-components-module, first-heading-level: 2)
+#show-module(default-components-module)
 
 = Utils
 
 #let utils-module = tidy.parse-module(read("../../utils/misc.typ") + read("../../utils/theme.typ") + read("../../utils/components.typ"))
 
-#show-module(utils-module, first-heading-level: 2)
+#show-module(utils-module)
