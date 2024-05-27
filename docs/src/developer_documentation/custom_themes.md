@@ -73,7 +73,8 @@ We'll write these functions in the `foo/entries.typ` file. Below are some minima
 ```typ
 // foo/entries.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
+
 #let frontmatter-entry = utils.make-frontmatter-entry((ctx, body) => {
   show: page.with( // pass the entire function scope into the `page` function
     header: [ = ctx.title ],
@@ -89,7 +90,8 @@ We'll write these functions in the `foo/entries.typ` file. Below are some minima
 ```typ
 // foo/entries.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
+
 #let body-entry = utils.make-body-entry((ctx, body) => {
   show: page.with( // pass the entire function scope into the `page` function
     header: [ = ctx.title ],
@@ -105,7 +107,8 @@ We'll write these functions in the `foo/entries.typ` file. Below are some minima
 ```typ
 // foo/entries.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
+
 #let appendix-entry = utils.make-appendix-entry((ctx, body) => {
   show: page.with( // pass the entire function scope into the `page` function
     header: [ = ctx.title ],
@@ -122,7 +125,7 @@ With the entry functions written, we can now add them to the theme variable.
 ```typ
 // foo/foo.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 // import the entry functions
 #import "./entries.typ": frontmatter-entry, body-entry, appendix-entry
@@ -146,7 +149,7 @@ Here's an example cover:
 ```typ
 // foo/entries.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 #let cover = utils.make-cover(ctx => [
   #set align(center + horizon)
@@ -160,7 +163,7 @@ Then, we'll update the theme variable accordingly:
 ```typ
 // foo/foo.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 // import the cover along with the entry functions
 #import "./entries.typ": cover frontmatter-entry, body-entry, appendix-entry
@@ -184,7 +187,7 @@ look like:
 ```typ
 // foo/rules.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 #let rules = utils.make-rules((doc) => {
   set text(fill: red) // Make all of the text red, across the entire document
@@ -200,7 +203,7 @@ Then, we'll update the theme variable accordingly:
 #import "./rules.typ": rules // import the rules
 #import "./entries.typ": cover frontmatter-entry, body-entry, appendix-entry
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 #let foo-theme = utils.make-theme(
   rules: rules, // store the rules in the theme variable
@@ -258,7 +261,7 @@ Pro / con components tend to be extremely simple. Define a function called `pro-
 ```typ
 // foo/components/pro-con.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 #let pro-con = utils.make-pro-con((pros, cons) => {
     // return content here
@@ -280,7 +283,7 @@ Using the `make-toc` constructor we can make a `toc` like this:
 ```typ
 // foo/components/toc.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 #let toc = utils.make-toc((frontmatter, body, appendix) => {
  // ...
@@ -296,7 +299,7 @@ Here's what that looks like for the frontmatter entries:
 ```typ
 // foo/components/toc.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 #let toc = utils.make-toc((_, body, appendix) => {
   heading[Contents]
@@ -338,7 +341,7 @@ Inside of the function you have access to two variables, `properties`, and `data
 Here's a simple example to get you started, copied from the `default-theme`:
 
 ```typ
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 #let decision-matrix = utils.make-decision-matrix((properties, data) => {
   table(
@@ -380,7 +383,7 @@ Here's an example from the `default-theme`:
 ```typ
 // foo/components/glossary.typ
 
-// TODO: import utils
+// to import utils, see The Theme Variable section
 
 #let glossary() = utils.print-glossary(glossary => {
   stack(spacing: 0.5em, ..for entry in glossary {
