@@ -5,7 +5,7 @@
 /// *Example Usage*
 ///
 /// ```typ
-/// #create-body-entry(title: "Table Of Contents")[
+/// #create-frontmatter-entry(title: "Table Of Contents")[
 ///   #components.toc()
 /// ]
 /// ```
@@ -174,8 +174,3 @@
     cons,
   )
 })
-
-// TODO: implementations for
-// - admonition
-// - plot
-// - pie chart

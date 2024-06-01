@@ -290,7 +290,7 @@ Using the `make-toc` constructor we can make a `toc` like this:
 }
 ```
 
-Using the constructor gives us access to three variables, `frontmatter`, `body`, and `appendix`. These variables are all [arrays](https://typst.app/docs/reference/foundations/array/), which dictionaries which all contain the same information as the `ctx` variables from [this](#creating-the-entries) section, with the addition of a `page-number` field, which is an [integer](https://typst.app/docs/reference/foundations/int/).
+Using the constructor gives us access to three variables, `frontmatter`, `body`, and `appendix`. These variables are all [arrays](https://typst.app/docs/reference/foundations/array/), which are dictionaries that all contain the same information as the `ctx` variables from [this](#creating-the-entries) section, with the addition of a `page-number` field, which is an [integer](https://typst.app/docs/reference/foundations/int/).
 
 With these variables, we can simply loop over each one, and print out another entry in the table of contents each time.
 
@@ -302,6 +302,7 @@ Here's what that looks like for the frontmatter entries:
 // to import utils, see The Theme Variable section
 
 #let toc = utils.make-toc((_, body, appendix) => {
+  // _ replaces frontmatter to indicate we aren't using it
   heading[Contents]
   stack(
     spacing: 0.5em,
