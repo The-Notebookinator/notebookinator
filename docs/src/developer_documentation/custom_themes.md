@@ -324,7 +324,8 @@ Here's what that looks like for the frontmatter entries:
     },
   )
 
-  // TODO: display the appendix entries as well
+  // You'll need to do something similar for the
+  // appendix entries as well, if you want to display them
 })
 ```
 
