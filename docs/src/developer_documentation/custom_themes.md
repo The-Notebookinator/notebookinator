@@ -337,7 +337,7 @@ The decision matrix code works similarly. You can define one like this:
 })
 ```
 
-Inside of the function you have access to two variables, `properties`, and `data`. Properties contains a list of the properties the choices are being rated by, while `data` contains the scores for those choices. You can run a [`repr()`](https://typst.app/docs/reference/foundations/repr/) on either of those variables to get a better understanding of how they're structured.
+Inside of the function you have access to two variables, `properties`, and `data`. Properties contains a list of the properties the choices are being rated by, while `data` contains the choices alongside the scores for those choices. You can run a [`repr()`](https://typst.app/docs/reference/foundations/repr/) on either of those variables to get a better understanding of how they're structured.
 
 Here's a simple example to get you started, copied from the `default-theme`:
 
