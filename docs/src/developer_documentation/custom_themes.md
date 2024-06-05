@@ -302,6 +302,7 @@ Here's what that looks like for the frontmatter entries:
 // to import utils, see The Theme Variable section
 
 #let toc = utils.make-toc((_, body, appendix) => {
+    // We replace the 'frontmatter' parameter with _ to indicate that we will not use it.
   // _ replaces frontmatter to indicate we aren't using it
   heading[Contents]
   stack(
