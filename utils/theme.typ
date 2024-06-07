@@ -153,7 +153,7 @@ All of the constructors also perform checks to ensure that all of the types are 
     check-type(ctx, "date", datetime)
 
     if not valid-entry-types.contains(ctx.type) {
-      panic("Entry type '" + str(ctx.type) + "' Valid types include:" + valid-types-printable)
+      panic("Entry type '" + str(ctx.type) + "' is not valid. Valid types include:" + valid-types-printable)
     }
 
     callback(ctx, body)
