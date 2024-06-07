@@ -302,7 +302,7 @@
 
   return (type: none, body) => {
     if not valid-types.contains(type) {
-      panic("Entry type '" + str(type) + "' Valid types include:" + valid-types-printable)
+      panic("Entry type '" + str(type) + "' is not valid. Valid types include:" + valid-types-printable)
     }
 
     callback(
