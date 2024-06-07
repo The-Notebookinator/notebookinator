@@ -160,7 +160,7 @@ All of the constructors also perform checks to ensure that all of the types are 
   }
 }
 
-// All of the check logic is exactly the same, so we can just use the frontmater-entry here
+// All of the check logic is exactly the same, so we can just use the frontmatter-entry here
 
 /// A constructor for an appendix entry function. The resulting function should return the content of an entry as output.
 ///
