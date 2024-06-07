@@ -268,7 +268,7 @@ Pro / con components tend to be extremely simple. Define a function called `pro-
 })
 ```
 
-This syntax might look a little weird if you aren't familiar with functional programming. `make-pro-con` take a [`lambda`](https://typst.app/docs/reference/foundations/function/#unnamed) function as input, which is just a function without a name. This function takes two inputs: `pros` and `cons`, which are available inside the scope of the function like normal arguments would be on a named function.
+This syntax might look a little weird if you aren't familiar with functional programming. `make-pro-con` takes a [`lambda`](https://typst.app/docs/reference/foundations/function/#unnamed) function as input, which is just a function without a name. This function takes two inputs: `pros` and `cons`, which are available inside the scope of the function like normal arguments would be on a named function.
 
 For examples on how to create a pro / con table, check out how [other themes](https://github.com/The-Notebookinator/notebookinator/tree/main/themes) implement them.
 
