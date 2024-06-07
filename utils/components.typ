@@ -270,13 +270,21 @@
 /// ```
 /// - callback (function): A function that returns the content for the admonition. The function must take `type` and `body` arguments.
 ///   Valid types include:
-///    - `"note"`
-///    - `"example"`
-///    - `"warning"`
-///    - `"quote"`
-///    - `"equation"`
-///    - `"decision"`
-///    - `"build"`
+///   -  `"note"`,
+///   -  `"example"`,
+///   -  `"warning"`,
+///   -  `"quote"`,
+///   -  `"equation"`,
+///
+///    -  `"identify"`,
+///   -  `"brainstorm"`,
+///   -  `"decide"`,
+///   -  `"decision"`, // DEPRECATED
+///   -  `"build"`,
+///   -  `"program"`,
+///   -  `"test"`,
+///   -  `"management"`,
+///   -  `"notebook"`,
 ///
 /// -> function
 #let make-admonition(callback) = {
@@ -286,8 +294,16 @@
     "warning",
     "quote",
     "equation",
+
+    "identify",
+    "brainstorm",
+    "decide",
     "decision",
     "build",
+    "program",
+    "test",
+    "management",
+    "notebook",
   )
 
   let valid-types-printable = valid-types.fold(
@@ -348,9 +364,6 @@
 }
 
 // TODO: add method for these extra components:
-// - plot
-// - pie chart
-// - admonition
 // - gantt chart
 // - tournament
 // - team
