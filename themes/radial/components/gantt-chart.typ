@@ -31,7 +31,7 @@
 ///   - day: `<integer>`
 /// Example usage: ```typ datetime(year: 2024, month: 5, day: 2)```
 /// - date-interval (integer): The interval between dates, seven would make it weekly
-/// - date-format (string): The way the date is formated using the `<datetime.display()>` method
+/// - date-format (string): The way the date is formatted using the `<datetime.display()>` method
 /// - tasks (array): Specify tasks using an array of arrays that have three fields each
 ///   + `<string>` or `<content>` The name of the task
 ///   + `<array>`(`<integer>` or `<float>`, `<integer>` or `<float>`) The start and end point of the task
