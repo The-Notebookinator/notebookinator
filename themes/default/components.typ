@@ -33,7 +33,9 @@
 
   heading[Appendix]
 
-  stack(..for entry in appendix {
+  stack(
+    spacing: 0.5em,
+    ..for entry in appendix {
     (
       [
         #entry.title
