@@ -27,4 +27,5 @@ jobs:
           just package local
           just package preview
           just gallery
+          just check-format
           # TODO: run unit tests here
