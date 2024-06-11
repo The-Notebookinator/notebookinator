@@ -7,6 +7,7 @@ All of the constructors also perform checks to ensure that all of the types are 
   let given-type = type(
     ctx.at(field),
   )
+
   assert.eq(
     given-type,
     expected-type,
@@ -144,13 +145,14 @@ All of the constructors also perform checks to ensure that all of the types are 
       (
         "title",
         "type",
-        "author", // TODO: decide on the standard process for entry attribution
+        "author", 
         "witness",
       ),
       str,
     )
 
     check-type(ctx, "date", datetime)
+    check-type(ctx, "participants", array)
 
     if not valid-entry-types.contains(ctx.type) {
       panic("Entry type '" + str(ctx.type) + "' is not valid. Valid types include:" + valid-types-printable)
