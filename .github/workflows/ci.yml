@@ -15,13 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Install just from crates.io
         uses: baptiste0928/cargo-install@v2
         with:
           crate: just
+
+      - name: Install typstyle from crates.io
+        uses: baptiste0928/cargo-install@v2
+        with:
+          crate: typstyle
+
       - name: Install Typst
         uses: yusancky/setup-typst@v3
         id: setup-typst
+
       - name: Run checks
         run: |
           just package local
