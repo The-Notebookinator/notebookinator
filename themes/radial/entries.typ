@@ -5,20 +5,20 @@
 #import "./metadata.typ": entry-type-metadata
 
 // TODO: make an actual cover
-#let cover(ctx: (:)) = [
+#let cover = utils.make-cover(ctx => [
   #set align(center)
   *Radial Cover*
-]
+])
 
-#let frontmatter-entry(ctx: (:), body) = {
+#let frontmatter-entry = utils.make-frontmatter-entry((ctx, body) => {
   show: page.with(
     header: components.title(ctx.title),
     footer: align(right, context counter(page).display("i")),
   )
   body
-}
+})
 
-#let body-entry(ctx: (:), body) = {
+#let body-entry = utils.make-body-entry((ctx, body) => {
   let metadata = entry-type-metadata.at(ctx.type)
   show: page.with(
     header: components.title(
@@ -43,13 +43,13 @@
     ],
   )
   body
-}
+})
 
-#let appendix-entry(ctx: (:), body) = {
+#let appendix-entry = utils.make-appendix-entry((ctx, body) => {
   show: page.with(
     header: components.title(ctx.title),
     footer: align(right, context counter(page).display()),
   )
 
   body
-}
+})
