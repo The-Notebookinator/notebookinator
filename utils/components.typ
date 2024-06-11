@@ -294,7 +294,6 @@
     "warning",
     "quote",
     "equation",
-
     "identify",
     "brainstorm",
     "decide",

@@ -22,17 +22,15 @@
         #set text(72pt)
         #ctx.team-name
       ],
-      [
-        #align(
-          right,
-          [
-            #set text(20pt)
-            #ctx.season
+      align(
+        right,
+        [
+          #set text(20pt)
+          #ctx.season
 
-            Engineering Design Notebook
-          ],
-        )
-      ],
+          Engineering Design Notebook
+        ],
+      ),
     )
   ]
   h(5pt)
@@ -163,6 +161,7 @@
   show: page.with(header: [
     #set text(size: 25pt)
     #set line(stroke: 1.5pt)
+
     #align(
       center + horizon,
       grid(
@@ -171,9 +170,7 @@
           auto,
           1fr,
         ),
-        [
-          #line(length: 100%)
-        ],
+        line(length: 100%),
         [
           #h(20pt)
           #ctx.title
