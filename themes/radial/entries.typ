@@ -10,50 +10,51 @@
   ctx: (:),
 ) = {
     import components: label
+    let label = label.with(size: 4.7em, radius: 6pt)
 
     align(center + horizon)[
 #text(size: 24pt)[
           Radial Theme
         ]
       ]
-        place(dx: 90pt, dy: -340pt, label("identify", size: 4.7em))
-        place(dx: 52pt, dy: -295pt, label("brainstorm", size: 4.7em))
+        place(dx: 90pt, dy: -340pt, label("identify"))
+        place(dx: 52pt, dy: -295pt, label("brainstorm"))
 
-        place(dx: 520pt, dy: 190pt, label("decide", size: 4.7em))
-        place(dx: 490pt, dy: 240pt, label("build", size: 4.7em))
-        place(dx: 460pt, dy: 290pt, label("test", size: 4.7em))
+        place(dx: 520pt, dy: 190pt, label("decide"))
+        place(dx: 490pt, dy: 240pt, label("build"))
+        place(dx: 460pt, dy: 290pt, label("test"))
         
         place(dx: 150pt, dy: -160pt, rect(width: 50%, height: 300pt, fill: rgb("#eeeeeeff"), radius: (right: 20pt, left: 20pt)))
 
-        place(dx: 125pt, dy: -180pt, label("management", size: 4.7em))
-        place(dx: 425pt, dy: 105pt, label("management", size: 4.7em))
+        place(dx: 125pt, dy: -180pt, label("management"))
+        place(dx: 425pt, dy: 105pt, label("management"))
 
         place(dx: 520pt, dy: -270pt, rect(width: 9%, height: 55pt, fill: rgb("#eeeeeeff"), radius: (right: 5pt, left: 5pt)))
         place(dx: 455pt, dy: -335pt, rect(width: 9%, height: 55pt, fill: rgb("#eeeeeeff"), radius: (right: 5pt, left: 5pt)))
-        place(dx: 490pt, dy: -300pt, label("program", size: 4.7em))
+        place(dx: 490pt, dy: -300pt, label("program"))
 
         place(dx: 55pt, dy: 205pt, rect(width: 9%, height: 55pt, fill: rgb("#eeeeeeff"), radius: (right: 5pt, left: 5pt)))
         place(dx: 120pt, dy: 275pt, rect(width: 9%, height: 55pt, fill: rgb("#eeeeeeff"), radius: (right: 5pt, left: 5pt)))
-        place(dx: 90pt, dy: 240pt, label("notebook", size: 4.7em))
+        place(dx: 90pt, dy: 240pt, label("notebook"))
 
         place(dx: 165pt, dy: 200pt, line(length: 45%, stroke: 3.5pt + black))
 
         place(dx: 165pt, dy: -215pt, line(length: 45%, stroke: 3.5pt + black))
 
-        place(dx: 250pt, dy: -280pt, text(size: 18pt, font: "Calibri")[
+        place(dx: 250pt, dy: -280pt, text(size: 18pt)[
           *Radial Theme*
         ])
 
-        place(dx: 225pt, dy: -250pt, text(size: 24pt, font: "Calibri")[
+        place(dx: 225pt, dy: -250pt, text(size: 24pt)[
           *[Game Season]*
         ])
 
-        place(dx: 235pt, dy: 165pt, text(size: 24pt, font: "Calibri")[
+        place(dx: 235pt, dy: 165pt, text(size: 24pt)[
           *[Team Name]*
         ])
 
         place(dx: 0pt, dy: -370pt, figure(
-          image("../../gallery/Mediamodifier-Design.svg", width: 118%)
+          image("Mediamodifier-Design.svg", width: 118%)
         ))
 
         
