@@ -16,25 +16,25 @@
           Radial Theme
         ]
       ]
-        place(dx: 90pt, dy: -340pt, components.label("identify", size: 4.7em))
-        place(dx: 52pt, dy: -295pt, components.label("brainstorm", size: 4.7em))
+        place(dx: 90pt, dy: -340pt, label("identify", size: 4.7em))
+        place(dx: 52pt, dy: -295pt, label("brainstorm", size: 4.7em))
 
-        place(dx: 520pt, dy: 190pt, components.label("decide", size: 4.7em))
-        place(dx: 490pt, dy: 240pt, components.label("build", size: 4.7em))
-        place(dx: 460pt, dy: 290pt, components.label("test", size: 4.7em))
+        place(dx: 520pt, dy: 190pt, label("decide", size: 4.7em))
+        place(dx: 490pt, dy: 240pt, label("build", size: 4.7em))
+        place(dx: 460pt, dy: 290pt, label("test", size: 4.7em))
         
         place(dx: 150pt, dy: -160pt, rect(width: 50%, height: 300pt, fill: rgb("#eeeeeeff"), radius: (right: 20pt, left: 20pt)))
 
-        place(dx: 125pt, dy: -180pt, components.label("management", size: 4.7em))
-        place(dx: 425pt, dy: 105pt, components.label("management", size: 4.7em))
+        place(dx: 125pt, dy: -180pt, label("management", size: 4.7em))
+        place(dx: 425pt, dy: 105pt, label("management", size: 4.7em))
 
         place(dx: 520pt, dy: -270pt, rect(width: 9%, height: 55pt, fill: rgb("#eeeeeeff"), radius: (right: 5pt, left: 5pt)))
         place(dx: 455pt, dy: -335pt, rect(width: 9%, height: 55pt, fill: rgb("#eeeeeeff"), radius: (right: 5pt, left: 5pt)))
-        place(dx: 490pt, dy: -300pt, components.label("program", size: 4.7em))
+        place(dx: 490pt, dy: -300pt, label("program", size: 4.7em))
 
         place(dx: 55pt, dy: 205pt, rect(width: 9%, height: 55pt, fill: rgb("#eeeeeeff"), radius: (right: 5pt, left: 5pt)))
         place(dx: 120pt, dy: 275pt, rect(width: 9%, height: 55pt, fill: rgb("#eeeeeeff"), radius: (right: 5pt, left: 5pt)))
-        place(dx: 90pt, dy: 240pt, components.label("notebook", size: 4.7em))
+        place(dx: 90pt, dy: 240pt, label("notebook", size: 4.7em))
 
         place(dx: 165pt, dy: 200pt, line(length: 45%, stroke: 3.5pt + black))
 
