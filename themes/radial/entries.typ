@@ -12,7 +12,7 @@
     import components: label
 
     align(center + horizon)[
-      #text(size: 24pt, font: "Calibri")[
+#text(size: 24pt)[
           Radial Theme
         ]
       ]
