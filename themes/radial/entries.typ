@@ -6,7 +6,7 @@
 #import "./metadata.typ": entry-type-metadata
 
 // TODO: make an actual cover
-#let cover = make-cover(ctx =>{
+#let cover = utils.make-cover(ctx =>{
     import components: label
     let label = label.with(size: 4.7em, radius: 6pt)
 
