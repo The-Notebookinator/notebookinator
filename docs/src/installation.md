@@ -33,7 +33,7 @@ shell, like git-bash or the shell packaged with Cygwin or GitHub Desktop.
 ```
 
 ```bash
-git clone https://github.com/BattleCh1cken/notebookinator
+git clone --depth 1 --branch 1.0.1 https://github.com/The-Notebookinator/notebookinator
 ./notebookinator/scripts/package @local
 rm -rf notebookinator
 ```
