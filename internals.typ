@@ -1,5 +1,6 @@
 #import "./globals.typ"
 #import "./themes/themes.typ"
+#import "/utils.typ"
 
 #let fallback-to-default(key, theme) = {
   let component = theme.at(key, default: none)
@@ -27,9 +28,9 @@
 #let print-entries(theme: (:)) = {
   let print-helper(section, state) = {
     locate(loc => {
-      for entry in state.final(loc).sorted(key: entry=>entry.ctx.date) [
+      for (index, entry) in utils.sort_entries(state.final(loc)).enumerate() [
         #let entry-func = fallback-to-default(section + "-entry", theme)
-        #let body = [] + entry.body
+        #let body = if index == 0 [#counter(page).update(1)] else [] + entry.body
         #entry-func(body, ctx: entry.ctx)
       ]
     })
