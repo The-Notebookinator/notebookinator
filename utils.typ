@@ -1,5 +1,12 @@
 #import "/globals.typ"
 
+#let sort_entries(entries) = {
+  return entries.map(entry=>{
+    if entry.ctx.date == none {entry.ctx.insert("date", datetime(year: 0, day: 1, month: 1))}
+    return entry
+  }).sorted(key: entry=>entry.ctx.date)
+}
+
 // TODO: document what ctx provides to the callback
 /// Utility function to help themes implement a table of contents.
 ///
@@ -34,10 +41,11 @@
 
       let result = ()
 
-      for (index, entry) in state.final(loc).enumerate() {
-        let page-number = counter(page).at(markers.at(index).location()).at(0)
+      for (entry,marker) in sort_entries(state.final(loc)).zip(markers) {
+        let page-number = counter(page).at(marker.location()).at(0)
         let ctx = entry.ctx
         ctx.page-number = page-number
+        ctx.global-page-number = marker.location().page()
         result.push(ctx)
       }
       return result
