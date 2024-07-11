@@ -27,7 +27,7 @@
 #let print-entries(theme: (:)) = {
   let print-helper(section, state) = {
     locate(loc => {
-      for entry in state.final(loc) [
+      for entry in state.final(loc).sorted(key: entry=>entry.ctx.date) [
         #let entry-func = fallback-to-default(section + "-entry", theme)
         #let body = [] + entry.body
         #entry-func(body, ctx: entry.ctx)
