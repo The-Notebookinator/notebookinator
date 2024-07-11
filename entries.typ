@@ -18,23 +18,23 @@
   witness: "",
   body,
 ) = {
-  let (state, entry-label) = if section == "frontmatter" {
-    (globals.frontmatter-entries, label("notebook-frontmatter"))
+  let (state, entry-type) = if section == "frontmatter" {
+    (globals.frontmatter-entries, "notebook-frontmatter")
   } else if section == "body" {
-    (globals.entries, label("notebook-body"))
+    (globals.entries, "notebook-body")
   } else if section == "appendix" {
-    (globals.appendix-entries, label("notebook-appendix"))
+    (globals.appendix-entries, "notebook-appendix")
   } else {
     panic("No valid entry type selected")
   }
 
   state.update(
     entries => {
+      // let unique-label = label(entry-type + ":" + str(entries.len()))
+      let entry-type-label = label(entry-type)
       // Inject the proper labels and settings changes into the user's entry body
-      let final-body = if entries.len() == 0 {
-        [#counter(page).update(1)] // Correctly set the page number for each section
-      } + [
-        #metadata(none) #entry-label
+      let final-body = [
+        #metadata(none) #entry-type-label 
         #counter(footnote).update(0)
       ] + body // Place a label on blank content to the table of contents can find each entry
 
