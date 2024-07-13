@@ -1,7 +1,8 @@
 #import "./format.typ"
 #import "./colors.typ": *
+#import "/utils.typ"
 
-#let rules(doc) = {
+#let rules = utils.make-rules(doc => {
   set text(font: ("Calibri", "Carlito"), size: 11pt)
   set page("us-letter")
 
@@ -16,7 +17,10 @@
   ]
 
   show link: it => [
-    #text(fill: blue, [ _ #it _ ])
+    #text(
+      fill: blue,
+      [ _ #it _ ],
+    )
   ]
 
   show figure: it => align(center)[
@@ -32,9 +36,8 @@
   show raw.where(block: true): it => format.raw-block(it)
 
   show heading: format.heading
-
-  show table: format.table
+  //show table: format.table
 
   // Display the whole document
   doc
-}
+})
