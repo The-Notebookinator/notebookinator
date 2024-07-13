@@ -28,13 +28,13 @@
       };
       typstyle = pkgs.rustPlatform.buildRustPackage rec {
         pname = "typstyle";
-        version = "v0.11.25";
+        version = "v0.11.29";
 
         src = pkgs.fetchFromGitHub {
           owner = "Enter-tainer";
           repo = pname;
           rev = version;
-          sha256 = "sha256-wpG+laz1k/zCnEAVOyXzrN2DOECpKWT1nVCuQUwD+p0=";
+          sha256 = "sha256-7BjbML7mz5ohEdh+x6qL8pH2BTFW8WdtB0g91NHFIBY=";
         };
 
         nativeBuildInputs = [
@@ -45,7 +45,7 @@
         checkFlags = [
           "--skip=e2e"
         ];
-        cargoHash = "sha256-+8nadPuRKNKM+YVzZlz9rypDKjorYIwTUYkaSFrra1k=";
+        cargoHash = "sha256-m1C48OUOyUW4ANuVOhGcTYw3/nJ3WdqQ5kjQB2iLzrc=";
       };
     in
     {
