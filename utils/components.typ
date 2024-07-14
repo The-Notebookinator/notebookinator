@@ -44,9 +44,11 @@
     let result = ()
 
     for (index, entry) in state.final().enumerate() {
-      let page-number = counter(page).at(
-        markers.at(index).location(),
-      ).at(0)
+      let page-number = counter(page)
+        .at(
+          markers.at(index).location(),
+        )
+        .at(0)
       let ctx = entry.ctx
       ctx.page-number = page-number
       result.push(ctx)
@@ -54,17 +56,19 @@
     return result
   }
 
-  return () => context {
-    let frontmatter-entries = helper("frontmatter")
-    let body-entries = helper("body")
-    let appendix-entries = helper("appendix")
+  return () => (
+    context {
+      let frontmatter-entries = helper("frontmatter")
+      let body-entries = helper("body")
+      let appendix-entries = helper("appendix")
 
-    callback(
-      frontmatter-entries,
-      body-entries,
-      appendix-entries,
-    )
-  }
+      callback(
+        frontmatter-entries,
+        body-entries,
+        appendix-entries,
+      )
+    }
+  )
 }
 
 /// Constructor for a glossary component
@@ -89,12 +93,14 @@
 /// - callback (function): A function that returns the content of the glossary. The function must take a `glossary` argument.
 /// -> function
 #let make-glossary(callback) = {
-  return () => context {
-    let sorted-glossary = globals.glossary-entries.final().sorted(key: (
-      (word: word, definition: definition),
-    ) => word)
-    callback(sorted-glossary)
-  }
+  return () => (
+    context {
+      let sorted-glossary = globals.glossary-entries.final().sorted(key: (
+        (word: word, definition: definition),
+      ) => word)
+      callback(sorted-glossary)
+    }
+  )
 }
 
 /// Constructor for a pro / con component
@@ -199,9 +205,11 @@
 
       let weighted-values = values.enumerate().map((
         (index, value),
-      ) => value * properties.at(index).at(
-        "weight",
-        default: 1,
+      ) => (
+        value * properties.at(index).at(
+          "weight",
+          default: 1,
+        )
       ))
       let weighted-total = weighted-values.sum()
 
