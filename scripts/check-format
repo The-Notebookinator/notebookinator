@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-find ./ -type f -name "*.typ" -print0 | xargs -0 -n 1 typstyle --check "$0"
+check_file() {
+  echo "============="
+  echo "Checking $1"
+  typstyle "$1" --check
+}
+
+export -f check_file
+
+find ./ -type f -name "*.typ" -print0 | xargs -0 -n 1 bash -c 'check_file "$0"'
