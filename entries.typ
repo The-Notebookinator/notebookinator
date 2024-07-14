@@ -48,7 +48,7 @@
         date: date,
         author: author,
         witness: witness,
-        participants: participants
+        participants: participants,
       ),
       body: final-body,
     ))

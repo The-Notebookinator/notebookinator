@@ -31,12 +31,12 @@
           [
             #alliance.teams.at(0) \
             #alliance.teams.at(1) \
-          ], [
+          ],
+          [
             #set text(size: 15pt)
             #set align(horizon + center)
             #alliance.score
           ],
-
         )
       ]
     }
@@ -60,6 +60,7 @@
         header-cell[*Blue Alliance*],
         header-cell[*Auton Bonus*],
         header-cell(radius: (top-right: 1.5pt))[*AWP*],
+
         cell[#match.match],
         alliance-info(alliance: match.red-alliance),
         alliance-info(alliance: match.blue-alliance),

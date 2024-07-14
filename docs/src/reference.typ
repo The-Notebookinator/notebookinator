@@ -13,27 +13,30 @@
 #let def-arg(term, t, default: none, description) = {
   if type(t) == str {
     t = t.replace("?", "|none")
-    t = `<` + t.split("|").map(s => {
-      if s == "b" {
-        `boolean`
-      } else if s == "s" {
-        `string`
-      } else if s == "i" {
-        `integer`
-      } else if s == "f" {
-        `float`
-      } else if s == "c" {
-        `coordinate`
-      } else if s == "d" {
-        `dictionary`
-      } else if s == "a" {
-        `array`
-      } else if s == "n" {
-        `number`
-      } else {
-        raw(s)
-      }
-    }).join(`|`) + `>`
+    t = `<` + t
+      .split("|")
+      .map(s => {
+          if s == "b" {
+            `boolean`
+          } else if s == "s" {
+            `string`
+          } else if s == "i" {
+            `integer`
+          } else if s == "f" {
+            `float`
+          } else if s == "c" {
+            `coordinate`
+          } else if s == "d" {
+            `dictionary`
+          } else if s == "a" {
+            `array`
+          } else if s == "n" {
+            `number`
+          } else {
+            raw(s)
+          }
+        })
+      .join(`|`) + `>`
   }
 
   stack(

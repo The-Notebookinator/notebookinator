@@ -18,6 +18,7 @@
       fill: red,
       radius: (top: 1.5pt),
     )[*Cons*],
+
     cell(
       fill: green.lighten(80%),
       radius: (bottom: 1.5pt),
