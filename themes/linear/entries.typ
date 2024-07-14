@@ -161,7 +161,6 @@
   show: page.with(header: [
     #set text(size: 25pt)
     #set line(stroke: 1.5pt)
-
     #align(
       center + horizon,
       grid(

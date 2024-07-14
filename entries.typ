@@ -8,6 +8,9 @@
 /// - title (string): The title of the entry.
 /// - type (string): The type of entry. The possible values for this are decided by the theme.
 /// - date (datetime): The date that the entry occured at.
+/// - author (str): The author of the entry.
+/// - witness (str): The witness of the entry.
+/// - participants (array): The people who participated in the entry.
 /// - body (content): The content of the entry.
 #let create-entry(
   section: none,
@@ -16,6 +19,7 @@
   date: none,
   author: "",
   witness: "",
+  participants: (),
   body,
 ) = {
   let (state, entry-label) = if section == "frontmatter" {
@@ -44,6 +48,7 @@
         date: date,
         author: author,
         witness: witness,
+        participants: participants
       ),
       body: final-body,
     ))
