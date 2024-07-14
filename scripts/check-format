@@ -2,9 +2,11 @@
 set -e
 
 check_file() {
-  echo "============="
-  echo "Checking $1"
-  typstyle "$1" --check
+  typstyle "$1" --check 1>/dev/null
+  if [ "$?" == 1 ]; then
+    echo Failed on "$1", please format the file and try again.
+    exit 1
+  fi
 }
 
 export -f check_file
