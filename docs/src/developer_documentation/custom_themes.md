@@ -166,7 +166,7 @@ Then, we'll update the theme variable accordingly:
 // to import utils, see The Theme Variable section
 
 // import the cover along with the entry functions
-#import "./entries.typ": cover frontmatter-entry, body-entry, appendix-entry
+#import "./entries.typ": cover, frontmatter-entry, body-entry, appendix-entry
 
 #let foo-theme = utils.make-theme(
   cover: cover, // add the cover to the theme
@@ -193,7 +193,7 @@ look like:
   set text(fill: red) // Make all of the text red, across the entire document
 
   doc // Return the entire document
-}
+})
 ```
 
 Then, we'll update the theme variable accordingly:
@@ -201,7 +201,7 @@ Then, we'll update the theme variable accordingly:
 ```typ
 // foo/foo.typ
 #import "./rules.typ": rules // import the rules
-#import "./entries.typ": cover frontmatter-entry, body-entry, appendix-entry
+#import "./entries.typ": cover, frontmatter-entry, body-entry, appendix-entry
 
 // to import utils, see The Theme Variable section
 
@@ -287,7 +287,7 @@ Using the `make-toc` constructor we can make a `toc` like this:
 
 #let toc = utils.make-toc((frontmatter, body, appendix) => {
  // ...
-}
+})
 ```
 
 Using the constructor gives us access to three variables, `frontmatter`, `body`, and `appendix`. These variables are all [arrays](https://typst.app/docs/reference/foundations/array/), which are dictionaries that all contain the same information as the `ctx` variables from [this](#creating-the-entries) section, with the addition of a `page-number` field, which is an [integer](https://typst.app/docs/reference/foundations/int/).
@@ -396,7 +396,7 @@ Here's an example from the `default-theme`:
       #entry.definition
     ],)
   })
-}
+})
 ```
 
 ## Using the Theme
