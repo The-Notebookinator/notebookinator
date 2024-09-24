@@ -40,8 +40,7 @@
           #grid(
             columns: (1fr, 1fr),
             gutter: 20pt,
-            align(center, member.picture),
-            align(left, member.about),
+            align(center, member.picture), align(left, member.about),
           )
         ],
       )

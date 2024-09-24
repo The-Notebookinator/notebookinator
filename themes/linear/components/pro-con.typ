@@ -21,7 +21,7 @@
       center,
       text(size: 14pt, weight: "semibold", [Cons]),
     ),
-    pros,
-    cons,
+
+    pros, cons,
   )
 })

@@ -36,22 +36,23 @@
   stack(
     spacing: 0.5em,
     ..for entry in appendix {
-    (
-      [
-        #entry.title
-        #box(
-          width: 1fr,
-          line(
-            length: 100%,
-            stroke: (
-              dash: "dotted",
+      (
+        [
+          #entry.title
+          #box(
+            width: 1fr,
+            line(
+              length: 100%,
+              stroke: (
+                dash: "dotted",
+              ),
             ),
-          ),
-        )
-        #entry.page-number
-      ],
-    )
-  })
+          )
+          #entry.page-number
+        ],
+      )
+    },
+  )
 })
 
 /// Prints out the glossary.

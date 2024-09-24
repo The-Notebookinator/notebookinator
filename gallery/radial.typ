@@ -95,8 +95,7 @@
   #grid(
     columns: (1fr, 1fr),
     gutter: 20pt,
-    components.admonition(type: "warning")[#lorem(20)],
-    lorem(20),
+    components.admonition(type: "warning")[#lorem(20)], lorem(20),
   )
 
 ]
