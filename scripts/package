@@ -16,6 +16,7 @@ files=(
   packages.typ
   internals.typ
   themes/
+  utils/
   typst.toml
   LICENSE
   README.md
