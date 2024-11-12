@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+
+check_file() {
+  typstyle "$1" --check 1>/dev/null
+  if [ "$?" == 1 ]; then
+    echo Failed on "$1", please format the file and try again.
+    exit 1
+  fi
+}
+
+export -f check_file
+
+find ./ -type f -name "*.typ" -print0 | xargs -0 -n 1 bash -c 'check_file "$0"'

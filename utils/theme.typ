@@ -145,7 +145,7 @@ All of the constructors also perform checks to ensure that all of the types are 
       (
         "title",
         "type",
-        "author", 
+        "author",
         "witness",
       ),
       str,

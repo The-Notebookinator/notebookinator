@@ -13,3 +13,6 @@ gallery:
   for f in "{{gallery_dir}}"/*.typ; do
     typst c "$f" --format png "${f/.typ}-{n}.png" --root ./
   done
+
+check-format:
+  ./scripts/check-format
